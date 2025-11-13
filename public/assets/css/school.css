@@ -1,0 +1,1174 @@
+/* ✅ Common CSS */
+
+body {
+    margin: 0;
+    font-family: 'Noto Serif Bengali', serif;
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+}
+
+
+ul li {
+    list-style: none;
+}
+
+a {
+    transition: all 1s ease 0s;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* a:hover {
+    color: orangered;
+
+} */
+
+/* ✅ Header CSS */
+
+.header-section {
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    padding: 10px 0;
+    text-align: center;
+}
+
+.school-logo {
+    max-width: 100px;
+    height: auto;
+}
+
+.school-title {
+    margin-top: 10px;
+    font-size: 31px;
+    font-weight: 600;
+    font-family: 'SolaimanLipi', sans-serif !important;
+    text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+    color: #000 !important;
+}
+
+.school-subtitle {
+    color: #000 !important;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: SolaimanLipi;
+    text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+}
+
+.school-estd {
+    color: #000 !important;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: SolaimanLipi;
+    margin-top: 5px;
+    display: inline-block;
+    text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+}
+
+/* ✅ Navigation CSS */
+/* .nav-item{
+      padding: 10px 24px !important;
+    } */
+
+.navbar-custom {
+    background-color: #00465b;
+    padding: 0px !important;
+    /* border-top: 3px solid #ffffff; */
+
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    /* padding: 12px 18px; */
+    font-size: 14px;
+    position: relative;
+    border-left: 2px solid #660000;
+    /* Red border between items */
+    padding: 10px 24px !important;
+}
+
+/* .navbar-nav .nav-link:first-child {
+      border-left: none;
+    } */
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: #660000 !important;
+    color: #fff;
+
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: #fff;
+}
+
+.dropdown-menu {
+    background-color: #00465b;
+    border: none;
+}
+
+.dropdown-menu a {
+    color: #fff !important;
+    font-size: 14px !important;
+}
+
+.dropdown-menu a:hover {
+    background-color: #092d3c;
+}
+
+@media (max-width: 768px) {
+    .school-title {
+        font-size: 22px;
+    }
+
+    .school-subtitle,
+    .school-estd {
+        font-size: 14px;
+    }
+}
+
+
+/* ✅ Slider CSS */
+.slider-section .carousel-inner img {
+    height: 500px;
+    object-fit: cover;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #660000 !important;
+    border-radius: 50%;
+    padding: 25px;
+    background-size: 50% 50% !important;
+    padding: 25px;
+    filter: brightness(100%);
+}
+
+/* Optional: make the button containers wider for better spacing */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 6%;
+}
+
+
+/* ✅ Special Announcement CSS */
+.marquee-title {
+    font-size: 17px;
+    position: absolute;
+    background-color: #FA0000;
+    padding: 10px 10px;
+    color: #fff;
+    z-index: 1;
+}
+
+.special-announcement-section .top-marquee {
+    background-color: #ededed;
+    height: 45px;
+}
+
+.special-announcement-section .top-marquee ul li a {
+    padding: 10px 50px !important;
+    text-decoration: none;
+    color: #FA0000;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.special-announcement-section .top-marquee ul li a:hover {
+    /* color: #087C04; */
+    color: orangered !important;
+
+}
+
+.special-announcement-section .top-marquee ul li {
+    display: inline-block;
+}
+
+.content-section {
+    margin: 50px 0;
+}
+
+/* ✅ Institution Information CSS */
+.history-school h3 {
+    font-size: 18px !important;
+    font-weight: 600;
+    margin: 0px 0 15px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    /* background-image: linear-gradient(120deg, #0245AF 0%, #138CDC 100%); */
+    display: inline-block;
+    width: 100%;
+    padding: 6px 5px;
+    color: #fff !important;
+}
+
+.special-announcement-section .top-marquee ul li a {
+    /* padding: 10px 50px; */
+    text-decoration: none;
+    color: #FA0000;
+    display: inline-block;
+    padding-top: 7px !important;
+    font-weight: 500 !important;
+}
+
+.datenews {
+    color: green;
+    font-weight: bold;
+    display: inline-block;
+
+}
+
+.history-school h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0px 0 15px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    /* background-image: linear-gradient(120deg, #0245AF 0%, #138CDC 100%); */
+    display: inline-block;
+    width: 100%;
+    padding: 6px 5px;
+    color: #fff !important;
+}
+
+.title-info h5,
+.title-info-two h5,
+.title-info-three h5,
+.title-info-fore h5 {
+    font-size: 15px;
+    color: #fff !important;
+    padding-top: 6px;
+    font-weight: 500;
+}
+
+.title-info {
+    padding: 1px 8px;
+    background-color: transparent;
+    background: linear-gradient(90deg, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    /* background-image: linear-gradient(120deg, #A63247 0%, #DA526A 100%); */
+}
+
+.title-info-two {
+    padding: 1px 7px;
+    background-color: transparent;
+    /* background-image: linear-gradient(120deg, #07894C 0%, #38CE86 100%); */
+    background: linear-gradient(90deg, rgba(0, 36, 12, 1) 0%, rgba(9, 121, 18, 1) 35%, rgba(60, 190, 27, 1) 70%);
+}
+
+.title-info-three {
+    padding: 1px 8px;
+    background-color: transparent;
+    /* background-image: linear-gradient(118deg, #985E04 0%, #D5901D 100%); */
+    background: linear-gradient(90deg, rgba(99, 83, 2, 1) 0%, rgba(121, 95, 9, 1) 35%, rgba(198, 255, 0, 1) 100%);
+}
+
+.title-info-fore {
+    padding: 1px 7px;
+    background-color: transparent;
+    /* background-image: linear-gradient(120deg, #1D77B2 0%, #4CA7E2 100%); */
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
+
+.clearfix-card .float-start img {
+    width: 100px;
+    padding: 10px;
+    margin: 18px;
+}
+
+.image-size {
+    width: 100%;
+    height: 250px !important;
+}
+
+.card-wrapper {
+    margin: 15px 0;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 100%;
+}
+
+.card-wrapper h5 {
+    background-color: #0bd3de;
+    color: #fff !important;
+    padding: 15px 0;
+}
+
+.card-wrapper ul {
+    padding: 15px;
+}
+
+.card-wrapper ul li a {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    color: #000;
+}
+
+.card-wrapper ul li a:hover {
+    background: #0bd3de;
+    color: #fff;
+}
+
+.footer {
+    background-color: #034F72;
+    padding: 100px 0;
+}
+
+.footer .text-title {
+    font-size: 16px;
+    /* padding-top: 2px; */
+
+}
+
+.footer .left img {
+    width: 150px;
+    margin: 5px 0;
+}
+
+.footer .left-center h3 {
+    color: #fff !important;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.footer .left-center {
+    color: #fff;
+}
+
+.footer .left-center ul,
+.footer .right ul {
+    padding-left: 0px !important;
+}
+
+.footer .right-center,
+.footer .right {
+    padding-left: 0px !important;
+
+}
+
+.footer .right-center ul li,
+.footer .right ul li {
+    list-style: inside;
+    color: #fff;
+}
+
+.footer .right-center ul li a,
+.footer .right ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    padding: 12px 0;
+}
+
+.footer .right-center ul li a:hover,
+.footer .right ul li a:hover {
+    color: #ffe601;
+}
+
+.small-footer {
+    background-color: #036390;
+    padding: 15px 0px;
+    color: #fff;
+}
+
+.list-button ul {
+    padding: 0px;
+}
+
+
+.list-button ul li a {
+    font-size: 16px !important;
+    text-decoration: none;
+    padding: 7px 10px;
+    display: inline-block;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    margin: 0 0 15px;
+    color: #fff;
+    font-weight: 500;
+
+}
+
+.list-button ul li a:hover {
+    background-color: #000;
+    color: #fff !important;
+    font-weight: bold;
+    scale: 103%;
+}
+
+.list-button ul li a i {
+    margin-right: 15px;
+    font-size: 25px;
+}
+
+.notice-board h3,
+.official-link h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0;
+    /* background-image: linear-gradient(120deg, #0245AF 0%, #138CDC 100%); */
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    display: inline-block;
+    width: 100%;
+    padding: 10px 5px;
+    color: #fff !important;
+}
+
+.official-link ul {
+    background-color: #EBEBEB;
+    margin: -20px 0px 20px 0px;
+    padding: 21px 17px 23px 17px;
+}
+
+.official-link ul li a i {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.official-link ul li a {
+    text-decoration: none;
+    color: #54595f;
+    font-size: 15px;
+    padding: 6px 0;
+    display: inline-block;
+}
+
+.official-link ul li a:hover {
+    color: orangered;
+}
+
+/* .conatiner {
+            box-shadow: 2px 2px 2px #000;
+        } */
+
+.content-notice {
+    color: #2873BD;
+    font-size: 16px;
+    overflow: hidden;
+    background-color: #EBEBEB;
+    text-align: justify;
+    line-height: 1.3em;
+}
+
+.content-notice ul {
+    margin: 0;
+    padding: 0 15px !important;
+    list-style: none;
+    animation: scroll 20s linear infinite;
+}
+
+
+.content-notice ul li a {
+    color: #337ab7;
+    text-decoration: none;
+    padding: 15px 0;
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+
+.content-notice ul li a:hover {
+    color: orangered;
+}
+
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* ✅ Noctice CSS */
+
+.notice-section .table th,
+.notice-section .table td {
+    text-align: left;
+    padding-left: 15px;
+
+}
+
+
+
+.notice-section .table {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.notice-section .table th,
+.notice-section .table td {
+    color: #000;
+    vertical-align: middle;
+}
+
+.notice-section .table a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.notice-section .table a:hover {
+    color: orangered;
+    text-decoration: underline;
+}
+
+
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* ✅ Managing Team and Teachers Team CSS */
+
+.testimonial-item {
+    width: 250px !important;
+    background-image: linear-gradient(120deg, #0245AF 0%, #138CDC 100%);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.testimonial-item h4,
+.testimonial-item p {
+    color: #fff !important;
+}
+
+.techers-wrap img {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.teachers-dig {
+    margin-top: 10px;
+
+}
+
+.teachers-dig h4 {
+    font-size: 20px;
+}
+
+.teachers-dig p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.teachers-bg {
+    border-radius: 5px;
+    padding: 15px 0;
+}
+
+.techers-wrap {
+    height: auto;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+
+.techers-wrap img {
+    width: 100%;
+    height: 300px;
+}
+
+@media (max-width: 767px) {
+
+    .carousel-inner .item img {
+        height: auto !important;
+    }
+
+    .affix#alert .logo img {
+        transition: all 1s ease 0s;
+        height: 50px !important;
+    }
+
+
+    header .logo img {
+        height: 50px !important;
+    }
+
+}
+
+.info-card {
+    margin-bottom: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px gray;
+    background-color: #EBEBEB;
+}
+
+/* ✅ Info Cards CSS  */
+
+.card-header-custom {
+    padding: 15px 15px;
+    color: #fff !important;
+    font-weight: 500;
+    margin: 0;
+}
+
+.card-header-custom h5 {
+    font-size: 16px !important;
+    font-weight: 500;
+}
+
+.card-body-custom {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.card-icon {
+    width: 80px;
+    flex-shrink: 0;
+    margin-right: 15px;
+    padding: 40px 0;
+}
+
+.card-icon img {
+    width: 100%;
+    height: auto;
+}
+
+.card-list {
+    flex-grow: 1;
+    padding-top: 20px;
+}
+
+.card-list ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.card-list li {
+    list-style: none;
+
+    position: relative;
+    padding-left: 25px;
+}
+
+.card-list li:before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #999999;
+}
+
+.card-list a {
+    text-decoration: none;
+    color: #000000;
+    transition: all 0.3s;
+    font-size: 15px;
+}
+
+.card-list a:hover {
+    color: orangered;
+}
+
+
+.logo .img {
+    height: 120px;
+    margin: 10px 0;
+}
+
+/* ✅ Footer CSS */
+.footer {
+    background-image: url(https://sqmhighschool.edu.bd//uploads/images/footer-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.footer a:hover {
+    color: orangered !important;
+}
+
+.footer h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.footer .footer-logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+.f1-list li {
+    display: block;
+    padding: 6px 15px;
+    position: relative;
+    width: 50%;
+    float: left;
+}
+
+.list-unstyled li {
+    padding-top: 5px;
+    position: relative;
+    width: 50%;
+    float: left;
+}
+
+.list-unstyled li a i {
+    color: #8c8587;
+    margin-right: 10px;
+}
+
+.services-title-teacher {
+    padding-top: 30px;
+}
+
+/* ✅ Admission Information CSS */
+
+.admission-section {
+    background: #fff;
+    color: #000;
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 1200px;
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+}
+
+.admission-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.admission-content p {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.principal-signature {
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.principal-signature strong {
+    display: block;
+    margin-top: 10px;
+}
+
+.form-img {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.form-img img {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.apply-btn {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+
+
+    border-radius: 5px;
+}
+
+.apply-btn a {
+    padding: 15px;
+    background: #000;
+}
+
+.apply-btn a:hover {
+    background: #000;
+}
+
+/* ✅ Class Summary CSS */
+
+.class-summary-section .box-shadow {
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 30px auto;
+    /* max-width: 1000px; */
+}
+
+.info-card-summary {
+    color: #000;
+    background-color: #c4cefc;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.info-card-summary:hover {
+    transform: translateY(-5px);
+}
+
+.info-card-summary i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* ✅ Contact Us CSS */
+
+.title {
+    color: #000;
+}
+
+.title:hover {
+    color: orangered;
+}
+
+.subtitle {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 16px;
+}
+
+.subtitle:hover {
+    color: orangered;
+}
+
+.contact-item {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px 30px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border: 1px solid #ececec;
+    transition: all .3s ease-in;
+}
+
+.contact-item:hover {
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.contact-item img {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    margin-bottom: 20px;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px !important;
+    color: #333;
+    font-weight: bold;
+
+}
+
+h3 {
+    font-weight: bold;
+}
+
+h3:hover {
+    color: orangered;
+}
+
+/* 
+        #tooltip-modal {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 100;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        } */
+
+.tooltip-content img {
+    width: 100px;
+    height: 100px;
+}
+
+.items {
+    font-weight: 500 !important;
+}
+
+.img-hover:hover {
+    scale: 115%;
+    transition: 0.3s ease;
+}
+
+/* ✅ Events and Notice CSS  */
+
+.shadow-bg {
+    background-color: #fff;
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.datenews {
+    color: green;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+
+/* ✅ Exam Result CSS */
+.content-header h1 {
+    text-align: left;
+}
+
+.content-wrapper {
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.box-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.box-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.box-title:hover {
+    color: #000;
+}
+
+table th,
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.btn-warning {
+    color: rgb(255, 255, 255);
+    background-color: rgb(240, 173, 78);
+    border-color: rgb(238, 162, 54);
+}
+
+/* ✅ Header Master CSS */
+
+.principal-message {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.principal-photo img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.principal-name {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.principal-title {
+    font-weight: bold;
+    color: #a94442;
+}
+
+.principal-school {
+    font-weight: bold;
+    color: #a94442;
+}
+
+.quote-text {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.signature {
+    line-height: 1.6em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.social-icons i {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+.social-icons i:hover {
+    color: #dc3545;
+}
+
+/* ✅ Gallery CSS */
+.hero {
+    background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+}
+
+.gallery-img {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.caption {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ✅ Routine CSS */
+
+.routine-wraper h1 {
+    font-size: 30px;
+    color: #000;
+    text-align: text-center;
+
+}
+
+.routine-section table tr a:hover {
+    color: red;
+}
+
+.routine-section table tr a {
+    text-decoration: revert;
+    font-weight: 800;
+}
+
+.table-responsive .background {
+    background-color: #008ccd !important;
+    color: #fff;
+    height: 50px;
+
+}
+
+
+/* ✅ Total Student CSS */
+
+
+.table-container {
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 30px auto;
+    max-width: 1000px;
+}
+
+
+.table-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.custom-header th {
+    background-color: #337ab7 !important;
+    color: white !important;
+    text-align: center;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* ✅ Summery Student CSS */
+.table-responsive .table-bordered {
+    border: 1px solid #ddd;
+}
+
+
+/* ✅ FAQs CSS */
+.accordion-button:not(.collapsed) {
+    background: #0d6efd !important;
+    color: #fff !important;
+    box-shadow: none;
+}
+
+.accordion-button:hover {
+    background: #e9f2ff;
+    color: #0d6efd;
+}
+
+.accordion-item {
+    border-radius: 12px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.accordion-item:hover {
+    transform: translateY(-2px);
+}

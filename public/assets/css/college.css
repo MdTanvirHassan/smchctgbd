@@ -1,0 +1,1393 @@
+/* ✅ Common CSS */
+
+body {
+    margin: 0;
+    font-family: 'Noto Serif Bengali', serif;
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+
+    background-image: url('bg.png');
+    background-repeat: repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: top left;
+}
+
+
+
+ul li {
+    list-style: none;
+}
+
+a {
+    transition: all 1s ease 0s;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* a:hover {
+    color: #660000;
+
+} */
+
+
+/* ✅ Header CSS */
+
+.header-section {
+    background: #00465b;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.school-logo {
+    max-width: 100px;
+    height: auto;
+}
+
+.school-title {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'SolaimanLipi', sans-serif !important;
+    color: #ffffff !important;
+}
+
+.school-subtitle {
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: SolaimanLipi;
+}
+
+.school-estd {
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: SolaimanLipi;
+    margin-top: 5px;
+    display: inline-block;
+    /* text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff; */
+}
+
+/* ✅ Navigation CSS */
+.text-maroon {
+    color: #660000 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #660000;
+    font-weight: 500;
+    padding: 10px 14px;
+    transition: color 0.3s ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link.active {
+    color: #fff;
+    background-color: #660000;
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+/* Base dropdown item */
+.dropdown-item {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #660000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover */
+.dropdown-item:hover {
+    color: #f8f9fa;
+    background-color: #660000;
+}
+
+/* Active / Current page */
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #660000 !important;
+    /* Dark maroon for active */
+    color: #fff !important;
+    /* White text for contrast */
+    font-weight: 500;
+}
+
+/* Optional: keep hover effect even on active */
+.dropdown-item.active:hover {
+    color: #550000 !important;
+    background-color: #fff !important;
+}
+
+
+@media (max-width: 768px) {
+    .school-title {
+        font-size: 22px;
+    }
+
+    .school-subtitle,
+    .school-estd {
+        font-size: 14px;
+    }
+}
+
+
+/* --- Banner image animations --- */
+/* --- Banner image animations --- */
+.banner-img {
+    object-fit: auto;
+    height: 80vh;
+    /* fullscreen feel */
+    animation: zoomBanner 15s ease-in-out infinite alternate;
+}
+
+@keyframes zoomBanner {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+/* --- Gradient overlay for readability --- */
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom left, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.16));
+    z-index: 1;
+}
+
+/* --- Custom caption placement --- */
+.carousel-caption-custom {
+    z-index: 2;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Typography polish */
+.carousel-caption-box h1 {
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption-box p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Buttons hover effect */
+.carousel-caption-box .btn {
+    transition: all 0.3s ease;
+}
+
+.carousel-caption-box .btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ✅ Special Announcement CSS */
+.special-announcement-section {
+    background-color: #00465b;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.marquee-title {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    background-color: #fff;
+    padding: 0 15px;
+    color: #00465b;
+    font-weight: 600;
+    z-index: 2;
+    border-right: 2px solid #ccc;
+}
+
+.marquee-title i {
+    color: #660000;
+    font-size: 16px;
+    margin-right: 6px;
+}
+
+/* Marquee container */
+.special-announcement-section .top-marquee {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 150px;
+    /* leave space for title box */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Marquee scrolling content */
+.special-announcement-section .top-marquee marquee {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* List style inside marquee */
+.special-announcement-section .top-marquee ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.special-announcement-section .top-marquee ul li {
+    display: inline-block;
+    line-height: 1.2;
+}
+
+/* Link style */
+.special-announcement-section .top-marquee ul li a {
+    padding: 0px 20px;
+    color: #ffffff;
+    background-color: transparent;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 2px solid #ffffff99;
+    white-space: nowrap;
+}
+
+.special-announcement-section .top-marquee ul li a:hover {
+    color: #ffcccc;
+    padding-left: 25px;
+}
+
+.special-announcement-section .top-marquee ul li a .datenews {
+    font-size: 12px;
+    font-weight: 400;
+    color: #dddddd;
+    margin-bottom: 2px;
+    display: block;
+}
+
+/* about section*/
+.about-intro {
+    background-color: white;
+}
+
+.about-intro .title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.about-intro .desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #000000;
+    text-align: justify;
+}
+
+
+.btn-outline-primary {
+    background-color: #ffffff;
+    border-color: #00465b;
+    color: #00465b;
+}
+
+.btn-outline-primary:hover {
+    background-color: #00465b;
+    border-color: #00465b;
+    color: #fff;
+}
+
+.bg-soft-blue {
+    background-color: #ffffffee;
+}
+
+.bg-soft-secondary {
+    background-color: #ffffffe7;
+}
+
+.message-img {
+    width: 195px;
+    height: 195px;
+    object-fit: cover;
+}
+
+.image-wrap {
+    flex-shrink: 0;
+    width: 210px;
+}
+
+.btn-outline-primary {
+    border-color: #00465b;
+    color: #00465b;
+}
+
+.btn-outline-primary:hover {
+    background-color: #00465b;
+    color: #fff;
+}
+
+.collapse {
+    transition: height 0.8s ease;
+    /* Default is 0.35s, increased here for smoother effect */
+}
+
+
+.content-section {
+    margin: 50px 0;
+}
+
+/* ✅ Institution Information CSS */
+.history-school h3 {
+    font-size: 18px !important;
+    font-weight: 600;
+    margin: 0px 0 15px;
+    background: #00465b;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 10px;
+    color: #fff !important;
+    border-radius: 5px;
+}
+
+.title-info h5,
+.title-info-two h5,
+.title-info-three h5,
+.title-info-fore h5 {
+    font-size: 15px;
+    color: #fff !important;
+    padding-top: 6px;
+    font-weight: 500;
+}
+
+.title-info {
+    padding: 1px 8px;
+    background-color: transparent;
+    background: linear-gradient(90deg, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    /* background-image: linear-gradient(120deg, #A63247 0%, #DA526A 100%); */
+}
+
+.title-info-two {
+    padding: 1px 7px;
+    background-color: transparent;
+    /* background-image: linear-gradient(120deg, #07894C 0%, #38CE86 100%); */
+    background: linear-gradient(90deg, rgba(0, 36, 12, 1) 0%, rgba(9, 121, 18, 1) 35%, rgba(60, 190, 27, 1) 70%);
+}
+
+.title-info-three {
+    padding: 1px 8px;
+    background-color: transparent;
+    /* background-image: linear-gradient(118deg, #985E04 0%, #D5901D 100%); */
+    background: linear-gradient(90deg, rgba(99, 83, 2, 1) 0%, rgba(121, 95, 9, 1) 35%, rgba(198, 255, 0, 1) 100%);
+}
+
+.title-info-fore {
+    padding: 1px 7px;
+    background-color: transparent;
+    /* background-image: linear-gradient(120deg, #1D77B2 0%, #4CA7E2 100%); */
+    background: #00465b;
+}
+
+.clearfix-card .float-start img {
+    width: 100px;
+    padding: 10px;
+    margin: 18px;
+}
+
+.image-size {
+    width: 100%;
+    height: 250px !important;
+}
+
+.card-wrapper {
+    margin: 15px 0;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 100%;
+}
+
+.card-wrapper h5 {
+    background-color: #0bd3de;
+    color: #fff !important;
+    padding: 15px 0;
+}
+
+.card-wrapper ul {
+    padding: 15px;
+}
+
+.card-wrapper ul li a {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    color: #000;
+}
+
+.card-wrapper ul li a:hover {
+    background: #0bd3de;
+    color: #fff;
+}
+
+/* ✅ Footer Wrapper */
+/* ✅ Footer Wrapper with Zig-Zag Top */
+/* Wave container */
+.footer-top-wave {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-bottom: -1px;
+    /* Prevent gap */
+}
+
+.footer-top-wave svg {
+    display: block;
+    width: 100%;
+    height: 200px;
+    /* Taller for dramatic effect */
+}
+
+
+/* Footer styling */
+.footer {
+    background-color: #00465b;
+    color: white;
+    padding-top: 20px !important;
+    padding-bottom: 20px;
+}
+
+
+
+/* ✅ Footer Logo */
+.footer .left img,
+.footer .footer-logo img {
+    max-width: 150px;
+    width: 150px;
+    height: auto;
+    margin: 5px 0;
+}
+
+/* ✅ Footer Section Titles */
+.footer .text-title {
+    font-size: 16px;
+}
+
+.footer .left-center h3 {
+    color: #fff !important;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.footer h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* ✅ Footer Text Colors */
+.footer .left-center,
+.footer .left-center ul,
+.footer .right ul,
+.footer .right-center ul {
+    color: #fff;
+    padding-left: 0 !important;
+}
+
+/* ✅ Footer Lists */
+.footer .right-center ul li,
+.footer .right ul li {
+    list-style: inside;
+    color: #fff;
+}
+
+/* ✅ Footer Links */
+.footer a,
+.footer .right-center ul li a,
+.footer .right ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 25px;
+    transition: color 0.3s ease, scale 0.7s ease;
+}
+
+.footer a:hover,
+.footer .right-center ul li a:hover,
+.footer .right ul li a:hover {
+    color: #660000;
+    scale: 105%;
+}
+
+
+.small-footer {
+    background-color: #036390;
+    padding: 15px 0px;
+    color: #fff;
+}
+
+.list-button ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-button ul li {
+    margin-bottom: 12px;
+}
+
+.list-button ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    background: #660000;
+    color: #fff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-button ul li a i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.list-button ul li a:hover {
+    background-color: #00465b;
+    transform: scale(1.03);
+    font-weight: bold;
+}
+
+.list-button ul li a:hover i {
+    transform: translateX(5px);
+}
+
+.notice-board {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #00465b;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.notice-board h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    background-color: #00465b;
+    color: #fff;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.content-notice {
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.notice-list {
+    animation: scroll-up 18s linear infinite;
+    padding: 10px 20px;
+}
+
+@keyframes scroll-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.notice-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.notice-link {
+    display: block;
+    text-decoration: none;
+    color: #00465b;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.notice-link:hover {
+    text-decoration: underline;
+}
+
+.datenews {
+    font-size: 12px;
+    color: #660000;
+    margin-bottom: 3px;
+    display: block;
+}
+
+/* Modal customization */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #00465b;
+    color: #fff;
+}
+
+.modal-body {
+    color: #00465b;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.official-link {
+    background-color: #fff;
+    border: 1px solid #660000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.official-link h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    background-color: #660000;
+    color: #fff;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.official-link ul {
+    list-style: none;
+    margin: 0;
+    padding: 16px;
+    background-color: #f5f5f5;
+}
+
+.official-link ul li {
+    margin-bottom: 12px;
+}
+
+.official-link ul li:last-child {
+    margin-bottom: 0;
+}
+
+.official-link ul li a {
+    text-decoration: none;
+    color: #660000;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.official-link ul li a i {
+    font-size: 18px;
+    color: #00465b;
+    min-width: 20px;
+}
+
+.official-link ul li a:hover {
+    color: #00465b;
+    text-decoration: underline;
+}
+
+
+
+.important-info {
+    background-color: #fff;
+    border: 1px solid #00465b;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.important-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    background-color: #00465b;
+    color: #fff;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.important-info ul {
+    list-style: none;
+    margin: 0;
+    padding: 16px;
+    background-color: #f5f5f5;
+}
+
+.important-info ul li {
+    margin-bottom: 12px;
+}
+
+.important-info ul li:last-child {
+    margin-bottom: 0;
+}
+
+.important-info ul li a {
+    text-decoration: none;
+    color: #00465b;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.important-info ul li a i {
+    font-size: 18px;
+    color: #660000;
+    min-width: 20px;
+}
+
+.important-info ul li a:hover {
+    color: #660000;
+    text-decoration: underline;
+}
+
+/* .conatiner {
+            box-shadow: 2px 2px 2px #000;
+        } */
+
+.content-notice {
+    color: #2873BD;
+    font-size: 16px;
+    overflow: hidden;
+    background-color: #EBEBEB;
+    text-align: justify;
+    line-height: 1.3em;
+}
+
+.content-notice ul {
+    margin: 0;
+    padding: 0 15px !important;
+    list-style: none;
+    animation: scroll 20s linear infinite;
+}
+
+
+.content-notice ul li a {
+    color: #337ab7;
+    text-decoration: none;
+    padding: 15px 0;
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+
+.content-notice ul li a:hover {
+    color: #660000;
+}
+
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* ✅ Noctice CSS */
+
+.notice-section .table th,
+.notice-section .table td {
+    text-align: left;
+    padding-left: 15px;
+
+}
+
+
+
+.notice-section .table {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.notice-section .table th,
+.notice-section .table td {
+    color: #000;
+    vertical-align: middle;
+}
+
+.notice-section .table a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.notice-section .table a:hover {
+    color: #660000;
+    text-decoration: underline;
+}
+
+
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* ✅ Managing Team and Teachers Team CSS */
+#teacherCarousel {
+    background-color: #fff;
+    padding: 40px 0;
+}
+
+.teacher-card {
+    background: #fff;
+    border: 2px solid #00465b;
+    padding: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.teacher-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.teacher-info h4 {
+    font-size: 18px;
+    color: #00465b;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.teacher-info p {
+    font-size: 15px;
+    color: #660000;
+    margin: 0;
+}
+
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    overflow: hidden;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-header-custom {
+    background-color: #00465b;
+    color: #ffffff;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.card-body-custom {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+}
+
+.card-icon img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.card-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-list ul li {
+    margin-bottom: 8px;
+}
+
+.card-list ul li a {
+    text-decoration: none;
+    color: #00465b;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.card-list ul li a:hover {
+    color: #660000;
+    text-decoration: underline;
+}
+
+
+.logo .img {
+    height: 120px;
+    margin: 10px 0;
+}
+
+
+
+.f1-list li {
+    display: block;
+    padding: 6px 15px;
+    position: relative;
+    width: 50%;
+    float: left;
+}
+
+.list-unstyled li {
+    padding-top: 5px;
+    position: relative;
+    width: 50%;
+    float: left;
+}
+
+.list-unstyled li a i {
+    color: #8c8587;
+    margin-right: 10px;
+}
+
+.services-title-teacher {
+    padding-top: 30px;
+}
+
+/* ✅ Admission Information CSS */
+
+.admission-section {
+    background: #fff;
+    color: #000;
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 1200px;
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+}
+
+.admission-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.admission-content p {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.principal-signature {
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.principal-signature strong {
+    display: block;
+    margin-top: 10px;
+}
+
+.form-img {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.form-img img {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.apply-btn {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+
+
+    border-radius: 5px;
+}
+
+.apply-btn a {
+    padding: 15px;
+    background: #000;
+}
+
+.apply-btn a:hover {
+    background: #000;
+}
+
+/* ✅ Class Summary CSS */
+
+.class-summary-section .box-shadow {
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 30px auto;
+    /* max-width: 1000px; */
+}
+
+.info-card-summary {
+    color: #000;
+    background-color: #c4cefc;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.info-card-summary:hover {
+    transform: translateY(-5px);
+}
+
+.info-card-summary i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* ✅ Contact Us CSS */
+
+.title {
+    color: #00465b;
+}
+
+.title:hover {
+    color: #660000;
+}
+
+.subtitle {
+    margin: 0;
+    padding: 0;
+    color: #660000;
+    font-size: 16px;
+}
+
+.subtitle:hover {
+    color: #00465b;
+}
+
+.contact-item {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px 30px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border: 1px solid #ececec;
+    transition: all .3s ease-in;
+}
+
+.contact-item:hover {
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.contact-item img {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    margin-bottom: 20px;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+
+
+/* 
+        #tooltip-modal {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 100;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        } */
+
+.tooltip-content img {
+    width: 100px;
+    height: 100px;
+}
+
+.items {
+    font-weight: 500 !important;
+}
+
+.img-hover:hover {
+    scale: 115%;
+    transition: 0.3s ease;
+}
+
+/* ✅ Events and Notice CSS  */
+
+.shadow-bg {
+    background-color: #fff;
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+
+/* ✅ Exam Result CSS */
+.content-header h1 {
+    text-align: left;
+}
+
+.content-wrapper {
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.box-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.box-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.box-title:hover {
+    color: #000;
+}
+
+table th,
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.btn-warning {
+    color: rgb(255, 255, 255);
+    background-color: rgb(240, 173, 78);
+    border-color: rgb(238, 162, 54);
+}
+
+/* ✅ Header Master CSS */
+
+.principal-message {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.principal-photo img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.principal-name {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.principal-title {
+    font-weight: bold;
+    color: #660000;
+}
+
+.principal-school {
+    font-weight: bold;
+    color: #660000;
+}
+
+.quote-text {
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.signature {
+    line-height: 1.6em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/* ✅ Gallery CSS */
+.smart-hero {
+    position: relative;
+    min-height: 25vh;
+    background: radial-gradient(circle at 30% 20%, #00788c, #005460);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.smart-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0;
+    color: #fff;
+}
+
+
+
+
+.gallery-img {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.caption {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ✅ Routine CSS */
+
+.routine-wraper h1 {
+    font-size: 30px;
+    color: #000;
+    text-align: text-center;
+
+}
+
+.routine-section table tr a:hover {
+    color: red;
+}
+
+.routine-section table tr a {
+    text-decoration: revert;
+    font-weight: 800;
+}
+
+.table-responsive .background {
+    background-color: #008ccd !important;
+    color: #fff;
+    height: 50px;
+
+}
+
+
+/* ✅ Total Student CSS */
+
+
+.table-container {
+    box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.5) !important;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 30px auto;
+    max-width: 1000px;
+}
+
+
+.table-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.custom-header th {
+    background-color: #337ab7 !important;
+    color: white !important;
+    text-align: center;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* ✅ Summery Student CSS */
+.table-responsive .table-bordered {
+    border: 1px solid #ddd;
+}
