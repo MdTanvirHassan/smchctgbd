@@ -448,6 +448,29 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="countdown-wrapper text-center mt-4">
+                        <div class="mb-3">
+                            <img src="{{ asset('public/uploads/countdown.jpg') }}" alt="Countdown" class="img-fluid rounded shadow-sm">
+                        </div>
+                        <div id="eventCountdown" class="d-flex justify-content-center gap-3 flex-wrap">
+                            <div class="countdown-segment px-3 py-2 border rounded bg-light">
+                                <div class="fs-3 fw-bold" data-unit="days">00</div>
+                                <div class="text-uppercase small text-muted">Days</div>
+                            </div>
+                            <div class="countdown-segment px-3 py-2 border rounded bg-light">
+                                <div class="fs-3 fw-bold" data-unit="hours">00</div>
+                                <div class="text-uppercase small text-muted">Hours</div>
+                            </div>
+                            <div class="countdown-segment px-3 py-2 border rounded bg-light">
+                                <div class="fs-3 fw-bold" data-unit="minutes">00</div>
+                                <div class="text-uppercase small text-muted">Minutes</div>
+                            </div>
+                            <div class="countdown-segment px-3 py-2 border rounded bg-light">
+                                <div class="fs-3 fw-bold" data-unit="seconds">00</div>
+                                <div class="text-uppercase small text-muted">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -590,6 +613,46 @@
                 link.textContent = readMoreTexts.more;
             });
         });
+
+        const countdownContainer = document.getElementById('eventCountdown');
+        if (countdownContainer) {
+            const targetDate = new Date('December 4, 2025 09:00:00');
+            const unitElements = {
+                days: countdownContainer.querySelector('[data-unit="days"]'),
+                hours: countdownContainer.querySelector('[data-unit="hours"]'),
+                minutes: countdownContainer.querySelector('[data-unit="minutes"]'),
+                seconds: countdownContainer.querySelector('[data-unit="seconds"]'),
+            };
+
+            const pad = (value) => String(value).padStart(2, '0');
+
+            const updateCountdown = () => {
+                const now = new Date();
+                let diff = targetDate - now;
+
+                if (diff <= 0) {
+                    unitElements.days.textContent = '00';
+                    unitElements.hours.textContent = '00';
+                    unitElements.minutes.textContent = '00';
+                    unitElements.seconds.textContent = '00';
+                    return;
+                }
+
+                const secondsTotal = Math.floor(diff / 1000);
+                const days = Math.floor(secondsTotal / (60 * 60 * 24));
+                const hours = Math.floor((secondsTotal % (60 * 60 * 24)) / (60 * 60));
+                const minutes = Math.floor((secondsTotal % (60 * 60)) / 60);
+                const seconds = secondsTotal % 60;
+
+                unitElements.days.textContent = pad(days);
+                unitElements.hours.textContent = pad(hours);
+                unitElements.minutes.textContent = pad(minutes);
+                unitElements.seconds.textContent = pad(seconds);
+            };
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
     });
 
 
