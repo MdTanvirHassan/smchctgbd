@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class SettingController extends Controller
 {
@@ -27,21 +28,41 @@ class SettingController extends Controller
      */
     public function site_setting()
     {
-        return view('backend.setting.site_setting');
+        // Always load fresh from database (no cache) to show latest saved values
+        Cache::forget('business_settings');
+        $settings = Setting::all()->pluck('value', 'type');
+        return view('backend.setting.site_setting', compact('settings'));
     }
     public function site_setting_update(Request $request)
     {
         $types = $request->input('types', []);
 
         foreach ($types as $type) {
+            $removeRequested = filter_var($request->input($type . '_remove'), FILTER_VALIDATE_BOOLEAN);
+            if ($removeRequested) {
+                $existingSetting = Setting::where('type', $type)->first();
+                if ($existingSetting && $existingSetting->value) {
+                    $oldFilePath = public_path(str_replace('public/', '', $existingSetting->value));
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
+                    }
+                }
+
+                Setting::updateOrCreate(
+                    ['type' => $type],
+                    ['value' => null]
+                );
+                continue;
+            }
+
             if ($request->hasFile($type . '_file')) {
                 // Find existing setting to delete old file if exists
                 $existingSetting = Setting::where('type', $type)->first();
 
                 if ($existingSetting && $existingSetting->value) {
                     $oldFilePath = public_path(str_replace('public/', '', $existingSetting->value));
-                    if (file_exists($oldFilePath)) {
-                        unlink($oldFilePath);
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
                     }
                 }
 
@@ -49,7 +70,11 @@ class SettingController extends Controller
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 // Move file to public/assets/img/settings (inside Laravel's public folder)
-                $file->move(public_path('assets/img/settings'), $fileName);
+                $destinationPath = public_path('assets/img/settings');
+                if (!File::isDirectory($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true);
+                }
+                $file->move($destinationPath, $fileName);
 
                 // Store path with 'public/' prefix in DB (as per your project convention)
                 $value = 'public/assets/img/settings/' . $fileName;
@@ -67,10 +92,12 @@ class SettingController extends Controller
             );
         }
 
-        // In your controller update method:
+        // Clear all relevant caches
+        Cache::forget('business_settings');
         Cache::forget('settings');
 
-        return redirect()->back()->with('success', 'Settings updated successfully!');
+        // Force fresh data reload by redirecting with timestamp
+        return redirect()->route('site.setting')->with('success', 'Settings updated successfully!');
     }
 
 
@@ -90,6 +117,23 @@ class SettingController extends Controller
         $types = $request->input('types', []);
 
         foreach ($types as $type) {
+            $removeRequested = filter_var($request->input($type . '_remove'), FILTER_VALIDATE_BOOLEAN);
+            if ($removeRequested) {
+                $existingSetting = Setting::where('type', $type)->first();
+                if ($existingSetting && $existingSetting->value) {
+                    $oldFilePath = public_path(str_replace('public/', '', $existingSetting->value));
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
+                    }
+                }
+
+                Setting::updateOrCreate(
+                    ['type' => $type],
+                    ['value' => null]
+                );
+                continue;
+            }
+
             // Handle file uploads for image fields
             if ($request->hasFile($type . '_file')) {
                 // Find existing setting to delete old file if exists
@@ -97,8 +141,8 @@ class SettingController extends Controller
 
                 if ($existingSetting && $existingSetting->value) {
                     $oldFilePath = public_path(str_replace('public/', '', $existingSetting->value));
-                    if (file_exists($oldFilePath)) {
-                        unlink($oldFilePath);
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
                     }
                 }
 
@@ -106,7 +150,11 @@ class SettingController extends Controller
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 // Save file to public/assets/img/seo (or any folder you like)
-                $file->move(public_path('assets/img/settings'), $fileName);
+                $destinationPath = public_path('assets/img/settings');
+                if (!File::isDirectory($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true);
+                }
+                $file->move($destinationPath, $fileName);
 
                 // Store relative path in DB, e.g. 'assets/img/seo/filename.jpg'
                 $value = 'public/assets/img/settings/' . $fileName;
@@ -125,7 +173,7 @@ class SettingController extends Controller
         }
 
         // Clear settings cache if used
-        Cache::forget('settings');
+        Cache::forget('business_settings');
 
         return redirect()->back()->with('success', 'SEO settings updated successfully!');
     }
@@ -142,6 +190,23 @@ class SettingController extends Controller
         $types = $request->input('types', []);
 
         foreach ($types as $type) {
+            $removeRequested = filter_var($request->input($type . '_remove'), FILTER_VALIDATE_BOOLEAN);
+            if ($removeRequested) {
+                $existingSetting = Setting::where('type', $type)->first();
+                if ($existingSetting && $existingSetting->value) {
+                    $oldFilePath = public_path(str_replace('public/', '', $existingSetting->value));
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
+                    }
+                }
+
+                Setting::updateOrCreate(
+                    ['type' => $type],
+                    ['value' => null]
+                );
+                continue;
+            }
+
             // Check if it's a file upload
             if ($request->hasFile($type . '_file')) {
                 $file = $request->file($type . '_file');
@@ -150,16 +215,16 @@ class SettingController extends Controller
                 $existingSetting = Setting::where('type', $type)->first();
                 if ($existingSetting && $existingSetting->value) {
                     $oldFilePath = public_path(str_replace('public/', '', $existingSetting->value));
-                    if (file_exists($oldFilePath)) {
-                        unlink($oldFilePath);
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
                     }
                 }
 
                 // Generate new file name
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
                 $destinationPath = public_path('assets/img/settings');
-                if (!file_exists($destinationPath)) {
-                    mkdir($destinationPath, 0777, true);
+                if (!File::isDirectory($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true);
                 }
 
                 // Move file
@@ -183,7 +248,7 @@ class SettingController extends Controller
         }
 
         // Clear cache
-        Cache::forget('settings');
+        Cache::forget('business_settings');
 
         return redirect()->back()->with('success', 'Homepage content updated successfully.');
     }
