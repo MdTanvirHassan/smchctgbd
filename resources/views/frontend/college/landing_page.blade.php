@@ -247,11 +247,11 @@
                                 </div>
                                 <div class="card-list">
                                     <ul>
-                                        <li><a href="{{ route('total_students') }}">{{ __('landing.student_info_links.seat_capacity') }}</a></li>
-                                        <li><a href="{{ route('total_students') }}">{{ __('landing.student_info_links.admission_info') }}</a></li>
-                                        <li><a href="{{ route('notice') }}">{{ __('landing.student_info_links.notice') }}</a></li>
-                                        <li><a href="{{ route('routine') }}">{{ __('landing.student_info_links.routine') }}</a></li>
-                                        <li><a href="{{ get_setting('youtube_link') }}">{{ __('landing.student_info_links.online_class_link') }}</a></li>
+                                        <li><a href="{{ route('total_students') }}"><i class="fas fa-chair me-2"></i>{{ __('landing.student_info_links.seat_capacity') }}</a></li>
+                                        <li><a href="{{ route('total_students') }}"><i class="fas fa-file-alt me-2"></i>{{ __('landing.student_info_links.admission_info') }}</a></li>
+                                        <li><a href="{{ route('notice') }}"><i class="fas fa-bullhorn me-2"></i>{{ __('landing.student_info_links.notice') }}</a></li>
+                                        <li><a href="{{ route('routine') }}"><i class="fas fa-calendar-alt me-2"></i>{{ __('landing.student_info_links.routine') }}</a></li>
+                                        <li><a href="{{ get_setting('youtube_link') }}"><i class="fas fa-video me-2"></i>{{ __('landing.student_info_links.online_class_link') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -268,9 +268,9 @@
                                 </div>
                                 <div class="card-list">
                                     <ul>
-                                        <li><a href="{{ route('teacher_team') }}">{{ __('landing.teacher_info_links.teachers') }}</a></li>
-                                        <li><a href="#">{{ __('landing.teacher_info_links.vacancy_list') }}</a></li>
-                                        <li><a href="{{ route('head_master') }}">{{ __('landing.teacher_info_links.principal') }}</a></li>
+                                        <li><a href="{{ route('teacher_team') }}"><i class="fas fa-users me-2"></i>{{ __('landing.teacher_info_links.teachers') }}</a></li>
+                                        <li><a href="#"><i class="fas fa-briefcase me-2"></i>{{ __('landing.teacher_info_links.vacancy_list') }}</a></li>
+                                        <li><a href="{{ route('head_master') }}"><i class="fas fa-user-tie me-2"></i>{{ __('landing.teacher_info_links.principal') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -287,10 +287,10 @@
                                 </div>
                                 <div class="card-list">
                                     <ul>
-                                        <li><a href="{{ route('routine') }}">{{ __('landing.download_links.exam_routine') }}</a></li>
-                                        <li><a href="#">{{ __('landing.download_links.holiday_notice') }}</a></li>
-                                        <li><a href="{{ route('admission_info') }}">{{ __('landing.download_links.admission_form') }}</a></li>
-                                        <li><a href="{{ route('routine') }}">{{ __('landing.download_links.exam_routine') }}</a></li>
+                                        <li><a href="{{ route('routine') }}"><i class="fas fa-file-download me-2"></i>{{ __('landing.download_links.exam_routine') }}</a></li>
+                                        <li><a href="#"><i class="fas fa-file-download me-2"></i>{{ __('landing.download_links.holiday_notice') }}</a></li>
+                                        <li><a href="{{ route('admission_info') }}"><i class="fas fa-file-download me-2"></i>{{ __('landing.download_links.admission_form') }}</a></li>
+                                        <li><a href="{{ route('routine') }}"><i class="fas fa-file-download me-2"></i>{{ __('landing.download_links.exam_routine') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -307,11 +307,11 @@
                                 </div>
                                 <div class="card-list">
                                     <ul>
-                                        <li><a href="{{ route('notice') }}">{{ __('landing.academic_info_links.notice') }}</a></li>
-                                        <li><a href="#">{{ __('landing.academic_info_links.room_count') }}</a></li>
-                                        <li><a href="#">{{ __('landing.academic_info_links.holiday_list') }}</a></li>
-                                        <li><a href="#">{{ __('landing.academic_info_links.multimedia_classroom') }}</a></li>
-                                        <li><a href="{{ route('total_students') }}">{{ __('landing.academic_info_links.seat_capacity') }}</a></li>
+                                        <li><a href="{{ route('notice') }}"><i class="fas fa-bullhorn me-2"></i>{{ __('landing.academic_info_links.notice') }}</a></li>
+                                        <li><a href="#"><i class="fas fa-door-open me-2"></i>{{ __('landing.academic_info_links.room_count') }}</a></li>
+                                        <li><a href="#"><i class="fas fa-calendar-times me-2"></i>{{ __('landing.academic_info_links.holiday_list') }}</a></li>
+                                        <li><a href="#"><i class="fas fa-projector me-2"></i>{{ __('landing.academic_info_links.multimedia_classroom') }}</a></li>
+                                        <li><a href="{{ route('total_students') }}"><i class="fas fa-chair me-2"></i>{{ __('landing.academic_info_links.seat_capacity') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
