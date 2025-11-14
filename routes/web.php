@@ -57,7 +57,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/contact_us', 'contact_us')->name('contact_us');
     Route::get('/online_class_link', 'online_class_link')->name('online_class_link');
     Route::get('/mbbs-course-new-curriculum', 'mbbsCourseNewCurriculum')->name('mbbs_course_new_curriculum');
-    Route::get('/facilities', 'facilities')->name('facilities.frontend');
+    Route::get('/facilities/{section?}', 'facilities')->name('facilities.frontend');
 });
 
 Route::controller(DashboardController::class)->group(function () {

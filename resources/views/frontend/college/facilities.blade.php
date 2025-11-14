@@ -10,8 +10,32 @@
 <!-- Facilities Section -->
 <section class="facilities-section my-5">
     <div class="container">
+        <!-- Section Navigation Tabs -->
+        <ul class="nav nav-tabs mb-4 justify-content-center" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ $section === 'academic_facility' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'academic_facility') }}">
+                    {{ __('header.academic_facility') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ $section === 'teaching_activities' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'teaching_activities') }}">
+                    {{ __('header.teaching_activities') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ $section === 'activities_of_meu' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'activities_of_meu') }}">
+                    {{ __('header.activities_of_meu') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ $section === 'research_cell' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'research_cell') }}">
+                    {{ __('header.research_cell') }}
+                </a>
+            </li>
+        </ul>
+
         <!-- Academic Facility -->
-        @if($academicFacility)
+        @if($section === 'academic_facility' && $academicFacility)
             @php
                 $academicData = json_decode($academicFacility->description, true);
             @endphp
@@ -52,7 +76,7 @@
         @endif
 
         <!-- Teaching Activities -->
-        @if($teachingActivities)
+        @if($section === 'teaching_activities' && $teachingActivities)
             @php
                 $teachingData = json_decode($teachingActivities->description, true);
             @endphp
@@ -101,7 +125,7 @@
         @endif
 
         <!-- Activities of MEU -->
-        @if($activitiesOfMeu)
+        @if($section === 'activities_of_meu' && $activitiesOfMeu)
             @php
                 $meuData = json_decode($activitiesOfMeu->description, true);
             @endphp
@@ -132,7 +156,7 @@
         @endif
 
         <!-- Research Cell -->
-        @if($researchCell)
+        @if($section === 'research_cell' && $researchCell)
             @php
                 $researchData = json_decode($researchCell->description, true);
             @endphp
@@ -162,9 +186,25 @@
             </div>
         @endif
 
-        @if(!$academicFacility && !$teachingActivities && !$activitiesOfMeu && !$researchCell)
+        @if(
+            ($section === 'academic_facility' && !$academicFacility) ||
+            ($section === 'teaching_activities' && !$teachingActivities) ||
+            ($section === 'activities_of_meu' && !$activitiesOfMeu) ||
+            ($section === 'research_cell' && !$researchCell)
+        )
             <div class="alert alert-info text-center">
-                <h5>No facilities available at the moment.</h5>
+                <h5>
+                    @if($section === 'academic_facility')
+                        No {{ __('header.academic_facility') }}
+                    @elseif($section === 'teaching_activities')
+                        No {{ __('header.teaching_activities') }}
+                    @elseif($section === 'activities_of_meu')
+                        No {{ __('header.activities_of_meu') }}
+                    @elseif($section === 'research_cell')
+                        No {{ __('header.research_cell') }}
+                    @endif
+                    available at the moment.
+                </h5>
                 <p>Please check back later.</p>
             </div>
         @endif

@@ -194,14 +194,19 @@ class HomeController extends Controller
     }
 
     // Facilities Page
-    public function facilities()
+    public function facilities($section = null)
     {
         $academicFacility = Content::where('type', 'facility_academic_facility')->where('is_published', 1)->first();
         $teachingActivities = Content::where('type', 'facility_teaching_activities')->where('is_published', 1)->first();
         $activitiesOfMeu = Content::where('type', 'facility_activities_of_meu')->where('is_published', 1)->first();
         $researchCell = Content::where('type', 'facility_research_cell')->where('is_published', 1)->first();
 
-        return view('frontend.' . get_setting('template_name') . '.facilities', compact('academicFacility', 'teachingActivities', 'activitiesOfMeu', 'researchCell'));
+        // Set default section if not provided
+        if (!$section) {
+            $section = 'academic_facility';
+        }
+
+        return view('frontend.' . get_setting('template_name') . '.facilities', compact('academicFacility', 'teachingActivities', 'activitiesOfMeu', 'researchCell', 'section'));
     }
 
 }

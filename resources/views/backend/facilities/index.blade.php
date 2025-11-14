@@ -57,7 +57,7 @@
                                 <input type="file" name="image1" class="form-control" accept="image/*">
                                 @if($academicData && isset($academicData['images'][0]))
                                     <div class="mt-2">
-                                        <img src="{{ asset(str_replace('public/', '', $academicData['images'][0])) }}" alt="Image 1" class="img-thumbnail" style="max-width: 200px;">
+                                        <img src="{{ asset($academicData['images'][0]) }}" alt="Image 1" class="img-thumbnail" style="max-width: 200px;">
                                     </div>
                                 @endif
                             </div>
@@ -67,7 +67,7 @@
                                 <input type="file" name="image2" class="form-control" accept="image/*">
                                 @if($academicData && isset($academicData['images'][1]))
                                     <div class="mt-2">
-                                        <img src="{{ asset(str_replace('public/', '', $academicData['images'][1])) }}" alt="Image 2" class="img-thumbnail" style="max-width: 200px;">
+                                        <img src="{{ asset($academicData['images'][1]) }}" alt="Image 2" class="img-thumbnail" style="max-width: 200px;">
                                     </div>
                                 @endif
                             </div>
@@ -87,7 +87,7 @@
                                 <input type="file" name="academic_calendar_image" class="form-control" accept="image/*">
                                 @if($academicFacility && $academicFacility->file_path)
                                     <div class="mt-2">
-                                        <img src="{{ asset(str_replace('public/', '', $academicFacility->file_path)) }}" alt="Academic Calendar" class="img-thumbnail" style="max-width: 200px;">
+                                        <img src="{{ asset($academicFacility->file_path) }}" alt="Academic Calendar" class="img-thumbnail" style="max-width: 200px;">
                                     </div>
                                 @endif
                             </div>
@@ -131,7 +131,7 @@
                                     <input type="file" name="image{{ $i }}" class="form-control" accept="image/*">
                                     @if($teachingData && isset($teachingData['images'][$i-1]))
                                         <div class="mt-2">
-                                            <img src="{{ asset(str_replace('public/', '', $teachingData['images'][$i-1])) }}" alt="Image {{ $i }}" class="img-thumbnail" style="max-width: 200px;">
+                                            <img src="{{ asset($teachingData['images'][$i-1]) }}" alt="Image {{ $i }}" class="img-thumbnail" style="max-width: 200px;">
                                         </div>
                                     @endif
                                 </div>
@@ -190,7 +190,7 @@
                                 <input type="file" name="image1" class="form-control" accept="image/*">
                                 @if($meuData && isset($meuData['images'][0]))
                                     <div class="mt-2">
-                                        <img src="{{ asset(str_replace('public/', '', $meuData['images'][0])) }}" alt="MEU Image" class="img-thumbnail" style="max-width: 200px;">
+                                        <img src="{{ asset($meuData['images'][0]) }}" alt="MEU Image" class="img-thumbnail" style="max-width: 200px;">
                                     </div>
                                 @endif
                             </div>
@@ -243,7 +243,7 @@
                                 <input type="file" name="image1" class="form-control" accept="image/*">
                                 @if($researchCell && $researchCell->file_path)
                                     <div class="mt-2">
-                                        <img src="{{ asset(str_replace('public/', '', $researchCell->file_path)) }}" alt="Research Cell Image" class="img-thumbnail" style="max-width: 200px;">
+                                        <img src="{{ asset($researchCell->file_path) }}" alt="Research Cell Image" class="img-thumbnail" style="max-width: 200px;">
                                     </div>
                                 @endif
                             </div>

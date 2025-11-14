@@ -90,13 +90,13 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->routeIs('notice','meeting_minutes') ? 'active' : '' }}" href="#" role="button"
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('facilities.frontend') ? 'active' : '' }}" href="#" role="button"
             data-bs-toggle="dropdown">{{ __('header.facilities') }}</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') ? 'active' : '' }}" href="{{ route('facilities.frontend') }}#academic-facility">{{ __('header.academic_facility') }}</a></li>
-            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') ? 'active' : '' }}" href="{{ route('facilities.frontend') }}#teaching-activities">{{ __('header.teaching_activities') }}</a></li>
-            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') ? 'active' : '' }}" href="{{ route('facilities.frontend') }}#activities-of-meu">{{ __('header.activities_of_meu') }}</a></li>
-            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') ? 'active' : '' }}" href="{{ route('facilities.frontend') }}#research-cell">{{ __('header.research_cell') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'academic_facility' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'academic_facility') }}">{{ __('header.academic_facility') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'teaching_activities' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'teaching_activities') }}">{{ __('header.teaching_activities') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'activities_of_meu' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'activities_of_meu') }}">{{ __('header.activities_of_meu') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'research_cell' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'research_cell') }}">{{ __('header.research_cell') }}</a></li>
           </ul>
         </li>
         
