@@ -10,7 +10,7 @@ class ClassResultController extends Controller
 {
     public function classresult()
     {
-        $classresults = ClassResult::all();
+        $classresults = ClassResult::with('class')->get();
         $classes = Classes::all();
         return view('backend.class_result', compact('classresults', 'classes'));
     }
