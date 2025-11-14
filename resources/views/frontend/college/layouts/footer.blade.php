@@ -131,15 +131,15 @@
                 <p class="mb-0" style="font-size: 18px; color: #bbb;">
                     &copy; {{ get_setting('school_name') }} |
                     {{ __('footer.developed_by') }}
-                    <a href="https://fouraxiz.com/" target="_blank" class="text-white fw-semibold mx-1"
+                    <a href="https://adnest.net/" target="_blank" class="text-white fw-semibold mx-1"
                         style="font-size: 20px;">
-                        4axiz IT Limited
+                        Adnest
                     </a>
-                    {{ __('footer.and') }}
-                    <a href="https://biddaniketon.com/" target="_blank" class="text-white fw-semibold ms-1"
+                    <!-- {{ __('footer.and') }} -->
+                    <!-- <a href="https://biddaniketon.com/" target="_blank" class="text-white fw-semibold ms-1"
                         style="font-size: 20px;">
                         BIDDANIKETON
-                    </a>
+                    </a> -->
                 </p>
             </div>
         </div>
