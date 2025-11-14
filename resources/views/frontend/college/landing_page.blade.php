@@ -325,19 +325,21 @@
                         <h5 style="color: #ffffff; font-size: 18px;">{{ __('landing.managing_committee_title') }}</h5>
                         <h3 style="color: #ffffff; font-size: 24px; font-weight: 500;">{{ __('landing.managing_committee_subtitle') }}</h3>
 
-                        <div class="row justify-content-center mt-4 g-3">
-
-                            @foreach($committees as $committee)
-                            <div class="col-sm-6 col-md-3">
-                                <div style="background: #ffffff; padding: 10px; border-radius: 8px;">
-                                    <img src="{{asset($committee->photo_path)}}"
-                                        alt="{{$committee->name}}" class="img-fluid rounded mb-2"
-                                        style="height: 160px; object-fit: cover;">
-                                    <h6 style="margin: 0; color: #660000;">{{$committee->name}}</h6>
-                                    <small style="color: #00465b;">{{$committee->designation}}</small>
+                        <div class="mt-4 px-3">
+                            <div class="committee-carousel-college">
+                                @foreach($committees as $committee)
+                                <div class="slide-item-college px-2">
+                                    <div style="background: #ffffff; padding: 10px; border-radius: 8px; height: 100%; margin: 0 5px;">
+                                        <img src="{{asset($committee->photo_path)}}"
+                                            alt="{{$committee->name}}" class="img-fluid rounded mb-2"
+                                            style="width: 100%; height: 160px; object-fit: cover;"
+                                            onerror="this.onerror=null; this.src='{{ asset('/public/assets/icons/user.png') }}'">
+                                        <h6 style="margin: 0; color: #660000; font-size: 0.95rem;">{{$committee->name}}</h6>
+                                        <small style="color: #00465b;">{{ is_object($committee->designation) ? ($committee->designation->name ?? 'N/A') : ($committee->designation ?? 'N/A') }}</small>
+                                    </div>
                                 </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
                     </div>
                 </section>
@@ -913,5 +915,230 @@
             videoContainer.innerHTML = '';
         }
     });
+
+    // Committee Carousel Initialization - College Template
+    $(window).on('load', function() {
+        setTimeout(function() {
+            if (typeof $.fn.slick !== 'undefined') {
+                if ($('.committee-carousel-college').hasClass('slick-initialized')) {
+                    $('.committee-carousel-college').slick('unslick');
+                }
+                
+                $('.committee-carousel-college').slick({
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    arrows: true,
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    pauseOnHover: true,
+                    pauseOnFocus: true,
+                    adaptiveHeight: false,
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 992,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 576,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                arrows: true,
+                                dots: true
+                            }
+                        }
+                    ]
+                });
+            }
+        }, 500);
+    });
+
+    // Backup initialization
+    $(document).ready(function() {
+        if ($('.committee-carousel-college').length > 0 && typeof $.fn.slick !== 'undefined') {
+            setTimeout(function() {
+                if (!$('.committee-carousel-college').hasClass('slick-initialized')) {
+                    $('.committee-carousel-college').slick({
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        arrows: true,
+                        dots: true,
+                        infinite: true,
+                        speed: 500,
+                        pauseOnHover: true,
+                        pauseOnFocus: true,
+                        responsive: [
+                            {
+                                breakpoint: 1200,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 992,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 576,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    arrows: true,
+                                    dots: true
+                                }
+                            }
+                        ]
+                    });
+                }
+            }, 1000);
+        }
+    });
 </script>
+
+<style>
+    /* Committee Carousel Styles - College Template */
+    .committee-carousel-college {
+        position: relative;
+        padding: 0 50px;
+        margin: 0 auto;
+    }
+    
+    .committee-carousel-college .slide-item-college {
+        outline: none;
+    }
+    
+    .committee-carousel-college .slick-list {
+        margin: 0 -5px;
+    }
+    
+    .committee-carousel-college .slick-slide > div {
+        padding: 0 5px;
+    }
+    
+    .committee-carousel-college .slick-prev,
+    .committee-carousel-college .slick-next {
+        z-index: 100;
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        transition: all 0.3s ease;
+    }
+    
+    .committee-carousel-college .slick-prev {
+        left: 0;
+    }
+    
+    .committee-carousel-college .slick-next {
+        right: 0;
+    }
+    
+    .committee-carousel-college .slick-prev:before,
+    .committee-carousel-college .slick-next:before {
+        font-size: 28px;
+        color: #00465b !important;
+        opacity: 1 !important;
+        line-height: 45px;
+    }
+    
+    .committee-carousel-college .slick-prev:hover,
+    .committee-carousel-college .slick-next:hover {
+        background: rgba(255, 255, 255, 1) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        transform: scale(1.1);
+    }
+    
+    .committee-carousel-college .slick-dots {
+        bottom: -45px;
+        position: absolute;
+        width: 100%;
+    }
+    
+    .committee-carousel-college .slick-dots li {
+        margin: 0 4px;
+    }
+    
+    .committee-carousel-college .slick-dots li button:before {
+        font-size: 14px;
+        color: #ffffff;
+        opacity: 0.6;
+    }
+    
+    .committee-carousel-college .slick-dots li.slick-active button:before {
+        color: #ffffff;
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        .committee-carousel-college {
+            padding: 0 45px;
+        }
+        
+        .committee-carousel-college .slick-prev {
+            left: -5px;
+        }
+        
+        .committee-carousel-college .slick-next {
+            right: -5px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .committee-carousel-college {
+            padding: 0 40px;
+        }
+        
+        .committee-carousel-college .slick-prev {
+            left: -10px;
+            width: 35px;
+            height: 35px;
+        }
+        
+        .committee-carousel-college .slick-next {
+            right: -10px;
+            width: 35px;
+            height: 35px;
+        }
+        
+        .committee-carousel-college .slick-prev:before,
+        .committee-carousel-college .slick-next:before {
+            font-size: 20px;
+            line-height: 35px;
+        }
+    }
+</style>
 @endsection
