@@ -17,9 +17,12 @@ return [
     'meeting_minutes' => 'মিটিং ও কার্যবিবরণী',
     'event' => 'ইভেন্ট',
     'gallery' => 'গ্যালারী',
+    'image_gallery' => 'ছবি গ্যালারী',
+    'video_gallery' => 'ভিডিও গ্যালারী',
     'contact' => 'যোগাযোগ',
     'login' => 'লগইন',
     'language_english' => 'ইংরেজি',
     'language_bangla' => 'বাংলা',
+    'view_gallery' => 'গ্যালারী দেখুন',
 ];
 

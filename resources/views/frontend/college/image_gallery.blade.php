@@ -3,7 +3,7 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">গ্যালারী</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('header.image_gallery') }}</h1>
     </div>
 </section>
 

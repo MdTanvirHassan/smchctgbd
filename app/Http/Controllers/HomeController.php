@@ -156,6 +156,21 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.image_gallery', compact('galleries', 'name'));
     }
 
+    // Video Category Page  
+    public function video_category()
+    {
+        $categories = VideoGalleryCategory::all();
+        return view('frontend.' . get_setting('template_name') . '.video_category', compact('categories'));
+    }
+
+    // Video Gallery Page  
+    public function video_gallery($id)
+    {
+        $galleries = VideoGallery::where('category_id', $id)->get();
+        $name = VideoGalleryCategory::where('id', $id)->first(['name']);
+        return view('frontend.' . get_setting('template_name') . '.video_gallery', compact('galleries', 'name'));
+    }
+
     // Contact Us Page  
     public function contact_us()
     {

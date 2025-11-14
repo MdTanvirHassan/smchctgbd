@@ -50,6 +50,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/event', 'event')->name('event');
     Route::get('/image-category', 'image_category')->name('image_category');
     Route::get('/image_gallery/{id}', 'image_gallery')->name('image_gallery');
+    Route::get('/video-category', 'video_category')->name('video_category');
+    Route::get('/video_gallery/{id}', 'video_gallery')->name('video_gallery');
     Route::get('/contact_us', 'contact_us')->name('contact_us');
     Route::get('/online_class_link', 'online_class_link')->name('online_class_link');
 });

@@ -17,9 +17,12 @@ return [
     'meeting_minutes' => 'Meeting & Minutes',
     'event' => 'Event',
     'gallery' => 'Gallery',
+    'image_gallery' => 'Image Gallery',
+    'video_gallery' => 'Video Gallery',
     'contact' => 'Contact',
     'login' => 'Login',
     'language_english' => 'English',
     'language_bangla' => 'Bangla',
+    'view_gallery' => 'View Gallery',
 ];
 

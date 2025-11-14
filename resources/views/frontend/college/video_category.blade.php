@@ -3,15 +3,15 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">{{ __('header.image_gallery') }}</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('header.video_gallery') }}</h1>
     </div>
 </section>
 
-<!--  ✅ Gallery -->
+<!--  ✅ Video Gallery -->
 <section class="gallery-section my-5">
     <div class="container py-5 bg-white">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">{{ __('header.image_gallery') }}</h2>
+            <h2 class="fw-bold">{{ __('header.video_gallery') }}</h2>
         </div>
         <style>
             .gallery-card {
@@ -31,7 +31,8 @@
                 box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             }
 
-            .gallery-card img {
+            .gallery-card img,
+            .gallery-card video {
                 object-fit: cover;
                 width: 100%;
                 height: 220px;
@@ -39,7 +40,8 @@
                 display: block;
             }
 
-            .gallery-card:hover img {
+            .gallery-card:hover img,
+            .gallery-card:hover video {
                 transform: scale(1.05);
             }
 
@@ -73,6 +75,7 @@
                 font-size: 1rem;
                 letter-spacing: 1px;
                 text-transform: uppercase;
+                z-index: 10;
             }
 
             .gallery-card:hover .overlay {
@@ -83,9 +86,15 @@
         <div class="row g-4">
             @foreach($categories as $category)
             <div class="col-md-4">
-                <a href="{{ route('image_gallery', $category->id) }}" class="text-decoration-none">
+                <a href="{{ route('video_gallery', $category->id) }}" class="text-decoration-none">
                     <div class="card gallery-card h-100 shadow-sm">
-                        <img src="{{ asset($category->thumbnail_path) }}" alt="{{ $category->name }}" class="card-img-top img-fluid">
+                        @if($category->thumbnail_path)
+                            <img src="{{ asset($category->thumbnail_path) }}" alt="{{ $category->name }}" class="card-img-top img-fluid">
+                        @else
+                            <div style="height: 220px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-video text-white" style="font-size: 48px;"></i>
+                            </div>
+                        @endif
                         <div class="overlay">{{ __('header.view_gallery') ?? 'View Gallery' }}</div>
                         <div class="card-body">
                             {{ $category->name }}
@@ -98,13 +107,5 @@
     </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-transparent border-0">
-            <img src="" id="modalImage" class="img-fluid rounded-3 shadow">
-        </div>
-    </div>
-</div>
-
 @endsection
+
