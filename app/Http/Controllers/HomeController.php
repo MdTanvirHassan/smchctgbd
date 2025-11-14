@@ -193,4 +193,15 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.mbbs_course_new_curriculum', compact('categories'));
     }
 
+    // Facilities Page
+    public function facilities()
+    {
+        $academicFacility = Content::where('type', 'facility_academic_facility')->where('is_published', 1)->first();
+        $teachingActivities = Content::where('type', 'facility_teaching_activities')->where('is_published', 1)->first();
+        $activitiesOfMeu = Content::where('type', 'facility_activities_of_meu')->where('is_published', 1)->first();
+        $researchCell = Content::where('type', 'facility_research_cell')->where('is_published', 1)->first();
+
+        return view('frontend.' . get_setting('template_name') . '.facilities', compact('academicFacility', 'teachingActivities', 'activitiesOfMeu', 'researchCell'));
+    }
+
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\VideoGalleryController;
 use App\Http\Controllers\MBBSCOURSEController;
+use App\Http\Controllers\FacilitiesController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/contact_us', 'contact_us')->name('contact_us');
     Route::get('/online_class_link', 'online_class_link')->name('online_class_link');
     Route::get('/mbbs-course-new-curriculum', 'mbbsCourseNewCurriculum')->name('mbbs_course_new_curriculum');
+    Route::get('/facilities', 'facilities')->name('facilities.frontend');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -243,6 +245,14 @@ Route::controller(ClassResultController::class)->group(function () {
     Route::get('/dashboard/classresult-status/{id}', 'classresultStatus')->name('classresult.status');
     Route::delete('/dashboard/classresult/{id}', 'classresultDestroy')->name('classresult.destroy');
     Route::get('/dashboard/classresult/{id}/download', 'classresultDownload')->name('classresult.download');
+});
+
+Route::controller(FacilitiesController::class)->group(function () {
+    // Facilities routes
+    Route::get('/dashboard/facilities', 'index')->name('facilities.index');
+    Route::post('/dashboard/facilities/{section}', 'store')->name('facilities.store');
+    Route::put('/dashboard/facilities/{section}/{id}', 'update')->name('facilities.update');
+    Route::get('/dashboard/facilities-status/{id}', 'status')->name('facilities.status');
 });
 
 Route::controller(RoutineController::class)->group(function () {

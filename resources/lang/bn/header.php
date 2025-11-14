@@ -35,5 +35,6 @@ return [
     'teaching_activities' => 'শিক্ষামূলক কার্যক্রম',
     'activities_of_meu' => 'MEU এর কার্যক্রম',
     'prospectus' => 'প্রসপেক্টাস',
+    'research_cell' => 'গবেষণা সেল',
 ];
 

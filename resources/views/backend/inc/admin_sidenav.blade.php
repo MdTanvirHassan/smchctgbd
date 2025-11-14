@@ -79,9 +79,12 @@
                         <a href="{{ route('fileupload.index') }}"
                             class="nav-link {{ is_active('fileupload.*') }}">Files</a>
                         <a href="{{ route('faq.index') }}" class="nav-link {{ is_active('faq.*') }}">FAQs</a>
+                        <a href="{{ route('facilities.index') }}" class="nav-link {{ is_active('facilities.*') }}">Facilities</a>
                     </div>
                 </div>
             </li>
+
+            
 
             <li class="nav-item">
                 <a class="nav-link collapsed {{ is_active(['gallerycategory.*', 'galleryimage.*']) }}"

@@ -35,5 +35,6 @@ return [
     'teaching_activities' => 'Teaching Activities',
     'activities_of_meu' => 'Activities of MEU',
     'prospectus' => 'Prospectus',
+    'research_cell' => 'Research Cell',
 ];
 
