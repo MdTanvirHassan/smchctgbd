@@ -7,6 +7,7 @@ return [
     'teacher_team' => 'Teachers',
     'governing_body' => 'Governing Body',
     'students' => 'Students',
+    'academic' => 'Academic',
     'seat_capacity' => 'Seat Capacity',
     'class_summary' => 'Class Summary',
     'admission' => 'Admission',

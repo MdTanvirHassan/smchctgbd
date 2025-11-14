@@ -52,13 +52,16 @@
           </ul>
         </li>
 
-        <!-- শিক্ষার্থী -->
+        <!-- Academic -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->routeIs('total_students','class_summery') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.students') }}</a>
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('total_students','class_summery','routine','exam_result') ? 'active' : '' }}" href="#" role="button"
+            data-bs-toggle="dropdown">{{ __('header.academic') }}</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.seat_capacity') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.students') }}</a></li>
+            <!-- <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.seat_capacity') }}</a></li> -->
             <li><a class="dropdown-item {{ request()->routeIs('class_summery') ? 'active' : '' }}" href="{{ route('class_summery') }}">{{ __('header.class_summary') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('routine') ? 'active' : '' }}" href="{{ route('routine') }}">{{ __('header.routine') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('exam_result') ? 'active' : '' }}" href="{{ route('exam_result') }}">{{ __('header.results') }}</a></li>
           </ul>
         </li>
 
@@ -69,8 +72,8 @@
           </ul>
         </li>
 
-        <li class="nav-item"><a class="nav-link {{ request()->routeIs('routine') ? 'active' : '' }}" href="{{ route('routine') }}">{{ __('header.routine') }}</a></li>
-        <li class="nav-item"><a class="nav-link {{ request()->routeIs('exam_result') ? 'active' : '' }}" href="{{ route('exam_result') }}">{{ __('header.results') }}</a></li>
+        <!-- <li class="nav-item"><a class="nav-link {{ request()->routeIs('routine') ? 'active' : '' }}" href="{{ route('routine') }}">{{ __('header.routine') }}</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->routeIs('exam_result') ? 'active' : '' }}" href="{{ route('exam_result') }}">{{ __('header.results') }}</a></li> -->
 
         <!-- Notice & Meeting Minutes -->
         <li class="nav-item dropdown">

@@ -7,6 +7,7 @@ return [
     'teacher_team' => 'শিক্ষকবৃন্দ',
     'governing_body' => 'পরিচালনা পরিষদ',
     'students' => 'শিক্ষার্থী',
+    'academic' => 'একাডেমিক',
     'seat_capacity' => 'আসন সংখ্যা',
     'class_summary' => 'শ্রেণি বিবরণ',
     'admission' => 'ভর্তি',
