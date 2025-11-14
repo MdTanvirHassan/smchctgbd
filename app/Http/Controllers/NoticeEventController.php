@@ -103,16 +103,34 @@ class NoticeEventController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        Content::create([
+        $data = [
             'title' => $validated['title'],
             'description' => $validated['description'],
             'start_date' => $validated['start_date'],
             'end_date' => $validated['end_date'],
             'type' => 'notice',
             'is_published' => 1,
-        ]);
+        ];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/notices');
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $file->move($destinationPath, $fileName);
+            $data['file_path'] = 'public/uploads/notices/' . $fileName;
+        }
+
+        Content::create($data);
 
         return redirect()->route('notice.index')->with('success', 'Notice added successfully!');
     }
@@ -130,6 +148,7 @@ class NoticeEventController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $notice = Content::findOrFail($id);
@@ -138,6 +157,34 @@ class NoticeEventController extends Controller
         $notice->description = $validated['description'];
         $notice->start_date = $validated['start_date'];
         $notice->end_date = $validated['end_date'];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($notice->file_path) {
+                $oldPath = str_replace('public/', '', $notice->file_path);
+                if (file_exists(public_path($oldPath))) {
+                    unlink(public_path($oldPath));
+                }
+            }
+
+            // Upload new image
+            $file = $request->file('image');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/notices');
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $file->move($destinationPath, $fileName);
+            $notice->file_path = 'public/uploads/notices/' . $fileName;
+        } elseif ($request->has('existing_image')) {
+            // Keep existing image
+            $notice->file_path = $request->input('existing_image');
+        }
+
         $notice->save();
 
         return redirect()->route('notice.index')->with('success', 'Notice updated successfully.');
@@ -156,9 +203,18 @@ class NoticeEventController extends Controller
     public function noticeDestroy($id)
     {
         $notice = Content::findOrFail($id);
+        
+        // Delete associated image file if exists
+        if ($notice->file_path) {
+            $filePath = str_replace('public/', '', $notice->file_path);
+            if (file_exists(public_path($filePath))) {
+                unlink(public_path($filePath));
+            }
+        }
+        
         $notice->delete();
 
-        return redirect()->back()->with('error', 'Notice deleted successfully.');
+        return redirect()->route('notice.index')->with('success', 'Notice deleted successfully!');
     }
 
 

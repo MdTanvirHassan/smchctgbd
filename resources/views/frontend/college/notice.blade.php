@@ -1,9 +1,12 @@
 @extends('frontend.college.layouts.app')
 
 @section('content')
+@php
+    $currentLocale = app()->getLocale();
+@endphp
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">নোটিশ</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('notice.title') }}</h1>
     </div>
 </section>
 
@@ -12,20 +15,20 @@
     <div class="container">
         <div class="card shadow-sm border-0 rounded-3">
             <div class="card-body p-4">
-                <h2 class="text-center mb-4 fw-bold">📢 নোটিশ</h2>
+                <h2 class="text-center mb-4 fw-bold">📢 {{ __('notice.title') }}</h2>
 
                 <!-- 🔍 Search & Filter -->
                 <div class="row mb-3">
                     <div class="col-md-5">
                         <input type="text" id="noticeSearch" class="form-control shadow-sm"
-                            placeholder="🔍 শিরোনাম দ্বারা খুঁজুন...">
+                            placeholder="🔍 {{ __('notice.search_placeholder') }}">
                     </div>
                     <div class="col-md-5">
                         <input type="date" id="noticeDateFilter" class="form-control shadow-sm">
                     </div>
                     <div class="col-md-2 d-grid">
                         <button type="button" id="resetFilters" class="btn btn-outline-secondary shadow-sm">
-                            Reset
+                            {{ __('notice.reset') }}
                         </button>
                     </div>
                 </div>
@@ -36,10 +39,10 @@
                         style="border-collapse: separate; border-spacing: 0;">
                         <thead class="bg-primary text-white">
                             <tr>
-                                <th class="py-3">শুরুর তারিখ</th>
-                                <th class="py-3">নোটিশ শিরোনাম</th>
-                                <th class="py-3">শেষ তারিখ</th>
-                                <th class="py-3" style="width: 120px;">বিস্তারিত</th>
+                                <th class="py-3">{{ __('notice.start_date') }}</th>
+                                <th class="py-3">{{ __('notice.notice_title') }}</th>
+                                <th class="py-3">{{ __('notice.end_date') }}</th>
+                                <th class="py-3" style="width: 120px;">{{ __('notice.details') }}</th>
                             </tr>
                         </thead>
                         <tbody class="bg-light">
@@ -59,6 +62,7 @@
                                         data-title="{{ $notice->title }}"
                                         data-date="{{ \Carbon\Carbon::parse($notice->start_date)->format('d M Y') }}"
                                         data-description="{{ $notice->description }}"
+                                        data-image="{{ $notice->file_path ?? '' }}"
                                         onclick="showNoticeModal(this)">
                                         {{ $notice->title }}
                                     </a>
@@ -74,8 +78,9 @@
                                         data-title="{{ $notice->title }}"
                                         data-date="{{ \Carbon\Carbon::parse($notice->start_date)->format('d M Y') }}"
                                         data-description="{{ $notice->description }}"
+                                        data-image="{{ $notice->file_path ?? '' }}"
                                         onclick="showNoticeModal(this)">
-                                        বিস্তারিত
+                                        {{ __('notice.details') }}
                                     </button>
                                 </td>
                             </tr>
@@ -119,17 +124,35 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow-lg rounded-3">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="noticeModalLabel">নোটিশ</h5>
+                    <h5 class="modal-title fw-bold" id="noticeModalLabel">{{ __('notice.title') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <h5 id="modalNoticeTitle" class="fw-semibold mb-3"></h5>
                     <small id="modalNoticeDate" class="text-muted d-block mb-2"></small>
-                    <p id="modalNoticeContent" class="mb-0"></p>
+                    <p id="modalNoticeContent" class="mb-3"></p>
+                    
+                    <!-- Image Section -->
+                    <div id="modalImageSection" style="display: none;">
+                        <div class="mb-3">
+                            <img id="modalNoticeImage" src="" alt="Notice Image" class="img-fluid rounded shadow-sm" style="max-width: 100%; max-height: 500px; object-fit: contain;">
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button type="button" id="viewImageBtn" class="btn btn-primary btn-sm" onclick="viewFullImage()">
+                                <i class="fas fa-eye me-1"></i> {{ __('notice.view_image') }}
+                            </button>
+                            <button type="button" id="downloadImageBtn" class="btn btn-success btn-sm" onclick="downloadImage()">
+                                <i class="fas fa-download me-1"></i> {{ __('notice.download_image') }}
+                            </button>
+                        </div>
+                    </div>
+                    <div id="noImageMessage" class="text-muted small" style="display: none;">
+                        {{ __('notice.no_image') }}
+                    </div>
                 </div>
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('notice.close') }}</button>
                 </div>
             </div>
         </div>
@@ -138,14 +161,62 @@
 @endsection
 @section('scripts')
 <script>
+    let currentImagePath = '';
+
     function showNoticeModal(element) {
         const title = element.getAttribute('data-title');
         const date = element.getAttribute('data-date');
         const description = element.getAttribute('data-description');
+        const imagePath = element.getAttribute('data-image');
 
         document.getElementById('modalNoticeTitle').innerText = title;
         document.getElementById('modalNoticeDate').innerText = date;
         document.getElementById('modalNoticeContent').innerText = description;
+
+        // Handle image
+        const imageSection = document.getElementById('modalImageSection');
+        const noImageMessage = document.getElementById('noImageMessage');
+        const imageElement = document.getElementById('modalNoticeImage');
+        const viewBtn = document.getElementById('viewImageBtn');
+        const downloadBtn = document.getElementById('downloadImageBtn');
+
+        if (imagePath && imagePath.trim() !== '') {
+            // Normalize path - remove 'public/' prefix if present
+            let normalizedPath = imagePath.replace(/^public\//, '');
+            let imageUrl = '{{ asset("") }}' + normalizedPath;
+            
+            currentImagePath = normalizedPath;
+            imageElement.src = imageUrl;
+            imageSection.style.display = 'block';
+            noImageMessage.style.display = 'none';
+            viewBtn.setAttribute('data-image-url', imageUrl);
+            downloadBtn.setAttribute('data-image-url', imageUrl);
+        } else {
+            imageSection.style.display = 'none';
+            noImageMessage.style.display = 'block';
+            currentImagePath = '';
+        }
+    }
+
+    function viewFullImage() {
+        const imageUrl = document.getElementById('viewImageBtn').getAttribute('data-image-url');
+        if (imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+    }
+
+    function downloadImage() {
+        const imageUrl = document.getElementById('downloadImageBtn').getAttribute('data-image-url');
+        if (imageUrl) {
+            // Create a temporary anchor element to trigger download
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'notice-image-' + Date.now() + '.jpg';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     }
 
     const searchInput = document.getElementById('noticeSearch');

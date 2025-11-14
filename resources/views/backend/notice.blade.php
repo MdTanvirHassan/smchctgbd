@@ -57,6 +57,7 @@
                                 <th class="py-2">Description</th>
                                 <th class="py-2">Start Date</th>
                                 <th class="py-2">End Date</th>
+                                <th class="py-2">Image</th>
                                 <th class="text-end py-2">Action</th>
                             </tr>
                         </thead>
@@ -66,9 +67,19 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $notice->title }}</td>
-                                    <td>{{ $notice->description }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($notice->description, 50) }}</td>
                                     <td>{{ $notice->start_date }}</td>
                                     <td>{{ $notice->end_date }}</td>
+                                    <td>
+                                        @if($notice->file_path)
+                                            <img src="{{ asset($notice->file_path) }}" alt="{{ $notice->title }}" 
+                                                 class="img-thumbnail" style="max-width: 80px; max-height: 80px; object-fit: cover; cursor: pointer;"
+                                                 onclick="window.open('{{ asset($notice->file_path) }}', '_blank')"
+                                                 title="Click to view full size">
+                                        @else
+                                            <span class="text-muted small">No Image</span>
+                                        @endif
+                                    </td>
                                     <td class="text-end">
                                         <!-- Publish/Unpublish button -->
                                         <a href="{{ route('notice.status', $notice->id) }}"
@@ -81,6 +92,7 @@
                                             data-bs-toggle="modal" data-bs-target="#editNoticeModal" data-id="{{ $notice->id }}"
                                             data-title="{{ $notice->title }}" data-description="{{ $notice->description }}"
                                             data-start_date="{{ $notice->start_date }}" data-end_date="{{ $notice->end_date }}"
+                                            data-image_path="{{ $notice->file_path ?? '' }}"
                                             data-action="{{ route('notice.update', ':id') }}" title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </button>
@@ -136,13 +148,21 @@
     <div class="modal fade" id="addNoticeModal" tabindex="-1" aria-labelledby="addNoticeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content rounded border-0 shadow-sm">
-                <form action="{{ route('notice.store') }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('notice.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     <div class="modal-header border-0">
                         <h6 class="modal-title text-muted fw-semibold" id="addNoticeModalLabel">Add New Notice</h6>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body small text-muted">
+                        <div class="mb-3">
+                            <label class="form-label small">Image (Optional)</label>
+                            <input type="file" name="image" id="addNoticeImage" class="form-control form-control-sm" accept="image/*">
+                            <div class="invalid-feedback">Please select a valid image file.</div>
+                            <div id="addNoticeImagePreview" class="mt-2" style="display: none;">
+                                <img src="" alt="Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label small">Title</label>
                             <input type="text" name="title" class="form-control form-control-sm" required>
@@ -182,7 +202,7 @@
     <div class="modal fade" id="editNoticeModal" tabindex="-1" aria-labelledby="editNoticeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content rounded border-0 shadow-sm">
-                <form id="editNoticeForm" method="POST" class="needs-validation" novalidate>
+                <form id="editNoticeForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     <div class="modal-header border-0">
@@ -191,6 +211,16 @@
                     </div>
                     <div class="modal-body small text-muted">
                         <input type="hidden" name="notice_id" id="notice_id">
+                        <div class="mb-3">
+                            <label class="form-label small">Image (Optional)</label>
+                            <input type="file" name="image" id="editNoticeImage" class="form-control form-control-sm" accept="image/*">
+                            <div class="invalid-feedback">Please select a valid image file.</div>
+                            <input type="hidden" name="existing_image" id="existing_image">
+                            <div id="editNoticeImagePreview" class="mt-2">
+                                <img id="currentImagePreview" src="" alt="Current Image" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
+                                <img id="newImagePreview" src="" alt="New Preview" class="img-thumbnail mt-2" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label small">Title</label>
                             <input type="text" name="title" id="title" class="form-control form-control-sm" required>
@@ -232,6 +262,51 @@
 
 @section('scripts')
     <script>
+        // Reset Add Modal on close
+        $('#addNoticeModal').on('hidden.bs.modal', function () {
+            $(this).find('form')[0].reset();
+            $('#addNoticeImagePreview').hide();
+            $(this).find('form').removeClass('was-validated');
+        });
+
+        // Image Preview for Add Modal
+        $('#addNoticeImage').on('change', function(e) {
+            const file = e.target.files[0];
+            const preview = $('#addNoticeImagePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.find('img').attr('src', e.target.result);
+                    preview.show();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.hide();
+            }
+        });
+
+        // Image Preview for Edit Modal
+        $('#editNoticeImage').on('change', function(e) {
+            const file = e.target.files[0];
+            const newPreview = $('#newImagePreview');
+            const currentPreview = $('#currentImagePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    newPreview.attr('src', e.target.result).show();
+                    currentPreview.hide();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                newPreview.hide();
+                if ($('#existing_image').val()) {
+                    currentPreview.show();
+                }
+            }
+        });
+
         // Edit Modal Data Fill
         $('#editNoticeModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
@@ -240,6 +315,7 @@
             var description = button.data('description');
             var start_date = button.data('start_date');
             var end_date = button.data('end_date');
+            var image_path = button.data('image_path');
 
             var form = $('#editNoticeForm');
             var action = button.data('action').replace(':id', id);
@@ -250,6 +326,23 @@
             form.find('#description').val(description);
             form.find('#start_date').val(start_date);
             form.find('#end_date').val(end_date);
+            
+            // Handle image
+            var currentPreview = $('#currentImagePreview');
+            var existingImageInput = $('#existing_image');
+            var newPreview = $('#newImagePreview');
+            var imageInput = $('#editNoticeImage');
+            
+            imageInput.val(''); // Reset file input
+            newPreview.hide();
+            
+            if (image_path) {
+                existingImageInput.val(image_path);
+                currentPreview.attr('src', '{{ asset("") }}' + image_path).show();
+            } else {
+                existingImageInput.val('');
+                currentPreview.hide();
+            }
         });
 
         // Bootstrap Validation with Date Check
@@ -285,8 +378,8 @@
 
             $('table tbody tr').each(function () {
                 const rowText = $(this).text().toLowerCase();
-                const rowStart = new Date($(this).find('td:nth-child(4)').text().trim()); // Start Date
-                const rowEnd = new Date($(this).find('td:nth-child(5)').text().trim());   // End Date
+                const rowStart = new Date($(this).find('td:nth-child(4)').text().trim()); // Start Date (column 4)
+                const rowEnd = new Date($(this).find('td:nth-child(5)').text().trim());   // End Date (column 5)
 
                 let matchesSearch = rowText.indexOf(query) !== -1;
 
