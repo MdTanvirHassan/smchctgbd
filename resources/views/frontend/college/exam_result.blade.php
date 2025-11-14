@@ -3,7 +3,7 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0"><i class="fa fa-map-o me-3"></i>রুটিন</h1>
+        <h1 class="display-4 fw-bold mb-0"><i class="fa fa-map-o me-3"></i>{{ __('exam_result.page_title') }}</h1>
     </div>
 </section>
 
@@ -15,13 +15,13 @@
                 <div class="col-md-12">
 
                     <div class="exam-wrapper">
-                        <h2 class="text-center fw-bold mb-4">📊 Exam Results</h2>
+                        <h2 class="text-center fw-bold mb-4">📊 {{ __('exam_result.section_title') }}</h2>
 
                         <!-- Filter -->
                         <div class="row mb-3">
                             <div class="col-md-4 offset-md-4">
                                 <select id="resultClassFilter" class="form-select shadow-sm">
-                                    <option value="">🔍 Select Class</option>
+                                    <option value="">{{ __('exam_result.select_class') }}</option>
                                     @foreach($classes as $class)
                                     <option value="{{ $class->name }}">{{ $class->name }}</option>
                                     @endforeach
@@ -34,11 +34,11 @@
                             <table class="table table-hover align-middle mb-0">
                                 <thead class="table-primary">
                                     <tr>
-                                        <th>#</th>
-                                        <th>Class</th>
-                                        <th>Result Title</th>
-                                        <th>Published Date</th>
-                                        <th class="text-center">Action</th>
+                                        <th>{{ __('exam_result.no') }}</th>
+                                        <th>{{ __('exam_result.class') }}</th>
+                                        <th>{{ __('exam_result.result_title') }}</th>
+                                        <th>{{ __('exam_result.published_date') }}</th>
+                                        <th class="text-center">{{ __('exam_result.action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="resultTable">
@@ -51,11 +51,11 @@
                                         <td class="text-center">
                                             <a href="{{ asset($classresult->file_path) }}" target="_blank"
                                                 class="btn btn-sm btn-outline-primary me-1">
-                                                <i class="fa fa-eye"></i> View
+                                                <i class="fa fa-eye"></i> {{ __('exam_result.view') }}
                                             </a>
                                             <a href="{{ asset($classresult->file_path) }}" download
                                                 class="btn btn-sm btn-outline-success">
-                                                <i class="fa fa-download"></i> Download
+                                                <i class="fa fa-download"></i> {{ __('exam_result.download') }}
                                             </a>
                                         </td>
                                     </tr>

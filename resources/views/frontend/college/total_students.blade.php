@@ -3,7 +3,7 @@
 @section('content')
     <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
         <div class="hero-inner py-4">
-            <h1 class="display-4 fw-bold mb-0">ছাত্রছাত্রীর আসন সংখ্যা</h1>
+            <h1 class="display-4 fw-bold mb-0">{{ __('total_students.page_title') }}</h1>
         </div>
     </section>
 
@@ -14,17 +14,17 @@
         <div class="card shadow-lg border-0 rounded-4">
             <div class="card-body p-4">
                 <h4 class="text-center mb-4 fw-bold text-primary">
-                    🎓 ছাত্রছাত্রীর আসন সংখ্যা
+                    🎓 {{ __('total_students.section_title') }}
                 </h4>
 
                 <div class="table-responsive">
                     <table class="table align-middle text-center mb-0">
                         <thead class="text-white" style="background: linear-gradient(90deg, #0062E6, #33AEFF);">
                             <tr>
-                                <th>No</th>
-                                <th>ছাত্রের আসন সংখ্যা <i class="fas fa-male ms-1"></i></th>
-                                <th>ছাত্রীর আসন সংখ্যা <i class="fas fa-female ms-1"></i></th>
-                                <th>মোট আসন সংখ্যা <i class="fas fa-users ms-1"></i></th>
+                                <th>{{ __('total_students.no') }}</th>
+                                <th>{{ __('total_students.boys_seat_capacity') }} <i class="fas fa-male ms-1"></i></th>
+                                <th>{{ __('total_students.girls_seat_capacity') }} <i class="fas fa-female ms-1"></i></th>
+                                <th>{{ __('total_students.total_seat_capacity') }} <i class="fas fa-users ms-1"></i></th>
                             </tr>
                         </thead>
                         <tbody>

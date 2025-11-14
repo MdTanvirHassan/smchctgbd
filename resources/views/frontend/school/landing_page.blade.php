@@ -27,12 +27,12 @@
             <!-- Carousel controls -->
             <button class="carousel-control-prev" type="button" data-bs-target="#schoolCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">{{ __('landing.carousel_previous') }}</span>
             </button>
 
             <button class="carousel-control-next" type="button" data-bs-target="#schoolCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">{{ __('landing.carousel_next') }}</span>
             </button>
         </div>
     </section>
@@ -40,7 +40,7 @@
 
     <section class="special-announcement-section">
         <div>
-            <div class="marquee-title">বিশেষ ঘোষণা</div>
+            <div class="marquee-title">{{ __('landing.special_announcement') }}</div>
             <div class="top-marquee" style="text-align: center; padding-top: 5px;">
                 <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop()"
                     onmouseout="this.start()">
@@ -62,8 +62,8 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="newsModalLabel">বিশেষ ঘোষণা</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="newsModalLabel">{{ __('landing.modal_special_announcement') }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('landing.notice_modal_close') }}"></button>
                         </div>
                         <div class="modal-body" id="modalContent">
                             <!-- Dynamic content will appear here -->
@@ -108,16 +108,18 @@
                                     <a href="#" class="text-danger ms-1" data-bs-toggle="collapse"
                                         data-bs-target="#schoolHistoryMore" aria-expanded="false"
                                         aria-controls="schoolHistoryMore" onclick="toggleReadMore(this); return false;">
-                                        আরও পড়ুন
+                                        {{ __('landing.read_more') }}
                                     </a>
                                 </div>
 
                                 <script>
                                     function toggleReadMore(el) {
+                                        const readMore = "{{ __('landing.read_more') }}";
+                                        const readLess = "{{ __('landing.read_less') }}";
                                         if (el.getAttribute("aria-expanded") === "true") {
-                                            el.innerText = "আরও পড়ুন"; // Read more
+                                            el.innerText = readMore;
                                         } else {
-                                            el.innerText = "কম দেখুন"; // Show less
+                                            el.innerText = readLess;
                                         }
                                     }
                                 </script>
@@ -127,25 +129,30 @@
                         </div>
                         <div class="col-md-12" style="padding: 0px; margin-top: 30px;">
                             <div class="history-school mb-3 mt-5">
-                                <h3>প্রধান শিক্ষকের বাণী</h3>
+                                <h3>{{ __('landing.headteacher_message') }}</h3>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{asset(get_setting('headmaster_image'))}}" alt="প্রধান শিক্ষকের ছবি" alt=""
+                                <img src="{{asset(get_setting('headmaster_image'))}}" alt="{{ __('landing.principal_photo_alt') }}"
                                     style="width:100%; height:330px; margin-bottom:10px;">
 
                             </div>
                             <div class="col-md-8" style="font-size: 16px; color:#000;text-align: justify;">
+                                @php
+                                    $headmasterSpeech = get_setting('headmaster_speech_' . app()->getLocale()) ?: get_setting('headmaster_speech');
+                                    $headmasterName = get_setting('headmaster_name_' . app()->getLocale()) ?: get_setting('headmaster_name');
+                                    $headmasterDesignation = get_setting('headmaster_designation_' . app()->getLocale()) ?: get_setting('headmaster_designation');
+                                    $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name', '4axiz');
+                                @endphp
                                 <p>
-                                    {{get_setting('headmaster_speech')}}
+                                    {{ $headmasterSpeech }}
                                 </p>
 
                                 <div style="line-height: 1.6em; font-weight: bold;">
-                                    <div>{{get_setting('headmaster_name')}}</div>
-                                    <div>{{get_setting('headmaster_designation')}}</div>
-                                    <!-- <div>- সুফিয়া কাশেম বহুমুখী উচ্চ বিদ্যালয়</div> -->
-                                    <div>{{ get_setting('school_name', '4axiz') }}</div>
+                                    <div>{{ $headmasterName }}</div>
+                                    <div>{{ $headmasterDesignation }}</div>
+                                    <div>{{ $schoolName }}</div>
                                 </div>
                             </div>
 
@@ -156,7 +163,7 @@
                                 <div class="info-card">
                                     <div class="card-header-custom"
                                         style="background: linear-gradient(90deg, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);">
-                                        <h5 class="mb-0">ছাত্রছাত্রীদের তথ্য</h5>
+                                        <h5 class="mb-0">{{ __('landing.student_info_card_title') }}</h5>
                                     </div>
                                     <div class="card-body-custom">
                                         <div class="card-icon">
@@ -165,11 +172,11 @@
                                         </div>
                                         <div class="card-list">
                                             <ul>
-                                                <li><a href="{{ route('total_students') }}">ছাত্রছাত্রীর আসন সংখ্যা</a></li>
-                                                <li><a href="{{ route('admission_info') }}">ভর্তি তথ্য</a></li>
-                                                <li><a href="{{ route('notice') }}">নোটিশ</a></li>
-                                                <li><a href="{{ route('routine') }}">রুটিন</a></li>
-                                                <li><a href="{{get_setting('youtube_link')}}">অনলাইন ক্লাস লিংক</a></li>
+                                                <li><a href="{{ route('total_students') }}">{{ __('landing.student_info_links.seat_capacity') }}</a></li>
+                                                <li><a href="{{ route('admission_info') }}">{{ __('landing.student_info_links.admission_info') }}</a></li>
+                                                <li><a href="{{ route('notice') }}">{{ __('landing.student_info_links.notice') }}</a></li>
+                                                <li><a href="{{ route('routine') }}">{{ __('landing.student_info_links.routine') }}</a></li>
+                                                <li><a href="{{get_setting('youtube_link')}}">{{ __('landing.student_info_links.online_class_link') }}</a></li>
 
                                             </ul>
                                         </div>
@@ -181,7 +188,7 @@
                                 <div class="info-card">
                                     <div class="card-header-custom"
                                         style="background: linear-gradient(90deg, rgba(0, 36, 12, 1) 0%, rgba(9, 121, 18, 1) 35%, rgba(60, 190, 27, 1) 70%);">
-                                        <h5 class="mb-0">শিক্ষকদের তথ্য</h5>
+                                        <h5 class="mb-0">{{ __('landing.teacher_info_card_title') }}</h5>
                                     </div>
                                     <div class="card-body-custom" style="padding: 25px;">
                                         <div class="card-icon">
@@ -190,9 +197,9 @@
                                         </div>
                                         <div class="card-list">
                                             <ul>
-                                                <li><a href="{{ route('teacher_team') }}">শিক্ষকবৃন্দ</a></li>
-                                                <li><a href="{{ route('head_master') }}">প্রধান শিক্ষক</a></li>
-                                                <li><a href="{{ route('managing_committee') }}">পরিচালনা পরিষদ</a></li>
+                                                <li><a href="{{ route('teacher_team') }}">{{ __('landing.teacher_info_links.teachers') }}</a></li>
+                                                <li><a href="{{ route('head_master') }}">{{ __('landing.teacher_info_links.head_teacher') }}</a></li>
+                                                <li><a href="{{ route('managing_committee') }}">{{ __('landing.governing_body') }}</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -203,7 +210,7 @@
                                 <div class="info-card">
                                     <div class="card-header-custom"
                                         style="background: linear-gradient(90deg, rgba(99, 83, 2, 1) 0%, rgba(121, 95, 9, 1) 35%, rgba(198, 255, 0, 1) 100%);">
-                                        <h5 class="mb-0">ডাউনলোড</h5>
+                                        <h5 class="mb-0">{{ __('landing.download_card_title') }}</h5>
                                     </div>
                                     <div class="card-body-custom">
                                         <div class="card-icon">
@@ -228,7 +235,7 @@
                                 <div class="info-card">
                                     <div class="card-header-custom"
                                         style="background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);">
-                                        <h5 class="mb-0">একাডেমীক তথ্য</h5>
+                                        <h5 class="mb-0">{{ __('landing.academic_info_card_title') }}</h5>
                                     </div>
                                     <div class="card-body-custom">
                                         <div class="card-icon">
@@ -237,9 +244,9 @@
                                         </div>
                                         <div class="card-list">
                                             <ul>
-                                                <li><a href="#">কক্ষ সংখ্যা</a></li>
-                                                <li><a href="#">ছুটির তালিকা</a></li>
-                                                <li><a href="#">মাল্টিমিডিয়া ক্লাসরুম</a></li>
+                                                <li><a href="#">{{ __('landing.academic_info_links.room_count') }}</a></li>
+                                                <li><a href="#">{{ __('landing.academic_info_links.holiday_list') }}</a></li>
+                                                <li><a href="#">{{ __('landing.academic_info_links.multimedia_classroom') }}</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -252,21 +259,18 @@
                         <div class="list-button">
                             <ul>
                                 <li><a href="{{ route('admission_info') }}" class="button"><i
-                                            class="fa fa-arrow-circle-o-right"></i>ভর্তি
-                                        তথ্য</a></li>
+                                            class="fa fa-arrow-circle-o-right"></i>{{ __('landing.admission_info_button') }}</a></li>
                                 <li><a href="https://www.ebook.com.bd/" class="button"><i class="fa fa-arrow-circle-o-right"
-                                            aria-hidden="true"></i>ই-বুক
-                                        ফরম</a></li>
+                                            aria-hidden="true"></i>{{ __('landing.e_book_form') }}</a></li>
                                 <li><a href="{{ route('image_category') }}" class="button"><i
-                                            class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>ফটোগ্যালারী</a></li>
+                                            class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>{{ __('landing.photo_gallery_button') }}</a></li>
                                 <li><a href="http://www.educationboardresults.gov.bd/" class="button"><i
-                                            class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>এসএসসি/এইচএসসি
-                                        ফলাফল</a></li>
+                                            class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>{{ __('landing.ssc_hsc_results') }}</a></li>
                             </ul>
                         </div>
 
                         <div class="notice-board">
-                            <h3 style='background: #FA0000;'>নোটিশ বোর্ড</h3>
+                            <h3 style='background: #FA0000;'>{{ __('landing.notice_board_title') }}</h3>
                             <div class="content-notice p-1">
                                 <ul>
                                     <li>
@@ -289,9 +293,9 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="noticeModalLabel">নোটিশ</h5>
+                                        <h5 class="modal-title" id="noticeModalLabel">{{ __('landing.notice_modal_title') }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                            aria-label="{{ __('landing.notice_modal_close') }}"></button>
                                     </div>
                                     <div class="modal-body" id="modalNoticeContent">
                                         <!-- Content will be added dynamically -->
@@ -301,7 +305,7 @@
                         </div>
 
                         <div class="official-link ">
-                            <h3>অফিসিয়াল লিংক</h3>
+                            <h3>{{ __('landing.official_links_title') }}</h3>
 
                             <ul>
                                 @foreach($officiallinks as $officiallink)
@@ -314,7 +318,7 @@
 
                         </div>
                         <div class="official-link">
-                            <h3>গুরুত্বপূর্ণ তথ্য</h3>
+                            <h3>{{ __('landing.important_info_title') }}</h3>
                             <ul style='font-size: 16px!important;'>
                                 @foreach($importantinformationlinks as $importantinformationlink)
                                     <li><a href="{{ $importantinformationlink->link_url }}" target="_blank"><i
@@ -327,7 +331,7 @@
                         <div class="official-link rounded-lg shadow-sm">
                             <h3 class="fw-bold text-center mb-4"
                                 style="color:#222; font-size:1.4rem; border-bottom:2px solid #eee; padding-bottom:10px;">
-                                FAQs
+                                {{ __('landing.faqs_title') }}
                             </h3>
                             <div class="accordion" id="faqAccordion">
                                 @foreach($faqs as $index => $faq)
@@ -369,9 +373,9 @@
 
                 <!-- Section Title -->
                 <div class="col-md-12 text-center">
-                    <h5 style="font-size:20px; color: #000;">ম্যানেজিং কমিটি</h5>
+                    <h5 style="font-size:20px; color: #000;">{{ __('landing.managing_committee_title') }}</h5>
                     <h2 class="text-lg mt-3" style="font-size: 30px; font-weight: 500; color: #000;">
-                        আমাদের সফল ম্যানেজিং কমিটি
+                        {{ __('landing.managing_committee_subtitle') }}
                     </h2>
                 </div>
 
@@ -415,7 +419,7 @@
                 <div class="d-flex justify-content-center mt-4">
                     <a href="{{ route('managing_committee') }}" class="btn btn-outline-primary rounded-pill px-4 py-2"
                         style="position: relative; z-index: 9999;">
-                        আরও দেখুন
+                        {{ __('landing.view_more') }}
                     </a>
                 </div>
             </div> <!-- end row -->
@@ -432,9 +436,9 @@
                 <div class="testimonial-section" id="testimonial">
                     <div class="col-md-12">
                         <div class="services-title text-center mt-5">
-                            <h5 style="font-size:20px; color: #000;">শিক্ষক</h5>
-                            <h2 class="text-lg mt-3" style="font-size: 30px;font-weight: 500; color: #000;">আমাদের সফল
-                                শিক্ষক
+                            <h5 style="font-size:20px; color: #000;">{{ __('landing.teachers_section_title') }}</h5>
+                            <h2 class="text-lg mt-3" style="font-size: 30px;font-weight: 500; color: #000;">
+                                {{ __('landing.teachers_section_subtitle_success') }}
                             </h2>
                         </div>
                     </div>
@@ -472,8 +476,7 @@
 
                     </div>
                     <div class="btn-part d-flex justify-content-center">
-                        <a class="btn btn-outline-primary rounded-pill px-4 py-2" href="{{ route('teacher_team') }}">আরও
-                            দেখুন</a>
+                        <a class="btn btn-outline-primary rounded-pill px-4 py-2" href="{{ route('teacher_team') }}">{{ __('landing.view_more') }}</a>
                     </div>
                 </div>
             </div>
@@ -486,9 +489,9 @@
             <div class="modal-content">
                 <!-- Header -->
                 <div class="modal-header" style="color: #000;">
-                    <h5 class="modal-title fw-bold" id="teacherModalLabel">Teacher Details</h5>
+                    <h5 class="modal-title fw-bold" id="teacherModalLabel">{{ __('landing.teacher_modal_title') }}</h5>
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                        aria-label="{{ __('landing.teacher_modal_close') }}"></button>
                 </div>
 
                 <!-- Body -->
@@ -496,23 +499,23 @@
                     <div class="row">
                         <!-- Left: Image -->
                         <div class="col-md-3 text-center">
-                            <img id="modalTeacherImg" src="" alt="Teacher Photo" class="img-fluid rounded shadow-sm mb-2"
+                            <img id="modalTeacherImg" src="" alt="{{ __('landing.principal_photo_alt') }}" class="img-fluid rounded shadow-sm mb-2"
                                 style="max-width: 120px;">
                         </div>
 
                         <!-- Right: Info -->
                         <div class="col-md-9">
                             <h5 class="fw-bold mb-1" id="modalTeacherName">SS</h5>
-                            <p class="mb-1"><strong>Designation:</strong> <span id="modalTeacherTitle">Principal</span></p>
-                            <p class="mb-1"><strong>Qualification:</strong> <span id="modalTeacherQualification">ddd</span>
+                            <p class="mb-1"><strong>{{ __('teacher_team.designation') }}:</strong> <span id="modalTeacherTitle">Principal</span></p>
+                            <p class="mb-1"><strong>{{ __('landing.teacher_modal_qualification') }}</strong> <span id="modalTeacherQualification">ddd</span>
                             </p>
-                            <!-- <p class="mb-1"><strong>Joined on:</strong> <span id="modalTeacherJoin">19 Aug 2025</span></p> -->
+                            <!-- <p class="mb-1"><strong>{{ __('landing.teacher_modal_joined_on') }}</strong> <span id="modalTeacherJoin">19 Aug 2025</span></p> -->
                         </div>
                     </div>
 
                     <!-- Biography -->
                     <div class="mt-3">
-                        <h6 class="fw-bold">Biography</h6>
+                        <h6 class="fw-bold">{{ __('landing.teacher_modal_biography') }}</h6>
                         <p id="modalTeacherBiography" class="mb-0"></p>
                     </div>
                 </div>
@@ -526,9 +529,9 @@
             <div class="modal-content">
                 <!-- Header -->
                 <div class="modal-header" style="color: #000;">
-                    <h5 class="modal-title fw-bold" id="committeModalLabel">Committee Person Details</h5>
+                    <h5 class="modal-title fw-bold" id="committeModalLabel">{{ __('landing.committee_modal_title') }}</h5>
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                        aria-label="{{ __('landing.notice_modal_close') }}"></button>
                 </div>
 
                 <!-- Body -->
@@ -536,23 +539,23 @@
                     <div class="row">
                         <!-- Left: Image -->
                         <div class="col-md-3 text-center">
-                            <img id="modalCommiteeImg" src="" alt="Commitee Photo" class="img-fluid rounded shadow-sm mb-2"
+                            <img id="modalCommiteeImg" src="" alt="{{ __('landing.chairman_photo_alt') }}" class="img-fluid rounded shadow-sm mb-2"
                                 style="max-width: 120px;">
                         </div>
 
                         <!-- Right: Info -->
                         <div class="col-md-9">
                             <h5 class="fw-bold mb-1" id="modalCommiteeName">SS</h5>
-                            <p class="mb-1"><strong>Designation:</strong> <span id="modalCommiteeTitle">Principal</span></p>
-                            <p class="mb-1"><strong>Qualification:</strong> <span id="modalCommiteeQualification">ddd</span>
+                            <p class="mb-1"><strong>{{ __('teacher_team.designation') }}:</strong> <span id="modalCommiteeTitle">Principal</span></p>
+                            <p class="mb-1"><strong>{{ __('landing.teacher_modal_qualification') }}</strong> <span id="modalCommiteeQualification">ddd</span>
                             </p>
-                            <!-- <p class="mb-1"><strong>Joined on:</strong> <span id="modalCommiteeJoin">19 Aug 2025</span></p> -->
+                            <!-- <p class="mb-1"><strong>{{ __('landing.teacher_modal_joined_on') }}</strong> <span id="modalCommiteeJoin">19 Aug 2025</span></p> -->
                         </div>
                     </div>
 
                     <!-- Biography -->
                     <div class="mt-3">
-                        <h6 class="fw-bold">Biography</h6>
+                        <h6 class="fw-bold">{{ __('landing.committee_modal_biography') }}</h6>
                         <p id="modalCommiteeBiography" class="mb-0"></p>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">রুটিন</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('routine.page_title') }}</h1>
     </div>
 </section>
 <!-- ✅ Routine -->
@@ -11,7 +11,7 @@
     <div class="container px-4 py-2 bg-white rounded shadow-lg">
         <div class="col-md-12">
             <div class="routine-wraper">
-                <h1  class="text-center" style="margin: 50px  0 0px 0;">ক্লাস রুটিন</h1>
+                <h1  class="text-center" style="margin: 50px  0 0px 0;">{{ __('routine.class_routine') }}</h1>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" style="font-size:18px; text-align:center;">
@@ -27,18 +27,18 @@
                     <tbody>
                         <tr>
                             <th class="text-center"><i class="fa fa-download" aria-hidden="true"></i> <a
-                                    href="">ডাউনলোড</a> </th>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
+                                    href="">{{ __('routine.download') }}</a> </th>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
                         </tr>
 
                     </tbody>
                 </table>
             </div>
             <div class="routine-wraper">
-                <h1 class="text-center" style="margin: 50px  0 0px 0;"> পরীক্ষা রুটিন </h1>
+                <h1 class="text-center" style="margin: 50px  0 0px 0;"> {{ __('routine.exam_routine') }} </h1>
             </div>
 
             <div class="table-responsive">
@@ -55,11 +55,11 @@
                     <tbody>
                         <tr>
                             <th class="text-center"><i class="fa fa-download" aria-hidden="true"></i> <a
-                                    href="">ডাউনলোড</a> </th>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
-                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">ডাউনলোড</a> </td>
+                                    href="">{{ __('routine.download') }}</a> </th>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
+                            <td><i class="fa fa-download" aria-hidden="true"></i> <a href="">{{ __('routine.download') }}</a> </td>
                         </tr>
 
                     </tbody>

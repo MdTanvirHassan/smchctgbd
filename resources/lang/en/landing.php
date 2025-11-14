@@ -65,5 +65,11 @@ return [
     'teacher_modal_close' => 'Close',
     'principal_photo_alt' => 'Photo of Head Teacher',
     'chairman_photo_alt' => 'Photo of Chairman',
+    'governing_body' => 'Governing Body',
+    'teachers_section_subtitle_success' => 'Our Successful Teachers',
+    'committee_modal_title' => 'Committee Person Details',
+    'committee_modal_biography' => 'Biography',
+    'e_book_form' => 'E-Book Form',
+    'ssc_hsc_results' => 'SSC/HSC Results',
 ];
 

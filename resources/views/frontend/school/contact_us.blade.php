@@ -4,16 +4,21 @@
     <!-- ✅ Contact Us -->
     <section class="contact-us-section">
         <div class="container shadow-bg p-4 mt-5 mb-5 bg-light rounded">
-            <h1>যোগাযোগ</h1>
+            <h1>{{ __('contact_us.page_title') }}</h1>
 
             <div class="row">
                 <!-- Location -->
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="contact-item">
                         <img src="{{ asset('/public/assets/icons/location.png') }}" class="img-hover" alt="Location Icon" />
-                        <h3>Our Location</h3>
+                        <h3>{{ __('contact_us.our_location') }}</h3>
                         <p class="subtitle">
-                            {{ get_setting('school_address', 'Mirpur-12, Dhaka') }}
+                            @php
+                              $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name');
+                              $schoolAddress = get_setting('school_address_' . app()->getLocale()) ?: get_setting('school_address', 'Mirpur-12, Dhaka');
+                            @endphp
+                            {{ $schoolName }}<br>
+                            {{ $schoolAddress }}
                         </p>
                     </div>
                 </div>
@@ -22,16 +27,18 @@
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="contact-item">
                         <img src="{{ asset('/public/assets/icons/call.png') }}" class="img-hover" alt="Call Icon" />
-                        <h3>CALL US</h3>
+                        <h3>{{ __('contact_us.call_us') }}</h3>
                         <p class="subtitle">
-                            ইমেইল :
-                            <a href="">
+                            {{ __('contact_us.email') }} :
+                            <a href="mailto:{{ get_setting('school_email') }}">
                                 {{ get_setting('school_email') }}
                             </a>
                         </p>
                         <p class="subtitle">
-                            নম্বর :
-                            {{ get_setting('school_phone') }}
+                            {{ __('contact_us.number') }} :
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', get_setting('school_phone')) }}">
+                                {{ get_setting('school_phone') }}
+                            </a>
                         </p>
 
 
@@ -48,18 +55,13 @@
                     <div class="contact-item">
                         <img src="{{ asset('/public/assets/icons/watch.png') }}" class="img-hover"
                             alt="Working Hours Icon" />
-                        <h3>Working Hours</h3>
-                        <!-- <p class="subtitle">
-                                            <span class='items'>
-                                                Sat-Thurs: 8AM to 6PM
-                                            </span><br>
-                                            <span class='items'>Off Day:</span>
-                                            Friday
-                                        </p> -->
-                        <!-- <p class="subtitle">
-                                                                                            <span class='items'>Off Day:</span>
-                                                                                            Friday
-                                                                                        </p> -->
+                        <h3>{{ __('contact_us.working_hours') }}</h3>
+                        <p class="subtitle">
+                            <span class='items'>
+                                {{ __('contact_us.working_hours_schedule') }}
+                            </span><br>
+                            <span class='items'>{{ __('contact_us.off_day') }}</span>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -10,8 +10,8 @@
 </style>
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">প্রধান শিক্ষক</h1>
-        <h2 class="mt-3">আমাদের সম্মানিত প্রধান শিক্ষক</h2>
+        <h1 class="display-4 fw-bold mb-0">{{ __('head_master.page_title') }}</h1>
+        <h2 class="mt-3">{{ __('head_master.page_subtitle') }}</h2>
     </div>
 </section>
 <!-- ✅ Headmaster Section -->
@@ -20,8 +20,12 @@
 
         <!-- Photo -->
         <div class="col-md-4 text-center principal-photo mb-4 mb-md-0">
-            <img src="{{ asset(get_setting('headmaster_image')) }}"
-                alt="{{ get_setting('headmaster_name') }}"
+            @php
+                $headmasterImage = get_setting('headmaster_image');
+                $headmasterName = get_setting('headmaster_name_' . app()->getLocale()) ?: get_setting('headmaster_name');
+            @endphp
+            <img src="{{ asset($headmasterImage) }}"
+                alt="{{ $headmasterName }}"
                 class="img-fluid rounded-circle shadow-lg border border-3 border-white">
         </div>
 
@@ -31,14 +35,25 @@
             <!-- Name & Social -->
             <div class="d-flex justify-content-between align-items-start flex-wrap mb-3">
                 <div>
-                    <h3 class="principal-name fw-bold mb-1">{{ get_setting('headmaster_name') }}</h3>
-                    <p class="principal-title text-muted mb-1">{{ get_setting('headmaster_designation') }}</p>
-                    <p class="principal-school fw-semibold mb-1">{{ get_setting('school_name') }}</p>
+                    @php
+                        $headmasterName = get_setting('headmaster_name_' . app()->getLocale()) ?: get_setting('headmaster_name');
+                        $headmasterDesignation = get_setting('headmaster_designation_' . app()->getLocale()) ?: get_setting('headmaster_designation');
+                        $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name');
+                        $headmasterPhone = get_setting('headmaster_phone');
+                        $headmasterEmail = get_setting('headmaster_email');
+                    @endphp
+                    <h3 class="principal-name fw-bold mb-1">{{ $headmasterName }}</h3>
+                    <p class="principal-title text-muted mb-1">
+                        <strong>{{ __('head_master.designation') }}:</strong> {{ $headmasterDesignation }}
+                    </p>
+                    <p class="principal-school fw-semibold mb-1">
+                        <strong>{{ __('head_master.school') }}:</strong> {{ $schoolName }}
+                    </p>
                     <p class="principal-contact mb-1">
-                        <i class="fas fa-phone-alt me-2"></i>{{ get_setting('headmaster_phone') }}
+                        <i class="fas fa-phone-alt me-2"></i><strong>{{ __('head_master.phone') }}:</strong> {{ $headmasterPhone }}
                     </p>
                     <p class="principal-contact mb-0">
-                        <i class="fas fa-envelope me-2"></i>{{ get_setting('headmaster_email') }}
+                        <i class="fas fa-envelope me-2"></i><strong>{{ __('head_master.email') }}:</strong> {{ $headmasterEmail }}
                     </p>
                 </div>
 
@@ -53,7 +68,10 @@
 
             <!-- Quote -->
             <div class="quote-text mt-4 p-3 rounded shadow-sm bg-light text-dark fst-italic">
-                "{{ get_setting('headmaster_speech') }}"
+                @php
+                    $headmasterSpeech = get_setting('headmaster_speech_' . app()->getLocale()) ?: get_setting('headmaster_speech');
+                @endphp
+                "{{ $headmasterSpeech }}"
             </div>
 
         </div>

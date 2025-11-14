@@ -9,28 +9,28 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="info-card-summary">
                         <i class="fas fa-graduation-cap"></i>
-                        <h5>শ্রেণী</h5>
+                        <h5>{{ __('class_summary.class') }}</h5>
                         <div>৬ষ্ঠ শ্রেণী</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="info-card-summary">
                         <i class="fas fa-male"></i>
-                        <h5>বালক</h5>
+                        <h5>{{ __('class_summary.boys') }}</h5>
                         <div>2</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="info-card-summary">
                         <i class="fas fa-female"></i>
-                        <h5>বালিকা</h5>
+                        <h5>{{ __('class_summary.girls') }}</h5>
                         <div>0</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="info-card-summary">
                         <i class="fas fa-users"></i>
-                        <h5>মোট</h5>
+                        <h5>{{ __('class_summary.total') }}</h5>
                         <div>2</div>
                     </div>
                 </div>
@@ -40,10 +40,10 @@
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th>শ্রেণী</th>
-                            <th>বালক</th>
-                            <th>বালিকা</th>
-                            <th>মোট</th>
+                            <th>{{ __('class_summary.class') }}</th>
+                            <th>{{ __('class_summary.boys') }}</th>
+                            <th>{{ __('class_summary.girls') }}</th>
+                            <th>{{ __('class_summary.total') }}</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -3,7 +3,7 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
   <div class="hero-inner py-4">
-    <h1 class="display-4 fw-bold mb-0">যোগাযোগ</h1>
+    <h1 class="display-4 fw-bold mb-0">{{ __('contact_us.page_title') }}</h1>
   </div>
 </section>
 
@@ -18,12 +18,16 @@
           <div class="icon">
             <i class="fas fa-map-marker-alt"></i>
           </div>
-          <h4>Our Location</h4>
+          <h4>{{ __('contact_us.our_location') }}</h4>
           <p>
-            <a href="https://www.google.com/maps/search/{{ urlencode(get_setting('school_address')) }}" 
+            @php
+              $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name');
+              $schoolAddress = get_setting('school_address_' . app()->getLocale()) ?: get_setting('school_address');
+            @endphp
+            <a href="https://www.google.com/maps/search/{{ urlencode($schoolAddress) }}" 
                target="_blank" rel="noopener" class="link-custom">
-              {{ get_setting('school_name') }}<br>
-              {{ get_setting('school_address') }}
+              {{ $schoolName }}<br>
+              {{ $schoolAddress }}
             </a>
           </p>
         </div>
@@ -35,13 +39,13 @@
           <div class="icon">
             <i class="fas fa-phone"></i>
           </div>
-          <h4>Call Us</h4>
-          <p>Email: 
+          <h4>{{ __('contact_us.call_us') }}</h4>
+          <p>{{ __('contact_us.email') }}: 
             <a href="mailto:{{ get_setting('school_email') }}" class="link-custom">
               {{ get_setting('school_email') }}
             </a>
           </p>
-          <p>Number: 
+          <p>{{ __('contact_us.number') }}: 
             <a href="tel:{{ preg_replace('/[^0-9+]/', '', get_setting('school_phone')) }}" class="link-custom">
               {{ get_setting('school_phone') }}
             </a>
@@ -55,10 +59,10 @@
           <div class="icon">
             <i class="fas fa-clock"></i>
           </div>
-          <h4>Working Hours</h4>
+          <h4>{{ __('contact_us.working_hours') }}</h4>
           <p>
-            Sat–Thurs: 8AM to 6PM<br>
-            Off Day: Friday
+            {{ __('contact_us.working_hours_schedule') }}<br>
+            {{ __('contact_us.off_day') }}
           </p>
         </div>
       </div>

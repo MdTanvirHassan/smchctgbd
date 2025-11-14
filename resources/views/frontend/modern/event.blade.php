@@ -3,22 +3,22 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">ইভেন্ট</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('event.page_title') }}</h1>
     </div>
 </section>
 
 <!-- ✅ Event -->
 <section class="event-section">
     <div class="container shadow-sm my-5 p-4 bg-white rounded">
-        <h2 class="text-center mb-4">ইভেন্ট</h2>
+        <h2 class="text-center mb-4">{{ __('event.section_title') }}</h2>
         <div style="font-size: 16px; line-height: 1.5em; color: #000;">
             <table class="table table-bordered table-striped table-hover">
                 <thead class="table-info">
                     <tr>
-                        <th scope="col">শুরুর তারিখ</th>
-                        <th scope="col">ইভেন্ট শিরোনাম</th>
-                        <th scope="col">শেষ তারিখ</th>
-                        <th scope="col" style="width: 100px;">বিস্তারিত</th>
+                        <th scope="col">{{ __('event.start_date') }}</th>
+                        <th scope="col">{{ __('event.event_title') }}</th>
+                        <th scope="col">{{ __('event.end_date') }}</th>
+                        <th scope="col" style="width: 100px;">{{ __('event.details') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                                 data-date="{{ $event->start_date }}"
                                 data-description="{{ $event->description }}"
                                 onclick="showEventModal(this)">
-                                বিস্তারিত
+                                {{ __('event.details') }}
                             </button>
                         </td>
                     </tr>
@@ -61,9 +61,9 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow-lg rounded-3">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="eventModalLabel">ইভেন্ট</h5>
+                    <h5 class="modal-title fw-bold" id="eventModalLabel">{{ __('event.modal_title') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                        aria-label="{{ __('event.close') }}"></button>
                 </div>
                 <div class="modal-body">
                     <h5 id="modalEventTitle" class="fw-semibold mb-3"></h5>
@@ -71,7 +71,7 @@
                     <p id="modalEventContent" class="mb-0"></p>
                 </div>
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('event.close') }}</button>
                 </div>
             </div>
         </div>

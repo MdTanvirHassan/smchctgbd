@@ -10,8 +10,17 @@ if (!function_exists('get_setting')) {
             return Setting::all();
         });
 
-        if ($lang == false) {
-            $setting = $settings->where('type', $key)->first();
+        if ($lang === false) {
+            // Auto-detect current locale if available
+            $currentLang = app()->getLocale();
+            // Try to get language-specific setting first, then fallback to non-language specific
+            $setting = $settings->where('type', $key)->where('lang', $currentLang)->first();
+            if (!$setting) {
+                $setting = $settings->where('type', $key)->whereNull('lang')->first();
+            }
+            if (!$setting) {
+                $setting = $settings->where('type', $key)->first();
+            }
         } else {
             $setting = $settings->where('type', $key)->where('lang', $lang)->first();
             $setting = !$setting ? $settings->where('type', $key)->first() : $setting;

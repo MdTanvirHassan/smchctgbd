@@ -5,14 +5,14 @@
     <!-- ✅ Events -->
     <section class="notice-section">
         <div class="container shadow-bg my-4">
-            <h2 class="text-center">ইভেন্ট</h2>
+            <h2 class="text-center">{{ __('event.page_title') }}</h2>
             <div style="font-size: 16px; line-height: 1.5em; color: #000;">
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-info">
                         <tr>
-                            <th scope="col">Start Date</th>
-                            <th scope="col">End Date</th>
-                            <th scope="col">Notice</th>
+                            <th scope="col">{{ __('event.start_date') }}</th>
+                            <th scope="col">{{ __('event.end_date') }}</th>
+                            <th scope="col">{{ __('event.event_title') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,8 +46,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="noticeModalLabel">নোটিশ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="noticeModalLabel">{{ __('event.modal_title') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('event.close') }}"></button>
                 </div>
                 <div class="modal-body" id="modalNoticeContent">
                     <!-- Content will be added dynamically -->

@@ -4,8 +4,8 @@
 
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">শিক্ষক মণ্ডলী</h1>
-        <h2 class="mt-3">আমাদের সম্মানিত শিক্ষক মণ্ডলী</h2>
+        <h1 class="display-4 fw-bold mb-0">{{ __('teacher_team.page_title') }}</h1>
+        <h2 class="mt-3">{{ __('teacher_team.page_subtitle') }}</h2>
     </div>
 </section>
 
@@ -30,7 +30,7 @@
                                 data-qualification="{{ $teacher->qualification }}"
                                 data-biography="{{ $teacher->biography }}"
                                 data-join_date="{{ \Carbon\Carbon::parse($teacher->join_date)->format('d M Y') }}">
-                                <img src="{{ asset($teacher->photo_path) }}" alt="Teacher"
+                                <img src="{{ asset($teacher->photo_path) }}" alt="{{ __('teacher_team.teacher_photo_alt') }}"
                                     class="teacher-img">
                                 <div class="teacher-info mt-3">
                                     <h4>{{ $teacher->name }}</h4>
@@ -49,9 +49,9 @@
 
                             <!-- Modal Header -->
                             <div class="modal-header py-3 px-4 rounded-top">
-                                <h5 class="modal-title fw-bold fs-4" id="teacherModalLabel">Teacher Details</h5>
+                                <h5 class="modal-title fw-bold fs-4" id="teacherModalLabel">{{ __('teacher_team.modal_title') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                    aria-label="{{ __('teacher_team.close') }}"></button>
                             </div>
 
                             <!-- Modal Body -->
@@ -62,7 +62,7 @@
                                     class="d-flex flex-column flex-md-row align-items-center align-items-md-start gap-4 mb-4">
 
                                     <!-- Teacher Photo -->
-                                    <img id="modalTeacherPhoto" src="" alt="Teacher Photo"
+                                    <img id="modalTeacherPhoto" src="" alt="{{ __('teacher_team.teacher_photo_alt') }}"
                                         class="rounded shadow-sm flex-shrink-0"
                                         style="width: 140px; height: 140px; object-fit: cover;" />
 
@@ -77,7 +77,7 @@
 
                                 <!-- Biography section -->
                                 <section>
-                                    <h6 class="fw-semibold mb-3">Biography</h6>
+                                    <h6 class="fw-semibold mb-3">{{ __('teacher_team.biography') }}</h6>
                                     <p id="modalTeacherBiography" class="mb-0"
                                         style="white-space: pre-wrap; line-height: 1.5; text-align: justify;"></p>
                                 </section>
@@ -94,6 +94,12 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        // Store translations in JavaScript for dynamic use
+        const translations = {
+            qualification: "{{ __('teacher_team.qualification') }}",
+            joined_on: "{{ __('teacher_team.joined_on') }}"
+        };
+
         $('#teacherModal').on('show.bs.modal', function(event) {
             let trigger = $(event.relatedTarget);
             let name = trigger.data('name');
@@ -107,8 +113,8 @@
             modal.find('#modalTeacherName').text(name);
             modal.find('#modalTeacherDesignation').text(designation);
             modal.find('#modalTeacherPhoto').attr('src', photo);
-            modal.find('#modalTeacherQualification').text("Qualification: " + qualification);
-            modal.find('#modalTeacherJoinDate').text("Joined on: " + joinDate);
+            modal.find('#modalTeacherQualification').text(translations.qualification + ": " + qualification);
+            modal.find('#modalTeacherJoinDate').text(translations.joined_on + ": " + joinDate);
             modal.find('#modalTeacherBiography').text(biography);
         });
     });

@@ -3,7 +3,7 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">রুটিন</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('routine.page_title') }}</h1>
     </div>
 </section>
 <!-- ✅ Routine -->
@@ -11,13 +11,13 @@
     <div class="container">
         <!-- Class Routine -->
         <div class="routine-wrapper mb-5">
-            <h2 class="text-center fw-bold mb-4">📘 ক্লাস রুটিন</h2>
+            <h2 class="text-center fw-bold mb-4">📘 {{ __('routine.class_routine') }}</h2>
 
             <!-- Filter -->
             <div class="row mb-3">
                 <div class="col-md-4 offset-md-4">
                     <select id="classFilter" class="form-select shadow-sm">
-                        <option value="">🔍 Select Class</option>
+                        <option value="">{{ __('routine.select_class') }}</option>
                         @foreach($classes as $class)
                         <option value="{{ $class->name }}">{{ $class->name }}</option>
                         @endforeach
@@ -30,12 +30,12 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-primary">
                         <tr>
-                            <th>#</th>
-                            <th>Class</th>
-                            <th>Shift</th>
-                            <th>Routine Title</th>
-                            <th>Published Date</th>
-                            <th class="text-center">Action</th>
+                            <th>{{ __('routine.no') }}</th>
+                            <th>{{ __('routine.class') }}</th>
+                            <th>{{ __('routine.shift') }}</th>
+                            <th>{{ __('routine.routine_title') }}</th>
+                            <th>{{ __('routine.published_date') }}</th>
+                            <th class="text-center">{{ __('routine.action') }}</th>
                         </tr>
                     </thead>
                     <tbody id="routineTable">
@@ -48,12 +48,12 @@
                             <td>{{ \Carbon\Carbon::parse($classroutine->published_date)->format('d M, Y') }}</td>
                             <td class="text-center">
                                 <a href="{{ asset($classroutine->file_path) }}" target="_blank"
-                                    class="btn btn-sm btn-outline-primary me-1">
-                                    <i class="fa fa-eye"></i>
+                                    class="btn btn-sm btn-outline-primary me-1" title="{{ __('routine.view') }}">
+                                    <i class="fa fa-eye"></i> {{ __('routine.view') }}
                                 </a>
                                 <a href="{{ asset($classroutine->file_path) }}" download
-                                    class="btn btn-sm btn-outline-success">
-                                    <i class="fa fa-download"></i>
+                                    class="btn btn-sm btn-outline-success" title="{{ __('routine.download') }}">
+                                    <i class="fa fa-download"></i> {{ __('routine.download') }}
                                 </a>
                             </td>
                         </tr>
@@ -65,13 +65,13 @@
 
         <!-- Exam Routine -->
         <div class="routine-wrapper">
-            <h2 class="text-center fw-bold mb-4">✏️ পরীক্ষা রুটিন</h2>
+            <h2 class="text-center fw-bold mb-4">✏️ {{ __('routine.exam_routine') }}</h2>
 
             <!-- Filter -->
             <div class="row mb-3">
                 <div class="col-md-4 offset-md-4">
                     <select id="examClassFilter" class="form-select shadow-sm">
-                        <option value="">🔍 Select Class</option>
+                        <option value="">{{ __('routine.select_class') }}</option>
                         @foreach($classes as $class)
                         <option value="{{ $class->name }}">{{ $class->name }}</option>
                         @endforeach
@@ -84,12 +84,12 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-dark">
                         <tr>
-                            <th>#</th>
-                            <th>Class</th>
-                            <th>Shift</th>
-                            <th>Routine Title</th>
-                            <th>Published Date</th>
-                            <th class="text-center">Action</th>
+                            <th>{{ __('routine.no') }}</th>
+                            <th>{{ __('routine.class') }}</th>
+                            <th>{{ __('routine.shift') }}</th>
+                            <th>{{ __('routine.routine_title') }}</th>
+                            <th>{{ __('routine.published_date') }}</th>
+                            <th class="text-center">{{ __('routine.action') }}</th>
                         </tr>
                     </thead>
                     <tbody id="examRoutineTable">
@@ -102,12 +102,12 @@
                             <td>{{ \Carbon\Carbon::parse($examroutine->published_date)->format('d M, Y') }}</td>
                             <td class="text-center">
                                 <a href="{{ asset($examroutine->file_path) }}" target="_blank"
-                                    class="btn btn-sm btn-outline-primary me-1">
-                                    <i class="fa fa-eye"></i>
+                                    class="btn btn-sm btn-outline-primary me-1" title="{{ __('routine.view') }}">
+                                    <i class="fa fa-eye"></i> {{ __('routine.view') }}
                                 </a>
                                 <a href="{{ asset($examroutine->file_path) }}" download
-                                    class="btn btn-sm btn-outline-success">
-                                    <i class="fa fa-download"></i>
+                                    class="btn btn-sm btn-outline-success" title="{{ __('routine.download') }}">
+                                    <i class="fa fa-download"></i> {{ __('routine.download') }}
                                 </a>
                             </td>
                         </tr>

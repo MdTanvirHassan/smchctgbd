@@ -8,8 +8,8 @@
                 <div class="testimonial-section" id="testimonial">
                     <div class="col-md-12">
                         <div class="services-title text-center mt-5">
-                            <h5 style="font-size:20px;">শিক্ষক</h5>
-                            <h2 class="text-lg">আমাদের সফল শিক্ষক</h2>
+                            <h5 style="font-size:20px;">{{ __('teacher_team.page_title') }}</h5>
+                            <h2 class="text-lg">{{ __('teacher_team.page_subtitle') }}</h2>
                         </div>
                     </div>
 
@@ -56,9 +56,9 @@
             <div class="modal-content">
                 <!-- Header -->
                 <div class="modal-header" style="color: #000;">
-                    <h5 class="modal-title fw-bold" id="teacherModalLabel">Teacher Details</h5>
+                    <h5 class="modal-title fw-bold" id="teacherModalLabel">{{ __('teacher_team.modal_title') }}</h5>
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                        aria-label="{{ __('teacher_team.close') }}"></button>
                 </div>
 
                 <!-- Body -->
@@ -73,16 +73,16 @@
                         <!-- Right: Info -->
                         <div class="col-md-9">
                             <h5 class="fw-bold mb-1" id="modalTeacherName">SS</h5>
-                            <p class="mb-1"><strong>Designation:</strong> <span id="modalTeacherTitle">Principal</span></p>
-                            <p class="mb-1"><strong>Qualification:</strong> <span id="modalTeacherQualification">ddd</span>
+                            <p class="mb-1"><strong>{{ __('teacher_team.designation') ?? 'Designation' }}:</strong> <span id="modalTeacherTitle">Principal</span></p>
+                            <p class="mb-1"><strong>{{ __('teacher_team.qualification') }}:</strong> <span id="modalTeacherQualification">ddd</span>
                             </p>
-                            <!-- <p class="mb-1"><strong>Joined on:</strong> <span id="modalTeacherJoin">19 Aug 2025</span></p> -->
+                            <!-- <p class="mb-1"><strong>{{ __('teacher_team.joined_on') }}:</strong> <span id="modalTeacherJoin">19 Aug 2025</span></p> -->
                         </div>
                     </div>
 
                     <!-- Biography -->
                     <div class="mt-3">
-                        <h6 class="fw-bold">Biography</h6>
+                        <h6 class="fw-bold">{{ __('teacher_team.biography') }}</h6>
                         <p id="modalTeacherBiography" class="mb-0"></p>
                     </div>
                 </div>

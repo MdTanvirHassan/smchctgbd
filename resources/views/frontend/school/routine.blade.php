@@ -7,7 +7,7 @@
         <div class="container shadow-bg">
             <div class="col-md-12">
                 <div class="routine-wraper">
-                    <h1 class="text-center" style="margin: 10px 0 0px 0;">ক্লাস রুটিন</h1>
+                    <h1 class="text-center" style="margin: 10px 0 0px 0;">{{ __('routine.class_routine') }}</h1>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" style="font-size:18px; text-align:center;">
@@ -25,9 +25,9 @@
                                 @foreach($classroutines as $key => $classroutine)
                                     <td>
                                         <i class="fa fa-download" aria-hidden="true"></i>
-                                        <a href="{{ asset($classroutine->file_path) }}" download>ডাউনলোড</a>
+                                        <a href="{{ asset($classroutine->file_path) }}" download>{{ __('routine.download') }}</a>
                                         <br>
-                                        <small>Published:
+                                        <small>{{ __('routine.published') }}:
                                             {{ \Carbon\Carbon::parse($classroutine->published_date)->format('d M, Y') }}</small>
                                     </td>
                                 @endforeach
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="routine-wraper">
-                    <h1 class="text-center" style="margin: 50px 0 0px 0;">পরীক্ষা রুটিন</h1>
+                    <h1 class="text-center" style="margin: 50px 0 0px 0;">{{ __('routine.exam_routine') }}</h1>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" style="font-size:18px; text-align:center;">
@@ -55,9 +55,9 @@
                                 @foreach($examroutines as $key => $examroutine)
                                     <td>
                                         <i class="fa fa-download" aria-hidden="true"></i>
-                                        <a href="{{ asset($examroutine->file_path) }}" download>ডাউনলোড</a>
+                                        <a href="{{ asset($examroutine->file_path) }}" download>{{ __('routine.download') }}</a>
                                         <br>
-                                        <small>Published:
+                                        <small>{{ __('routine.published') }}:
                                             {{ \Carbon\Carbon::parse($examroutine->published_date)->format('d M, Y') }}</small>
                                     </td>
                                 @endforeach

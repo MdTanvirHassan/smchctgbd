@@ -3,7 +3,7 @@
 @section('content')
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">ছাত্রছাত্রীর আসন সংখ্যা</h1>
+        <h1 class="display-4 fw-bold mb-0">{{ __('total_students.page_title') }}</h1>
     </div>
 </section>
 
@@ -11,14 +11,14 @@
 <!-- ✅ Total Student -->
 <section class="total-student-section">
     <div class="container table-container">
-        <h4 class="table-title">ছাত্রছাত্রীর আসন সংখ্যা</h4>
+        <h4 class="table-title">{{ __('total_students.section_title') }}</h4>
         <table class="table table-bordered">
             <thead class="custom-header">
                 <tr>
-                    <th>No</th>
-                    <th>ছাত্রের আসন সংখ্যা</th>
-                    <th>ছাত্রীর আসন সংখ্যা</th>
-                    <th>মোট আসন সংখ্যা</th>
+                    <th>{{ __('total_students.no') }}</th>
+                    <th>{{ __('total_students.boys_seat_capacity') }}</th>
+                    <th>{{ __('total_students.girls_seat_capacity') }}</th>
+                    <th>{{ __('total_students.total_seat_capacity') }}</th>
                 </tr>
             </thead>
             <tbody>

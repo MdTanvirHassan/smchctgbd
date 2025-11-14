@@ -4,30 +4,37 @@
     <!-- ✅ Admission Information -->
     <section class="admission-info-section">
         <div class="container admission-section">
-            <div class="admission-title">ভর্তি তথ্য</div>
+            <div class="admission-title">{{ __('admission_info.section_title') }}</div>
 
             <div class="admission-content">
+                @php
+                    $admissionDescription = get_setting('admission_description_' . app()->getLocale()) ?: get_setting('admission_description');
+                @endphp
                 <p>
-                    এতোদ্বারা জানানো যাচ্ছে যে, আগামী ১.১.২০২৪ ইং তারিখে স্কুলের নবম শ্রেণীতে নতুন ছাত্রছাত্রীদের ভর্তি
-                    করা হবে। যারা জেএসসি পরীক্ষায় ২.০ পেয়েছে কেবল তারাই আবেদন করতে পারবে। আগ্রহীরা ওয়েবসাইট থেকে ফরম
-                    ডাউনলোড করে পূরণ করে আমাদের ই-মেইল অথবা সরাসরি আমাদের অফিসে জমা দেয়ার জন্য বলা হলো।
+                    {{ $admissionDescription }}
                 </p>
-                <p><strong>ফরম মূল্য :</strong> ২০০ টাকা<br><strong>ভর্তি ফি :</strong> ২০০০ টাকা</p>
+                <p><strong>{{ __('admission_info.form_price') }} :</strong> {{ get_setting('monthly_fee') }}<br><strong>{{ __('admission_info.admission_fee') }} :</strong> {{ get_setting('admission_fee') }}</p>
 
                 <div class="principal-signature">
-                    <strong>লিজা মনি</strong>
-                    প্রধান শিক্ষক<br>
-                    সুফিয়া কামেম বকসুমী উচ্চ বিদ্যালয়<br>
-                    আলালপুর, দেবদুয়ার, জেলা: টাঙ্গাইল
+                    @php
+                        $headmasterName = get_setting('headmaster_name_' . app()->getLocale()) ?: get_setting('headmaster_name');
+                        $headmasterDesignation = get_setting('headmaster_designation_' . app()->getLocale()) ?: get_setting('headmaster_designation');
+                        $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name');
+                    @endphp
+                    <strong>{{ $headmasterName }}</strong>
+                    {{ $headmasterDesignation }}<br>
+                    {{ $schoolName }}<br>
                 </div>
             </div>
 
             <div class="form-img">
-                <img src="https://sqmhighschool.edu.bd/uploads/academic_info/1704605625-1752454313659a37b973212!admission.jpg"
-                    alt="Student Application Form">
+                <img src="{{ get_setting('admission_form_image') }}"
+                    alt="{{ __('admission_info.form_image_alt') }}">
             </div>
             <div class="apply-btn">
-                <a href="#" class="btn btn-success btn-lg mt-3">ভর্তি ফরম পূরণ করুন</a>
+                <a href="{{ get_setting('admission_form_image') }}" 
+                   download="admission_form.jpg" 
+                   class="btn btn-success btn-lg mt-3">{{ __('admission_info.download') }}</a>
             </div>
         </div>
 
