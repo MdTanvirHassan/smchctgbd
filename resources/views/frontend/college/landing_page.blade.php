@@ -322,8 +322,8 @@
 
                 <section class="rounded" style="background-color: #00465b; padding: 40px 0;">
                     <div class="container text-center">
-                        <h5 style="color: #ffffff; font-size: 18px;">{{ __('landing.managing_committee_title') }}</h5>
-                        <h3 style="color: #ffffff; font-size: 24px; font-weight: 500;">{{ __('landing.managing_committee_subtitle') }}</h3>
+                        <h5 style="color: #ffffff; font-size: 18px;">{{ __('landing.governing_body_title') }}</h5>
+                        <h3 style="color: #ffffff; font-size: 24px; font-weight: 500;">{{ __('landing.governing_body_subtitle') }}</h3>
 
                         <div class="mt-4 px-3">
                             <div class="committee-carousel-college">

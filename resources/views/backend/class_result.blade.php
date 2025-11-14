@@ -61,7 +61,7 @@
                             @foreach($classresults as $classresult)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $classresult->class ? $classresult->class->name : 'N/A' }}</td>
+                                    <td>{{ $classresult->class->name }}</td>
                                     <td>{{ $classresult->shift }}</td>
                                     <td>{{ $classresult->result_title }}</td>
                                     <td>{{ $classresult->published_date }}</td>

@@ -4,8 +4,8 @@
 
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">{{ __('header.governing_body') }}</h1>
-        <h2 class="mt-3">{{ __('landing.managing_committee_subtitle') }}</h2>
+        <h1 class="display-4 fw-bold mb-0">{{ __('landing.governing_body_title') }}</h1>
+        <h2 class="mt-3">{{ __('landing.governing_body_subtitle') }}</h2>
     </div>
 </section>
 
@@ -15,8 +15,8 @@
             <div class="testimonial-section" id="testimonial">
                 <div class="col-md-12">
                     <div class="services-title text-center mt-5">
-                        <h5 style="font-size:20px; color: #000;">{{ __('landing.managing_committee_title') }}</h5>
-                        <h2 class="text-lg mt-3" style="font-size: 30px;font-weight: 500; color: #000;">{{ __('landing.managing_committee_subtitle') }}</h2>
+                        <h5 style="font-size:20px; color: #000;">{{ __('landing.governing_body_title') }}</h5>
+                        <h2 class="text-lg mt-3" style="font-size: 30px;font-weight: 500; color: #000;">{{ __('landing.governing_body_subtitle') }}</h2>
                     </div>
                 </div>
                 <div class="container">

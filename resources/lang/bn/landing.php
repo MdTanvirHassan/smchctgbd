@@ -66,6 +66,8 @@ return [
     'principal_photo_alt' => 'প্রধান শিক্ষকের ছবি',
     'chairman_photo_alt' => 'সভাপতির ছবি',
     'governing_body' => 'পরিচালনা পরিষদ',
+    'governing_body_title' => 'পরিচালনা পরিষদ',
+    'governing_body_subtitle' => 'আমাদের সম্মানিত পরিচালনা পরিষদ',
     'teachers_section_subtitle_success' => 'আমাদের সফল শিক্ষক',
     'committee_modal_title' => 'পরিষদ সদস্যের তথ্য',
     'committee_modal_biography' => 'জীবনবৃত্তান্ত',

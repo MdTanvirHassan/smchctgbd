@@ -66,6 +66,8 @@ return [
     'principal_photo_alt' => 'Photo of Head Teacher',
     'chairman_photo_alt' => 'Photo of Chairman',
     'governing_body' => 'Governing Body',
+    'governing_body_title' => 'Governing Body',
+    'governing_body_subtitle' => 'Our Respected Governing Body',
     'teachers_section_subtitle_success' => 'Our Successful Teachers',
     'committee_modal_title' => 'Committee Person Details',
     'committee_modal_biography' => 'Biography',
