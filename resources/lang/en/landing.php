@@ -30,6 +30,7 @@ return [
         'teachers' => 'Teachers',
         'vacancy_list' => 'Vacancy List',
         'head_teacher' => 'Head Teacher',
+        'principal' => 'Principal',
     ],
     'download_links' => [
         'ssc_exam_routine' => 'Download SSC Exam Routine',

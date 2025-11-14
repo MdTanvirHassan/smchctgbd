@@ -30,6 +30,7 @@ return [
         'teachers' => 'শিক্ষকবৃন্দ',
         'vacancy_list' => 'শূণ্যপদের তালিকা',
         'head_teacher' => 'প্রধান শিক্ষক',
+        'principal' => 'অধ্যক্ষ',
     ],
     'download_links' => [
         'ssc_exam_routine' => 'এসএসসি পরীক্ষার রুটিন ডাউনলোড',

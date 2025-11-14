@@ -4,6 +4,7 @@ return [
     'home' => 'Home',
     'administration' => 'Administration',
     'head_teacher' => 'Head Teacher',
+    'principal' => 'Principal',
     'teacher_team' => 'Teachers',
     'governing_body' => 'Governing Body',
     'students' => 'Students',
@@ -29,5 +30,10 @@ return [
     'language_english' => 'English',
     'language_bangla' => 'Bangla',
     'view_gallery' => 'View Gallery',
+    'facilities' => 'Facilities',
+    'academic_facility' => 'Academic Facility',
+    'teaching_activities' => 'Teaching Activities',
+    'activities_of_meu' => 'Activities of MEU',
+    'prospectus' => 'Prospectus',
 ];
 

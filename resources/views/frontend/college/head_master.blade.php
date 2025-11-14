@@ -10,8 +10,8 @@
 </style>
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
     <div class="hero-inner py-4">
-        <h1 class="display-4 fw-bold mb-0">{{ __('head_master.page_title') }}</h1>
-        <h2 class="mt-3">{{ __('head_master.page_subtitle') }}</h2>
+        <h1 class="display-4 fw-bold mb-0">{{ __('head_master.principal') }}</h1>
+        <h2 class="mt-3">{{ __('head_master.principal_subtitle') }}</h2>
     </div>
 </section>
 <!-- ✅ Headmaster Section -->

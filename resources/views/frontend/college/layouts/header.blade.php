@@ -46,7 +46,7 @@
           <a class="nav-link dropdown-toggle {{ request()->routeIs('head_master','teacher_team','governing_body') ? 'active' : '' }}" href="#" role="button"
             data-bs-toggle="dropdown">{{ __('header.administration') }}</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item {{ request()->routeIs('head_master') ? 'active' : '' }}" href="{{ route('head_master') }}">{{ __('header.head_teacher') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('head_master') ? 'active' : '' }}" href="{{ route('head_master') }}">{{ __('header.principal') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('teacher_team') ? 'active' : '' }}" href="{{ route('teacher_team') }}">{{ __('header.teacher_team') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('governing_body') ? 'active' : '' }}" href="{{ route('governing_body') }}">{{ __('header.governing_body') }}</a></li>
           </ul>
@@ -86,6 +86,17 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('notice') ? 'active' : '' }}" href="{{ route('notice') }}">{{ __('header.notice') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('meeting_minutes') ? 'active' : '' }}" href="{{ route('meeting_minutes') }}">{{ __('header.meeting_minutes') }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('notice','meeting_minutes') ? 'active' : '' }}" href="#" role="button"
+            data-bs-toggle="dropdown">{{ __('header.facilities') }}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {{ request()->routeIs('notice') ? 'active' : '' }}" href="{{ route('notice') }}">{{ __('header.academic_facility') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('meeting_minutes') ? 'active' : '' }}" href="{{ route('meeting_minutes') }}">{{ __('header.teaching_activities') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('meeting_minutes') ? 'active' : '' }}" href="{{ route('meeting_minutes') }}">{{ __('header.activities_of_meu') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('meeting_minutes') ? 'active' : '' }}" href="{{ route('meeting_minutes') }}">{{ __('header.prospectus') }}</a></li>
           </ul>
         </li>
         

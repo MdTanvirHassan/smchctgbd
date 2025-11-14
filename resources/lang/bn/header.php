@@ -4,6 +4,7 @@ return [
     'home' => 'প্রচ্ছদ',
     'administration' => 'প্রশাসন',
     'head_teacher' => 'প্রধান শিক্ষক',
+    'principal' => 'অধ্যক্ষ',
     'teacher_team' => 'শিক্ষকবৃন্দ',
     'governing_body' => 'পরিচালনা পরিষদ',
     'students' => 'শিক্ষার্থী',
@@ -29,5 +30,10 @@ return [
     'language_english' => 'ইংরেজি',
     'language_bangla' => 'বাংলা',
     'view_gallery' => 'গ্যালারী দেখুন',
+    'facilities' => 'সুবিধাসমূহ',
+    'academic_facility' => 'একাডেমিক সুবিধা',
+    'teaching_activities' => 'শিক্ষামূলক কার্যক্রম',
+    'activities_of_meu' => 'MEU এর কার্যক্রম',
+    'prospectus' => 'প্রসপেক্টাস',
 ];
 

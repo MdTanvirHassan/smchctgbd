@@ -270,7 +270,7 @@
                                     <ul>
                                         <li><a href="{{ route('teacher_team') }}">{{ __('landing.teacher_info_links.teachers') }}</a></li>
                                         <li><a href="#">{{ __('landing.teacher_info_links.vacancy_list') }}</a></li>
-                                        <li><a href="{{ route('head_master') }}">{{ __('landing.teacher_info_links.head_teacher') }}</a></li>
+                                        <li><a href="{{ route('head_master') }}">{{ __('landing.teacher_info_links.principal') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -287,7 +287,7 @@
                                 </div>
                                 <div class="card-list">
                                     <ul>
-                                        <li><a href="{{ route('routine') }}">{{ __('landing.download_links.ssc_exam_routine') }}</a></li>
+                                        <li><a href="{{ route('routine') }}">{{ __('landing.download_links.exam_routine') }}</a></li>
                                         <li><a href="#">{{ __('landing.download_links.holiday_notice') }}</a></li>
                                         <li><a href="{{ route('admission_info') }}">{{ __('landing.download_links.admission_form') }}</a></li>
                                         <li><a href="{{ route('routine') }}">{{ __('landing.download_links.exam_routine') }}</a></li>
