@@ -43,11 +43,12 @@
 
         <!-- প্রশাসন -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->routeIs('head_master','teacher_team') ? 'active' : '' }}" href="#" role="button"
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('head_master','teacher_team','governing_body') ? 'active' : '' }}" href="#" role="button"
             data-bs-toggle="dropdown">{{ __('header.administration') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('head_master') ? 'active' : '' }}" href="{{ route('head_master') }}">{{ __('header.head_teacher') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('teacher_team') ? 'active' : '' }}" href="{{ route('teacher_team') }}">{{ __('header.teacher_team') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('governing_body') ? 'active' : '' }}" href="{{ route('governing_body') }}">{{ __('header.governing_body') }}</a></li>
           </ul>
         </li>
 

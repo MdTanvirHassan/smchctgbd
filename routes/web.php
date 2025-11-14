@@ -38,6 +38,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/head_master', 'head_master')->name('head_master');
     Route::get('/teacher_team', 'teacher_team')->name('teacher_team');
     Route::get('/managing_committee', 'managing_committee')->name('managing_committee');
+    Route::get('/governing_body', 'governing_body')->name('governing_body');
     Route::get('/total_students', 'total_students')->name('total_students');
     Route::get('/class_summery', 'class_summery')->name('class_summery');
     Route::get('/admission_info', 'admission_info')->name('admission_info');

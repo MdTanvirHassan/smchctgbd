@@ -5,6 +5,7 @@ return [
     'administration' => 'Administration',
     'head_teacher' => 'Head Teacher',
     'teacher_team' => 'Teachers',
+    'governing_body' => 'Governing Body',
     'students' => 'Students',
     'seat_capacity' => 'Seat Capacity',
     'class_summary' => 'Class Summary',

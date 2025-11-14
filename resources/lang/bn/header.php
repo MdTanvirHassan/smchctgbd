@@ -5,6 +5,7 @@ return [
     'administration' => 'প্রশাসন',
     'head_teacher' => 'প্রধান শিক্ষক',
     'teacher_team' => 'শিক্ষকবৃন্দ',
+    'governing_body' => 'পরিচালনা পরিষদ',
     'students' => 'শিক্ষার্থী',
     'seat_capacity' => 'আসন সংখ্যা',
     'class_summary' => 'শ্রেণি বিবরণ',

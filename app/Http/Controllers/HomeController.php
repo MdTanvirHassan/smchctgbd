@@ -68,6 +68,13 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.managing_committee', compact('committees'));
     }
 
+    // Governing Body Page (same as managing_committee - shows management team)
+    public function governing_body()
+    {
+        $committees = Committee::all();
+        return view('frontend.' . get_setting('template_name') . '.governing_body', compact('committees'));
+    }
+
     // Total Student Page  
     public function total_students()
     {
