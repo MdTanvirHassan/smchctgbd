@@ -925,7 +925,7 @@
                 }
                 
                 $('.committee-carousel-college').slick({
-                    slidesToShow: 4,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                     autoplay: true,
                     autoplaySpeed: 3000,
@@ -937,13 +937,6 @@
                     pauseOnFocus: true,
                     adaptiveHeight: false,
                     responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
                         {
                             breakpoint: 992,
                             settings: {
@@ -979,7 +972,7 @@
             setTimeout(function() {
                 if (!$('.committee-carousel-college').hasClass('slick-initialized')) {
                     $('.committee-carousel-college').slick({
-                        slidesToShow: 4,
+                        slidesToShow: 3,
                         slidesToScroll: 1,
                         autoplay: true,
                         autoplaySpeed: 3000,
@@ -990,13 +983,6 @@
                         pauseOnHover: true,
                         pauseOnFocus: true,
                         responsive: [
-                            {
-                                breakpoint: 1200,
-                                settings: {
-                                    slidesToShow: 3,
-                                    slidesToScroll: 1
-                                }
-                            },
                             {
                                 breakpoint: 992,
                                 settings: {
