@@ -382,7 +382,7 @@
                 <!-- Committee Members Carousel -->
                 <div class="row justify-content-center gy-4 mt-4">
                     <div class="col-md-12">
-                        <div class="committee-carousel testimonial-clients teachers-bg mt-4">
+                        <div class="committee-carousel teachers-bg mt-4">
                             @foreach($committees as $committe)
                                 <div class="px-2">
                                     <div class="testimonial-item p-2" style="border:2px solid #ccc; cursor:pointer; height: 100%;"
@@ -626,6 +626,12 @@
 
     // Committee Carousel Initialization
     $(document).ready(function() {
+        // Check if slick is already initialized and destroy it first
+        if ($('.committee-carousel').hasClass('slick-initialized')) {
+            $('.committee-carousel').slick('unslick');
+        }
+        
+        // Initialize the committee carousel
         $('.committee-carousel').slick({
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -635,6 +641,8 @@
             dots: true,
             infinite: true,
             speed: 500,
+            pauseOnHover: true,
+            pauseOnFocus: true,
             responsive: [
                 {
                     breakpoint: 1200,
@@ -672,53 +680,85 @@
 </script>
 
 <style>
+    /* Committee Carousel Styles */
+    .committee-carousel {
+        position: relative;
+        padding: 0 40px;
+    }
+    
     .committee-carousel .slick-prev,
     .committee-carousel .slick-next {
         z-index: 10;
         width: 40px;
         height: 40px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     
     .committee-carousel .slick-prev {
-        left: -15px;
+        left: -10px;
     }
     
     .committee-carousel .slick-next {
-        right: -15px;
+        right: -10px;
     }
     
     .committee-carousel .slick-prev:before,
     .committee-carousel .slick-next:before {
-        font-size: 30px;
+        font-size: 25px;
         color: #007bff;
-        opacity: 0.8;
-    }
-    
-    .committee-carousel .slick-prev:hover:before,
-    .committee-carousel .slick-next:hover:before {
         opacity: 1;
     }
     
+    .committee-carousel .slick-prev:hover,
+    .committee-carousel .slick-next:hover {
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
     .committee-carousel .slick-dots {
-        bottom: -40px;
+        bottom: -45px;
+        position: relative;
+        margin-top: 20px;
     }
     
     .committee-carousel .slick-dots li button:before {
         font-size: 12px;
         color: #007bff;
+        opacity: 0.5;
     }
     
     .committee-carousel .slick-dots li.slick-active button:before {
         color: #007bff;
+        opacity: 1;
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {
+        .committee-carousel {
+            padding: 0 50px;
+        }
+        
         .committee-carousel .slick-prev {
-            left: 10px;
+            left: 5px;
         }
         
         .committee-carousel .slick-next {
-            right: 10px;
+            right: 5px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .committee-carousel {
+            padding: 0 40px;
+        }
+        
+        .committee-carousel .slick-prev {
+            left: 0;
+        }
+        
+        .committee-carousel .slick-next {
+            right: 0;
         }
     }
 </style>
