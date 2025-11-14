@@ -379,12 +379,12 @@
                     </h2>
                 </div>
 
-                <!-- Committee Members -->
-                <div class="row justify-content-center gy-4 mt-4">
-                    <div class="testimonial-clients teachers-bg mt-4 row">
+                <!-- Committee Members Carousel -->
+                <div class="col-md-12 mt-4">
+                    <div class="committee-carousel">
                         @foreach($committees as $committe)
-                            <div class="col-md-3 mb-4">
-                                <div class="testimonial-item p-2" style="border:2px solid #ccc; cursor:pointer;"
+                            <div class="px-2">
+                                <div class="testimonial-item p-2" style="border:2px solid #ccc; cursor:pointer; height: 100%;"
                                     data-bs-toggle="modal" data-bs-target="#committeModal" data-name="{{ $committe->name }}"
                                     data-title="{{ is_object($committe->designation) ? ($committe->designation->name ?? 'N/A') : ($committe->designation ?? 'N/A') }}"
                                     data-subject="{{ $committe->subject ?? 'N/A' }}"
@@ -396,11 +396,12 @@
                                     <div class="techers-wrap text-center">
                                         <img src="{{ asset($committe->photo_path) }}" alt="{{ $committe->name }}"
                                             class="img-fluid"
+                                            style="width: 100%; height: 250px; object-fit: cover;"
                                             onerror="this.onerror=null; this.src='{{ asset('/public/assets/icons/user.png') }}'">
 
                                         <div class="teachers-dig mt-3">
-                                            <h4>{{ $committe->name }}</h4>
-                                            <p>
+                                            <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">{{ $committe->name }}</h4>
+                                            <p style="font-size: 0.9rem; margin-bottom: 0;">
                                                 {{ is_object($committe->designation) ? ($committe->designation->name ?? 'N/A') : ($committe->designation ?? 'N/A') }}
                                             </p>
                                         </div>
@@ -426,6 +427,105 @@
 
         </div> <!-- end container -->
     </section>
+
+    <style>
+        .committee-carousel .slick-prev,
+        .committee-carousel .slick-next {
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .committee-carousel .slick-prev {
+            left: -15px;
+        }
+        
+        .committee-carousel .slick-next {
+            right: -15px;
+        }
+        
+        .committee-carousel .slick-prev:before,
+        .committee-carousel .slick-next:before {
+            font-size: 30px;
+            color: #007bff;
+            opacity: 0.8;
+        }
+        
+        .committee-carousel .slick-prev:hover:before,
+        .committee-carousel .slick-next:hover:before {
+            opacity: 1;
+        }
+        
+        .committee-carousel .slick-dots {
+            bottom: -40px;
+        }
+        
+        .committee-carousel .slick-dots li button:before {
+            font-size: 12px;
+            color: #007bff;
+        }
+        
+        .committee-carousel .slick-dots li.slick-active button:before {
+            color: #007bff;
+        }
+
+        @media (max-width: 576px) {
+            .committee-carousel .slick-prev {
+                left: 10px;
+            }
+            
+            .committee-carousel .slick-next {
+                right: 10px;
+            }
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $('.committee-carousel').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                dots: true,
+                infinite: true,
+                speed: 500,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: true,
+                            dots: true
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
 
 
     <!-- ✅ Teachers Team Section -->
