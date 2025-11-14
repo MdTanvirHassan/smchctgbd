@@ -381,11 +381,11 @@
 
                 <!-- Committee Members Carousel -->
                 <div class="row justify-content-center gy-4 mt-4">
-                    <div class="col-md-12">
-                        <div class="committee-carousel teachers-bg mt-4">
+                    <div class="col-md-12 px-3">
+                        <div class="committee-carousel">
                             @foreach($committees as $committe)
-                                <div class="px-2">
-                                    <div class="testimonial-item p-2" style="border:2px solid #ccc; cursor:pointer; height: 100%;"
+                                <div class="slide-item">
+                                    <div class="testimonial-item p-2" style="border:2px solid #ccc; cursor:pointer; height: 100%; margin: 0 8px;"
                                         data-bs-toggle="modal" data-bs-target="#committeModal" data-name="{{ $committe->name }}"
                                         data-title="{{ is_object($committe->designation) ? ($committe->designation->name ?? 'N/A') : ($committe->designation ?? 'N/A') }}"
                                         data-subject="{{ $committe->subject ?? 'N/A' }}"
@@ -397,11 +397,12 @@
                                         <div class="techers-wrap text-center">
                                             <img src="{{ asset($committe->photo_path) }}" alt="{{ $committe->name }}"
                                                 class="img-fluid"
+                                                style="width: 100%; height: 250px; object-fit: cover;"
                                                 onerror="this.onerror=null; this.src='{{ asset('/public/assets/icons/user.png') }}'">
 
                                             <div class="teachers-dig mt-3">
-                                                <h4>{{ $committe->name }}</h4>
-                                                <p>
+                                                <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">{{ $committe->name }}</h4>
+                                                <p style="font-size: 0.9rem; margin-bottom: 0;">
                                                     {{ is_object($committe->designation) ? ($committe->designation->name ?? 'N/A') : ($committe->designation ?? 'N/A') }}
                                                 </p>
                                             </div>
@@ -624,58 +625,121 @@
         }
     });
 
-    // Committee Carousel Initialization
+    // Committee Carousel Initialization - Wait for all scripts to load
+    $(window).on('load', function() {
+        setTimeout(function() {
+            // Check if slick is available
+            if (typeof $.fn.slick === 'undefined') {
+                console.error('Slick carousel is not loaded');
+                return;
+            }
+
+            // Check if already initialized and destroy
+            if ($('.committee-carousel').hasClass('slick-initialized')) {
+                $('.committee-carousel').slick('unslick');
+            }
+            
+            // Initialize the committee carousel
+            $('.committee-carousel').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                dots: true,
+                infinite: true,
+                speed: 500,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                adaptiveHeight: false,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: true,
+                            dots: true
+                        }
+                    }
+                ]
+            });
+        }, 500);
+    });
+
+    // Also try on document ready as backup
     $(document).ready(function() {
-        // Check if slick is already initialized and destroy it first
-        if ($('.committee-carousel').hasClass('slick-initialized')) {
-            $('.committee-carousel').slick('unslick');
-        }
-        
-        // Initialize the committee carousel
-        $('.committee-carousel').slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            arrows: true,
-            dots: true,
-            infinite: true,
-            speed: 500,
-            pauseOnHover: true,
-            pauseOnFocus: true,
-            responsive: [
-                {
-                    breakpoint: 1200,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 1,
+        if ($('.committee-carousel').length > 0 && typeof $.fn.slick !== 'undefined') {
+            setTimeout(function() {
+                if (!$('.committee-carousel').hasClass('slick-initialized')) {
+                    $('.committee-carousel').slick({
+                        slidesToShow: 4,
                         slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
                         arrows: true,
-                        dots: true
-                    }
+                        dots: true,
+                        infinite: true,
+                        speed: 500,
+                        pauseOnHover: true,
+                        pauseOnFocus: true,
+                        responsive: [
+                            {
+                                breakpoint: 1200,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 992,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 576,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    arrows: true,
+                                    dots: true
+                                }
+                            }
+                        ]
+                    });
                 }
-            ]
-        });
+            }, 1000);
+        }
     });
 </script>
 
@@ -683,48 +747,69 @@
     /* Committee Carousel Styles */
     .committee-carousel {
         position: relative;
-        padding: 0 40px;
+        padding: 0 50px;
+        margin: 0 auto;
+    }
+    
+    .committee-carousel .slide-item {
+        padding: 0 5px;
+        outline: none;
+    }
+    
+    .committee-carousel .slick-list {
+        margin: 0 -8px;
+    }
+    
+    .committee-carousel .slick-slide > div {
+        padding: 0 8px;
     }
     
     .committee-carousel .slick-prev,
     .committee-carousel .slick-next {
-        z-index: 10;
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.8);
+        z-index: 100;
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.9) !important;
         border-radius: 50%;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
     }
     
     .committee-carousel .slick-prev {
-        left: -10px;
+        left: 0;
     }
     
     .committee-carousel .slick-next {
-        right: -10px;
+        right: 0;
     }
     
     .committee-carousel .slick-prev:before,
     .committee-carousel .slick-next:before {
-        font-size: 25px;
-        color: #007bff;
-        opacity: 1;
+        font-size: 28px;
+        color: #007bff !important;
+        opacity: 1 !important;
+        line-height: 45px;
     }
     
     .committee-carousel .slick-prev:hover,
     .committee-carousel .slick-next:hover {
-        background: rgba(255, 255, 255, 1);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        background: rgba(255, 255, 255, 1) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        transform: scale(1.1);
     }
     
     .committee-carousel .slick-dots {
-        bottom: -45px;
-        position: relative;
-        margin-top: 20px;
+        bottom: -50px;
+        position: absolute;
+        width: 100%;
+    }
+    
+    .committee-carousel .slick-dots li {
+        margin: 0 4px;
     }
     
     .committee-carousel .slick-dots li button:before {
-        font-size: 12px;
+        font-size: 14px;
         color: #007bff;
         opacity: 0.5;
     }
@@ -736,15 +821,15 @@
 
     @media (max-width: 768px) {
         .committee-carousel {
-            padding: 0 50px;
+            padding: 0 45px;
         }
         
         .committee-carousel .slick-prev {
-            left: 5px;
+            left: -5px;
         }
         
         .committee-carousel .slick-next {
-            right: 5px;
+            right: -5px;
         }
     }
 
@@ -754,11 +839,21 @@
         }
         
         .committee-carousel .slick-prev {
-            left: 0;
+            left: -10px;
+            width: 35px;
+            height: 35px;
         }
         
         .committee-carousel .slick-next {
-            right: 0;
+            right: -10px;
+            width: 35px;
+            height: 35px;
+        }
+        
+        .committee-carousel .slick-prev:before,
+        .committee-carousel .slick-next:before {
+            font-size: 20px;
+            line-height: 35px;
         }
     }
 </style>
