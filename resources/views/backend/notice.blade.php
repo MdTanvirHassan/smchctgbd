@@ -72,9 +72,13 @@
                                     <td>{{ $notice->end_date }}</td>
                                     <td>
                                         @if($notice->file_path)
-                                            <img src="{{ asset($notice->file_path) }}" alt="{{ $notice->title }}" 
+                                            @php
+                                                $imagePath = str_replace('public/', '', $notice->file_path);
+                                                $imageUrl = asset($imagePath);
+                                            @endphp
+                                            <img src="{{ $imageUrl }}" alt="{{ $notice->title }}" 
                                                  class="img-thumbnail" style="max-width: 80px; max-height: 80px; object-fit: cover; cursor: pointer;"
-                                                 onclick="window.open('{{ asset($notice->file_path) }}', '_blank')"
+                                                 onclick="window.open('{{ $imageUrl }}', '_blank')"
                                                  title="Click to view full size">
                                         @else
                                             <span class="text-muted small">No Image</span>

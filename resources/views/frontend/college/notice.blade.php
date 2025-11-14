@@ -42,7 +42,7 @@
                                 <th class="py-3">{{ __('notice.start_date') }}</th>
                                 <th class="py-3">{{ __('notice.notice_title') }}</th>
                                 <th class="py-3">{{ __('notice.end_date') }}</th>
-                                <th class="py-3" style="width: 120px;">{{ __('notice.details') }}</th>
+                                <th class="py-3" style="width: 180px;">{{ __('notice.details') }}</th>
                             </tr>
                         </thead>
                         <tbody class="bg-light">
@@ -71,17 +71,37 @@
                                     {{ \Carbon\Carbon::parse($notice->end_date)->format('d M Y') }}
                                 </td>
                                 <td>
-                                    <button type="button"
-                                        class="btn btn-outline-primary btn-sm px-3 rounded-pill"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#noticeModal"
-                                        data-title="{{ $notice->title }}"
-                                        data-date="{{ \Carbon\Carbon::parse($notice->start_date)->format('d M Y') }}"
-                                        data-description="{{ $notice->description }}"
-                                        data-image="{{ $notice->file_path ?? '' }}"
-                                        onclick="showNoticeModal(this)">
-                                        {{ __('notice.details') }}
-                                    </button>
+                                    <div class="d-flex gap-2 justify-content-center flex-wrap">
+                                        <button type="button"
+                                            class="btn btn-outline-primary btn-sm px-3 rounded-pill"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#noticeModal"
+                                            data-title="{{ $notice->title }}"
+                                            data-date="{{ \Carbon\Carbon::parse($notice->start_date)->format('d M Y') }}"
+                                            data-description="{{ $notice->description }}"
+                                            data-image="{{ $notice->file_path ?? '' }}"
+                                            onclick="showNoticeModal(this)">
+                                            {{ __('notice.details') }}
+                                        </button>
+                                        @if($notice->file_path)
+                                        @php
+                                            $imagePath = $notice->file_path;
+                                            $imageUrl = asset($imagePath);
+                                        @endphp
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm px-2 rounded-pill"
+                                            onclick="viewNoticeImage('{{ $imageUrl }}')"
+                                            title="{{ __('notice.view_image') }}">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button type="button"
+                                            class="btn btn-outline-success btn-sm px-2 rounded-pill"
+                                            onclick="downloadNoticeImage('{{ $imageUrl }}')"
+                                            title="{{ __('notice.download_image') }}">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -216,6 +236,37 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+    }
+
+    // View image from table button - opens in new tab
+    function viewNoticeImage(imageUrl) {
+        if (imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+    }
+
+    // Download image from table button
+    function downloadNoticeImage(imageUrl) {
+        if (imageUrl) {
+            // Fetch the image and convert to blob for download
+            fetch(imageUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'notice-image-' + Date.now() + '.jpg';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error('Download error:', error);
+                    // Fallback: open in new tab if fetch fails
+                    window.open(imageUrl, '_blank');
+                });
         }
     }
 
