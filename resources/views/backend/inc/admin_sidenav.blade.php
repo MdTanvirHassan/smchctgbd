@@ -67,6 +67,7 @@
                         <a href="{{ route('important.notice.index') }}"
                             class="nav-link {{ is_active('important.notice.*') }}">Important Notices</a>
                         <a href="{{ route('notice.index') }}" class="nav-link {{ is_active('notice.*') }}">Notices</a>
+                        <a href="{{ route('meeting_minutes.index') }}" class="nav-link {{ is_active('meeting_minutes.*') }}">Meeting & Minutes</a>
                         <a href="{{ route('event.index') }}" class="nav-link {{ is_active('event.*') }}">Events</a>
 
                         <h6 class="text-light mt-3 mb-2">Resources</h6>

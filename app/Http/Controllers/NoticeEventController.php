@@ -217,6 +217,127 @@ class NoticeEventController extends Controller
         return redirect()->route('notice.index')->with('success', 'Notice deleted successfully!');
     }
 
+    // Meeting & Minutes Page  
+    public function meetingMinutes()
+    {
+        $meetingMinutes = Content::where('type', 'meeting_minutes')->get();
+        return view('backend.meeting_minutes', compact('meetingMinutes'));
+    }
+
+    public function meetingMinutesStore(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = [
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'start_date' => $validated['start_date'],
+            'end_date' => $validated['end_date'],
+            'type' => 'meeting_minutes',
+            'is_published' => 1,
+        ];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/meeting_minutes');
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $file->move($destinationPath, $fileName);
+            $data['file_path'] = 'public/uploads/meeting_minutes/' . $fileName;
+        }
+
+        Content::create($data);
+
+        return redirect()->route('meeting_minutes.index')->with('success', 'Meeting & Minutes added successfully!');
+    }
+
+    public function meetingMinutesUpdate(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $meetingMinute = Content::findOrFail($id);
+
+        $meetingMinute->title = $validated['title'];
+        $meetingMinute->description = $validated['description'];
+        $meetingMinute->start_date = $validated['start_date'];
+        $meetingMinute->end_date = $validated['end_date'];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($meetingMinute->file_path) {
+                $oldPath = str_replace('public/', '', $meetingMinute->file_path);
+                if (file_exists(public_path($oldPath))) {
+                    unlink(public_path($oldPath));
+                }
+            }
+
+            // Upload new image
+            $file = $request->file('image');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/meeting_minutes');
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $file->move($destinationPath, $fileName);
+            $meetingMinute->file_path = 'public/uploads/meeting_minutes/' . $fileName;
+        } elseif ($request->has('existing_image')) {
+            // Keep existing image
+            $meetingMinute->file_path = $request->input('existing_image');
+        }
+
+        $meetingMinute->save();
+
+        return redirect()->route('meeting_minutes.index')->with('success', 'Meeting & Minutes updated successfully.');
+    }
+
+    public function meetingMinutesStatus($id)
+    {
+        $meetingMinute = Content::findOrFail($id);
+        $meetingMinute->is_published = !$meetingMinute->is_published;
+        $meetingMinute->save();
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
+    }
+
+    public function meetingMinutesDestroy($id)
+    {
+        $meetingMinute = Content::findOrFail($id);
+        
+        // Delete associated image file if exists
+        if ($meetingMinute->file_path) {
+            $filePath = str_replace('public/', '', $meetingMinute->file_path);
+            if (file_exists(public_path($filePath))) {
+                unlink(public_path($filePath));
+            }
+        }
+        
+        $meetingMinute->delete();
+
+        return redirect()->route('meeting_minutes.index')->with('success', 'Meeting & Minutes deleted successfully!');
+    }
+
 
     // Event Page  
     public function event()

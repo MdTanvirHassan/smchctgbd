@@ -14,6 +14,7 @@ return [
     'routine' => 'Routine',
     'results' => 'Results',
     'notice' => 'Notice',
+    'meeting_minutes' => 'Meeting & Minutes',
     'event' => 'Event',
     'gallery' => 'Gallery',
     'contact' => 'Contact',

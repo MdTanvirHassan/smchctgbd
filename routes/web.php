@@ -45,6 +45,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/routine', 'routine')->name('routine');
     Route::get('/exam_result', 'exam_result')->name('exam_result');
     Route::get('/notice', 'notice')->name('notice');
+    Route::get('/meeting_minutes', 'meetingMinutes')->name('meeting_minutes');
     Route::get('/event', 'event')->name('event');
     Route::get('/image-category', 'image_category')->name('image_category');
     Route::get('/image_gallery/{id}', 'image_gallery')->name('image_gallery');
@@ -73,6 +74,13 @@ Route::controller(NoticeEventController::class)->group(function () {
     Route::put('/dashboard/notice-update/{id}', 'noticeUpdate')->name('notice.update');
     Route::get('/dashboard/notice-status/{id}', 'noticeStatus')->name('notice.status');
     Route::delete('/dashboard/notice/{id}', 'noticeDestroy')->name('notice.destroy');
+
+    // Meeting & Minutes routes
+    Route::get('/dashboard/meeting_minutes', 'meetingMinutes')->name('meeting_minutes.index');
+    Route::post('/dashboard/meeting_minutes', 'meetingMinutesStore')->name('meeting_minutes.store');
+    Route::put('/dashboard/meeting_minutes-update/{id}', 'meetingMinutesUpdate')->name('meeting_minutes.update');
+    Route::get('/dashboard/meeting_minutes-status/{id}', 'meetingMinutesStatus')->name('meeting_minutes.status');
+    Route::delete('/dashboard/meeting_minutes/{id}', 'meetingMinutesDestroy')->name('meeting_minutes.destroy');
 
 
     // Event routes

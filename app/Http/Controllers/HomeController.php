@@ -117,6 +117,13 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.notice', compact('notices'));
     }
 
+    // Meeting & Minutes Page  
+    public function meetingMinutes()
+    {
+        $meetingMinutes = Content::where('type', 'meeting_minutes')->where('is_published', 1)->get();
+        return view('frontend.' . get_setting('template_name') . '.meeting_minutes', compact('meetingMinutes'));
+    }
+
     // Event Page  
     public function event()
     {

@@ -14,6 +14,7 @@ return [
     'routine' => 'রুটিন',
     'results' => 'ফলাফল',
     'notice' => 'নোটিশ',
+    'meeting_minutes' => 'মিটিং ও কার্যবিবরণী',
     'event' => 'ইভেন্ট',
     'gallery' => 'গ্যালারী',
     'contact' => 'যোগাযোগ',

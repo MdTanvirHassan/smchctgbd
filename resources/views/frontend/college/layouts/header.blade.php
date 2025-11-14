@@ -71,7 +71,17 @@
 
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('routine') ? 'active' : '' }}" href="{{ route('routine') }}">{{ __('header.routine') }}</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('exam_result') ? 'active' : '' }}" href="{{ route('exam_result') }}">{{ __('header.results') }}</a></li>
-        <li class="nav-item"><a class="nav-link {{ request()->routeIs('notice') ? 'active' : '' }}" href="{{ route('notice') }}">{{ __('header.notice') }}</a></li>
+
+        <!-- Notice & Meeting Minutes -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('notice','meeting_minutes') ? 'active' : '' }}" href="#" role="button"
+            data-bs-toggle="dropdown">{{ __('header.notice') }}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {{ request()->routeIs('notice') ? 'active' : '' }}" href="{{ route('notice') }}">{{ __('header.notice') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('meeting_minutes') ? 'active' : '' }}" href="{{ route('meeting_minutes') }}">{{ __('header.meeting_minutes') }}</a></li>
+          </ul>
+        </li>
+        
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('event') ? 'active' : '' }}" href="{{ route('event') }}">{{ __('header.event') }}</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('image_category') || request()->routeIs('image_gallery') ? 'active' : '' }}" href="{{ route('image_category') }}">{{ __('header.gallery') }}</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact_us') ? 'active' : '' }}" href="{{ route('contact_us') }}">{{ __('header.contact') }}</a></li>
