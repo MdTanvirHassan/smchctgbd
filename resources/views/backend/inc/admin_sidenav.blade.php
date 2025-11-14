@@ -186,6 +186,33 @@
                     </div>
                 </div>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ is_active(['classresult.*', 'classroutine.*', 'examroutine.*', 'mbbs-course.*']) }}"
+                    data-bs-toggle="collapse" href="#AdmissionInformationMenu" role="button"
+                    aria-expanded="{{ is_menu_open(['classresult.*', 'classroutine.*', 'examroutine.*', 'mbbs-course.*']) ? 'true' : 'false' }}"
+                    aria-controls="AdmissionInformationMenu">
+                    <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    <span>Admission Information</span>
+                    <i class="fas fa-chevron-down arrow ms-auto"></i>
+                </a>
+                <div class="collapse {{ is_menu_open(['classresult.*', 'classroutine.*', 'examroutine.*', 'mbbs-course.*']) }}"
+                    id="AdmissionInformationMenu" data-bs-parent="#sidebarAccordion">
+                    <div class="submenu">
+                        <a href="{{ route('mbbs-course.index') }}" class="nav-link {{ is_active('mbbs-course.*') }}">MBBS Course (New Curriculum)</a>
+                        <a href="{{ route('classroutine.index') }}"
+                            class="nav-link {{ is_active('organogram.*') }}">Organogram
+                        </a>
+                        <a href="{{ route('examroutine.index') }}"
+                            class="nav-link {{ is_active('examroutine.*') }}">Application Process
+                        </a>
+                        <a href="{{ route('classresult.index') }}"
+                            class="nav-link {{ is_active('classresult.*') }}">Admission Circular
+                        </a>
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item" style="margin-bottom: 150px;">
 
             </li>

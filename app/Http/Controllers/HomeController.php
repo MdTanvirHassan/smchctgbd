@@ -12,6 +12,7 @@ use App\Models\Teacher;
 use App\Models\ClassResult;
 use App\Models\VideoGalleryCategory;
 use App\Models\VideoGallery;
+use App\Models\MBBSCOURSECategory;
 
 
 class HomeController extends Controller
@@ -175,6 +176,21 @@ class HomeController extends Controller
     public function contact_us()
     {
         return view('frontend.' . get_setting('template_name') . '.contact_us');
+    }
+
+    // MBBS Course (New Curriculum) Page  
+    public function mbbsCourseNewCurriculum()
+    {
+        // Get all active parent categories with their active children
+        $categories = MBBSCOURSECategory::with(['activeChildren' => function($query) {
+            $query->orderBy('order', 'asc');
+        }])
+        ->whereNull('parent_id')
+        ->where('is_active', 1)
+        ->orderBy('order', 'asc')
+        ->get();
+
+        return view('frontend.' . get_setting('template_name') . '.mbbs_course_new_curriculum', compact('categories'));
     }
 
 }

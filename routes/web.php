@@ -11,6 +11,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\VideoGalleryController;
+use App\Http\Controllers\MBBSCOURSEController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/video_gallery/{id}', 'video_gallery')->name('video_gallery');
     Route::get('/contact_us', 'contact_us')->name('contact_us');
     Route::get('/online_class_link', 'online_class_link')->name('online_class_link');
+    Route::get('/mbbs-course-new-curriculum', 'mbbsCourseNewCurriculum')->name('mbbs_course_new_curriculum');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -220,6 +222,16 @@ Route::controller(VideoGalleryController::class)->group(function () {
     Route::post('/dashboard/videogallery-store', 'videogalleryStore')->name('videogallery.store');
     Route::put('/dashboard/videogallery/{id}', 'videogalleryUpdate')->name('videogallery.update');
     Route::delete('/dashboard/videogallery/{id}', 'videogalleryDestroy')->name('videogallery.destroy');
+});
+
+Route::controller(MBBSCOURSEController::class)->group(function () {
+    // MBBS Course Category routes
+    Route::get('/dashboard/mbbs-course', 'index')->name('mbbs-course.index');
+    Route::get('/dashboard/mbbs-course/create', 'create')->name('mbbs-course.create');
+    Route::post('/dashboard/mbbs-course', 'store')->name('mbbs-course.store');
+    Route::get('/dashboard/mbbs-course/{id}/edit', 'edit')->name('mbbs-course.edit');
+    Route::put('/dashboard/mbbs-course/{id}', 'update')->name('mbbs-course.update');
+    Route::delete('/dashboard/mbbs-course/{id}', 'destroy')->name('mbbs-course.destroy');
 });
 
 Route::controller(ClassResultController::class)->group(function () {

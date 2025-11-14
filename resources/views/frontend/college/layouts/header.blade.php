@@ -69,7 +69,7 @@
           <a class="nav-link dropdown-toggle {{ request()->routeIs('admission_info') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">{{ __('header.admission') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.admission_info') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.mbbs_course_new_curriculum') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('mbbs_course_new_curriculum') ? 'active' : '' }}" href="{{ route('mbbs_course_new_curriculum') }}">{{ __('header.mbbs_course_new_curriculum') }}</a></li>
             <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.organogram') }}</a></li>
             <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.application_process') }}</a></li>
             <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.admission_circular') }}</a></li>
