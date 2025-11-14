@@ -10,6 +10,7 @@ use App\Http\Controllers\RoutineController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\VideoGalleryController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -203,6 +204,20 @@ Route::controller(GalleryImageController::class)->group(function () {
     Route::put('/dashboard/galleryimage/{id}', 'galleryimageUpdate')->name('galleryimage.update');
     Route::get('/dashboard/galleryimage-status/{id}', 'galleryimageStatus')->name('galleryimage.status');
     Route::delete('/dashboard/galleryimage/{id}', 'galleryimageDestroy')->name('galleryimage.destroy');
+});
+
+Route::controller(VideoGalleryController::class)->group(function () {
+    // video gallery category routes   
+    Route::get('/dashboard/videogallerycategory', 'videogallerycategory')->name('videogallerycategory.index');
+    Route::post('/dashboard/videogallerycategory-store', 'videogallerycategoryStore')->name('videogallerycategory.store');
+    Route::put('/dashboard/videogallerycategory/{id}', 'videogallerycategoryUpdate')->name('videogallerycategory.update');
+    Route::delete('/dashboard/videogallerycategory/{id}', 'videogallerycategoryDestroy')->name('videogallerycategory.destroy');
+
+    // video gallery routes   
+    Route::get('/dashboard/videogallery', 'videogallery')->name('videogallery.index');
+    Route::post('/dashboard/videogallery-store', 'videogalleryStore')->name('videogallery.store');
+    Route::put('/dashboard/videogallery/{id}', 'videogalleryUpdate')->name('videogallery.update');
+    Route::delete('/dashboard/videogallery/{id}', 'videogalleryDestroy')->name('videogallery.destroy');
 });
 
 Route::controller(ClassResultController::class)->group(function () {

@@ -10,6 +10,8 @@ use App\Models\GalleryCategory;
 use App\Models\GalleryImage;
 use App\Models\Teacher;
 use App\Models\ClassResult;
+use App\Models\VideoGalleryCategory;
+use App\Models\VideoGallery;
 
 
 class HomeController extends Controller
@@ -44,8 +46,16 @@ class HomeController extends Controller
         $teachers = Teacher::all();
         $committees = Committee::all();
 
+        // Get ALL videos from ALL categories (uploaded videos and YouTube links)
+        // Show videos that have either video_path (uploaded) or video_url (YouTube link)
+        $videos = VideoGallery::where(function($query) {
+                $query->whereNotNull('video_path')
+                      ->orWhereNotNull('video_url');
+            })
+            ->latest()
+            ->get();
 
-        return view('frontend.' . get_setting('template_name') . '.landing_page', compact('important_notices', 'notices', 'faqs', 'teachers', 'committees', 'officiallinks', 'importantinformationlinks', 'files'));
+        return view('frontend.' . get_setting('template_name') . '.landing_page', compact('important_notices', 'notices', 'faqs', 'teachers', 'committees', 'officiallinks', 'importantinformationlinks', 'files', 'videos'));
     }
 
     // Head Page  

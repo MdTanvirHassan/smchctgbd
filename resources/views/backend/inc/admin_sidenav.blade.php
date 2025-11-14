@@ -104,6 +104,26 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link collapsed {{ is_active(['videogallerycategory.*', 'videogallery.*']) }}"
+                    data-bs-toggle="collapse" href="#videoGalleryMenu" role="button"
+                    aria-expanded="{{ is_menu_open(['videogallerycategory.*', 'videogallery.*']) ? 'true' : 'false' }}"
+                    aria-controls="videoGalleryMenu">
+                    <i class="fa-solid fa-video"></i>
+                    <span>Video Gallery</span>
+                    <i class="fas fa-chevron-down arrow ms-auto"></i>
+                </a>
+                <div class="collapse {{ is_menu_open(['videogallerycategory.*', 'videogallery.*']) }}" id="videoGalleryMenu"
+                    data-bs-parent="#sidebarAccordion">
+                    <div class="submenu">
+                        <a href="{{ route('videogallerycategory.index') }}"
+                            class="nav-link {{ is_active('videogallerycategory.*') }}">Category</a>
+                        <a href="{{ route('videogallery.index') }}"
+                            class="nav-link {{ is_active('videogallery.*') }}">Gallery</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link collapsed {{ is_active(['designation.*', 'teacher.*', 'committee.*']) }}"
                     data-bs-toggle="collapse" href="#teacherMenu" role="button"
                     aria-expanded="{{ is_menu_open(['designation.*', 'teacher.*', 'committee.*']) ? 'true' : 'false' }}"

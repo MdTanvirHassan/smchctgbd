@@ -56,6 +56,8 @@ return [
     'faqs_title' => 'প্রশ্নোত্তর',
     'teachers_section_title' => 'শিক্ষক',
     'teachers_section_subtitle' => 'আমাদের সম্মানিত শিক্ষক মণ্ডলী',
+    'video_gallery_section_title' => 'ভিডিও গ্যালারী',
+    'video_gallery_section_subtitle' => 'আমাদের ভিডিও সংগ্রহ',
     'teacher_modal_title' => 'শিক্ষকের তথ্য',
     'teacher_modal_biography' => 'জীবনবৃত্তান্ত',
     'teacher_modal_qualification' => 'যোগ্যতা:',

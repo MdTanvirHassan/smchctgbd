@@ -586,6 +586,165 @@
     </div>
 </section>
 
+<!-- ✅ Video Gallery Section -->
+@php
+    // Ensure we have a collection - always initialize videos
+    $displayVideos = isset($videos) && $videos ? $videos : collect();
+    if (!($displayVideos instanceof \Illuminate\Support\Collection)) {
+        $displayVideos = collect($displayVideos ?: []);
+    }
+    $hasVideos = $displayVideos->count() > 0;
+    $chunkedVideos = $hasVideos ? $displayVideos->chunk(3) : collect();
+@endphp
+<section class="video-gallery-section">
+    <div class="container mb-5">
+        <div class="row">
+            <div class="testimonial-section">
+                <div class="col-md-12">
+                    <div class="services-title text-center mt-5">
+                        <h5 style="font-size:20px; color: #000;">{{ __('landing.video_gallery_section_title') }}</h5>
+                        <h2 class="text-lg mt-3" style="font-size: 30px;font-weight: 500; color: #000;">{{ __('landing.video_gallery_section_subtitle') }}</h2>
+                    </div>
+                </div>
+
+                @if($hasVideos)
+                <div id="videoGalleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                    <div class="carousel-inner">
+                        @foreach($chunkedVideos as $chunkIndex => $videoChunk)
+                        <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    @foreach($videoChunk as $video)
+                                    <div class="col-md-4 col-sm-6 mb-4">
+                                        <div class="video-card text-center rounded shadow-sm" style="cursor:pointer; overflow: hidden; background: #fff; transition: transform 0.3s ease;"
+                                            data-bs-toggle="modal" data-bs-target="#videoModal"
+                                            data-title="{{ $video->title }}"
+                                            data-caption="{{ $video->caption ?? '' }}"
+                                            data-video-path="{{ $video->video_path ? asset(ltrim(str_replace('public/', '', $video->video_path), '/')) : '' }}"
+                                            data-video-url="{{ $video->video_url ?? '' }}"
+                                            onmouseover="this.style.transform='scale(1.02)'" 
+                                            onmouseout="this.style.transform='scale(1)'"
+                                            onclick="event.preventDefault(); showVideoModal(this)">
+                                            <div class="position-relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 8px 8px 0 0;">
+                                                @if($video->video_url && !empty($video->video_url))
+                                                    @php
+                                                        // Extract YouTube video ID
+                                                        $youtubeId = null;
+                                                        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $video->video_url, $matches)) {
+                                                            $youtubeId = $matches[1];
+                                                        }
+                                                    @endphp
+                                                    @if($youtubeId)
+                                                        <img src="https://img.youtube.com/vi/{{ $youtubeId }}/mqdefault.jpg" 
+                                                             alt="{{ $video->title }}"
+                                                             class="position-absolute top-0 start-0 w-100 h-100"
+                                                             style="object-fit: cover;">
+                                                        <div class="position-absolute top-50 start-50 translate-middle" style="z-index: 10; pointer-events: none;">
+                                                            <i class="fab fa-youtube text-danger" style="font-size: 56px; opacity: 0.95; text-shadow: 0 2px 8px rgba(0,0,0,0.7);"></i>
+                                                        </div>
+                                                    @else
+                                                        <div class="position-absolute top-50 start-50 translate-middle text-white" style="z-index: 10;">
+                                                            <i class="fas fa-video" style="font-size: 56px;"></i>
+                                                        </div>
+                                                    @endif
+                                                @elseif($video->video_path && !empty(trim($video->video_path)))
+                                                    @php
+                                                        // Handle video path - remove 'public/' prefix if present for asset()
+                                                        $videoPath = trim($video->video_path);
+                                                        // Remove 'public/' prefix if it exists
+                                                        if (strpos($videoPath, 'public/') === 0) {
+                                                            $videoPath = substr($videoPath, 7);
+                                                        }
+                                                        // Also handle if it starts with just 'assets/'
+                                                        $videoPath = ltrim($videoPath, '/');
+                                                        $videoDisplayUrl = asset($videoPath);
+                                                    @endphp
+                                                    <video class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover;" muted preload="metadata" loop>
+                                                        <source src="{{ $videoDisplayUrl }}" type="video/mp4">
+                                                        <source src="{{ $videoDisplayUrl }}" type="video/webm">
+                                                        <source src="{{ $videoDisplayUrl }}" type="video/ogg">
+                                                    </video>
+                                                    <div class="position-absolute top-50 start-50 translate-middle" style="z-index: 10; pointer-events: none;">
+                                                        <i class="fas fa-play-circle text-white" style="font-size: 56px; opacity: 0.95; text-shadow: 0 2px 8px rgba(0,0,0,0.7);"></i>
+                                                    </div>
+                                                @else
+                                                    <div class="position-absolute top-50 start-50 translate-middle text-white" style="z-index: 10;">
+                                                        <i class="fas fa-video" style="font-size: 56px;"></i>
+                                                        <p class="small mt-2">No Video</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="video-info p-3 bg-white">
+                                                <h5 class="mb-1" style="font-size: 16px; font-weight: 600; color: #333;">{{ $video->title }}</h5>
+                                                @if($video->category)
+                                                    <p class="text-muted small mb-1" style="font-size: 12px;">
+                                                        <i class="fas fa-folder"></i> {{ $video->category->name }}
+                                                    </p>
+                                                @endif
+                                                @if($video->caption && !empty($video->caption))
+                                                    <p class="text-muted small mb-0">{{ \Illuminate\Support\Str::limit($video->caption, 60) }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                        @if($chunkedVideos->count() > 1)
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#videoGalleryCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                            <span class="visually-hidden">{{ __('landing.carousel_previous') }}</span>
+                        </button>
+
+                        <button class="carousel-control-next" type="button" data-bs-target="#videoGalleryCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                            <span class="visually-hidden">{{ __('landing.carousel_next') }}</span>
+                        </button>
+                        @endif
+                    </div>
+                @else
+                <div class="text-center py-5">
+                    <p class="text-muted">{{ __('landing.no_videos_available') ?? 'No videos available at the moment.' }}</p>
+                </div>
+                @endif
+
+                @if($hasVideos)
+                <div class="btn-part d-flex justify-content-center mt-4">
+                    <a class="btn btn-outline-primary rounded-pill px-4 py-2" href="{{ route('image_category') }}">
+                        {{ __('landing.view_more') }} {{ __('landing.video_gallery_button') }}
+                    </a>
+                </div>
+                @endif
+
+                <!-- Video Modal -->
+                <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content border-0 shadow-lg rounded-3">
+                            <div class="modal-header py-3 px-4">
+                                <h5 class="modal-title fw-bold" id="videoModalLabel"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4 py-4">
+                                <div id="videoContainer" class="mb-3">
+                                    <!-- Video will be inserted here -->
+                                </div>
+                                <div id="videoCaption" class="text-muted"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection
 
 @section('scripts')
@@ -689,6 +848,70 @@
             modal.find('#modalTeacherJoinDate').text(joinDate ? `${teacherModalLabels.joinedOn} ${joinDate}` : '');
             modal.find('#modalTeacherBiography').text(biography);
         });
+    });
+
+    // Video Modal Function
+    function showVideoModal(element) {
+        const title = element.getAttribute('data-title');
+        const caption = element.getAttribute('data-caption');
+        const videoPath = element.getAttribute('data-video-path');
+        const videoUrl = element.getAttribute('data-video-url');
+        
+        const modalLabel = document.getElementById('videoModalLabel');
+        const videoContainer = document.getElementById('videoContainer');
+        const videoCaption = document.getElementById('videoCaption');
+        
+        if (modalLabel) modalLabel.textContent = title || 'Video';
+        if (videoCaption) videoCaption.textContent = caption || '';
+        
+        // Clear previous video
+        if (videoContainer) videoContainer.innerHTML = '';
+        
+        // Show YouTube video
+        if (videoUrl && videoUrl.trim() !== '') {
+            // Extract YouTube video ID
+            const match = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+            if (match && videoContainer) {
+                const youtubeId = match[1];
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${youtubeId}`;
+                iframe.width = '100%';
+                iframe.height = '450';
+                iframe.style.border = 'none';
+                iframe.style.borderRadius = '8px';
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.setAttribute('allowfullscreen', 'true');
+                videoContainer.appendChild(iframe);
+            } else if (videoContainer) {
+                // If not YouTube, show as link
+                videoContainer.innerHTML = `<div class="alert alert-info text-center">
+                    <i class="fas fa-external-link-alt me-2"></i>
+                    <a href="${videoUrl}" target="_blank" class="btn btn-primary">Open Video Link</a>
+                </div>`;
+            }
+        } 
+        // Show uploaded video
+        else if (videoPath && videoPath.trim() !== '' && videoContainer) {
+            const video = document.createElement('video');
+            video.src = videoPath;
+            video.controls = true;
+            video.style.width = '100%';
+            video.style.maxHeight = '500px';
+            video.style.borderRadius = '8px';
+            video.style.backgroundColor = '#000';
+            video.setAttribute('preload', 'metadata');
+            videoContainer.appendChild(video);
+        } else if (videoContainer) {
+            videoContainer.innerHTML = '<div class="alert alert-warning">No video available</div>';
+        }
+    }
+
+    // Clear video when modal is closed
+    $(document).on('hidden.bs.modal', '#videoModal', function () {
+        const videoContainer = document.getElementById('videoContainer');
+        if (videoContainer) {
+            videoContainer.innerHTML = '';
+        }
     });
 </script>
 @endsection

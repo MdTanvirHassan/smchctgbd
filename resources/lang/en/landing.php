@@ -56,6 +56,8 @@ return [
     'faqs_title' => 'FAQs',
     'teachers_section_title' => 'Teachers',
     'teachers_section_subtitle' => 'Our Respected Teachers',
+    'video_gallery_section_title' => 'Video Gallery',
+    'video_gallery_section_subtitle' => 'Our Video Collections',
     'teacher_modal_title' => 'Teacher Details',
     'teacher_modal_biography' => 'Biography',
     'teacher_modal_qualification' => 'Qualification:',
