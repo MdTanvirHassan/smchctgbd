@@ -36,5 +36,6 @@ return [
     'activities_of_meu' => 'MEU এর কার্যক্রম',
     'prospectus' => 'প্রসপেক্টাস',
     'research_cell' => 'গবেষণা সেল',
+    'eligibility_criteria_of_college_campus' => 'কলেজ ক্যাম্পাসের যোগ্যতার মানদণ্ড',
 ];
 

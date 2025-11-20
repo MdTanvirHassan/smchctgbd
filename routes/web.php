@@ -13,6 +13,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\VideoGalleryController;
 use App\Http\Controllers\MBBSCOURSEController;
 use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\EligibilityCriteriaController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/online_class_link', 'online_class_link')->name('online_class_link');
     Route::get('/mbbs-course-new-curriculum', 'mbbsCourseNewCurriculum')->name('mbbs_course_new_curriculum');
     Route::get('/facilities/{section?}', 'facilities')->name('facilities.frontend');
+    Route::get('/eligibility-criteria-of-college-campus', 'eligibilityCriteriaOfCollegeCampus')->name('eligibility_criteria_of_college_campus.frontend');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -253,6 +255,15 @@ Route::controller(FacilitiesController::class)->group(function () {
     Route::post('/dashboard/facilities/{section}', 'store')->name('facilities.store');
     Route::put('/dashboard/facilities/{section}/{id}', 'update')->name('facilities.update');
     Route::get('/dashboard/facilities-status/{id}', 'status')->name('facilities.status');
+});
+
+Route::controller(EligibilityCriteriaController::class)->group(function () {
+    // Eligibility Criteria routes
+    Route::get('/dashboard/eligibility-criteria-of-college-campus', 'index')->name('eligibility_criteria_of_college_campus.index');
+    Route::post('/dashboard/eligibility-criteria-of-college-campus', 'store')->name('eligibility_criteria_of_college_campus.store');
+    Route::put('/dashboard/eligibility-criteria-of-college-campus/{id}', 'update')->name('eligibility_criteria_of_college_campus.update');
+    Route::get('/dashboard/eligibility-criteria-of-college-campus-status/{id}', 'status')->name('eligibility_criteria_of_college_campus.status');
+    Route::delete('/dashboard/eligibility-criteria-of-college-campus/{id}', 'destroy')->name('eligibility_criteria_of_college_campus.destroy');
 });
 
 Route::controller(RoutineController::class)->group(function () {

@@ -36,5 +36,6 @@ return [
     'activities_of_meu' => 'Activities of MEU',
     'prospectus' => 'Prospectus',
     'research_cell' => 'Research Cell',
+    'eligibility_criteria_of_college_campus' => 'Eligibility Criteria of College Campus',
 ];
 

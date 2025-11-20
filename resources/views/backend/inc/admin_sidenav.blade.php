@@ -80,6 +80,7 @@
                             class="nav-link {{ is_active('fileupload.*') }}">Files</a>
                         <a href="{{ route('faq.index') }}" class="nav-link {{ is_active('faq.*') }}">FAQs</a>
                         <a href="{{ route('facilities.index') }}" class="nav-link {{ is_active('facilities.*') }}">Facilities</a>
+                        <a href="{{ route('eligibility_criteria_of_college_campus.index') }}" class="nav-link {{ is_active('eligibility_criteria_of_college_campus.*') }}">Eligibility Criteria</a>
                     </div>
                 </div>
             </li>

@@ -49,6 +49,7 @@
             <li><a class="dropdown-item {{ request()->routeIs('head_master') ? 'active' : '' }}" href="{{ route('head_master') }}">{{ __('header.principal') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('teacher_team') ? 'active' : '' }}" href="{{ route('teacher_team') }}">{{ __('header.teacher_team') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('governing_body') ? 'active' : '' }}" href="{{ route('governing_body') }}">{{ __('header.governing_body') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('eligibility_criteria_of_college_campus.frontend') ? 'active' : '' }}" href="{{ route('eligibility_criteria_of_college_campus.frontend') }}">{{ __('header.eligibility_criteria_of_college_campus') }}</a></li>
           </ul>
         </li>
 

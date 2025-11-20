@@ -209,4 +209,11 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.facilities', compact('academicFacility', 'teachingActivities', 'activitiesOfMeu', 'researchCell', 'section'));
     }
 
+    // Eligibility Criteria of College Campus Page
+    public function eligibilityCriteriaOfCollegeCampus()
+    {
+        $eligibilityCriteria = Content::where('type', 'eligibility_criteria_of_college_campus')->where('is_published', 1)->first();
+        return view('frontend.' . get_setting('template_name') . '.eligibility_criteria_of_college_campus', compact('eligibilityCriteria'));
+    }
+
 }
