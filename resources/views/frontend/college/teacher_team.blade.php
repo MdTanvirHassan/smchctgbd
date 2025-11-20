@@ -19,27 +19,44 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row justify-content-center">
-                        @foreach($teachers as $teacher)
-                        <div class="col-md-3 col-sm-6 mb-3">
-                            <div class="teacher-card text-center rounded" style="cursor:pointer;"
-                                data-bs-toggle="modal" data-bs-target="#teacherModal"
-                                data-name="{{ $teacher->name }}"
-                                data-designation="{{ $teacher->designation->name }}"
-                                data-photo="{{ asset($teacher->photo_path) }}"
-                                data-qualification="{{ $teacher->qualification }}"
-                                data-biography="{{ $teacher->biography }}"
-                                data-join_date="{{ \Carbon\Carbon::parse($teacher->join_date)->format('d M Y') }}">
-                                <img src="{{ asset($teacher->photo_path) }}" alt="{{ __('teacher_team.teacher_photo_alt') }}"
-                                    class="teacher-img">
-                                <div class="teacher-info mt-3">
-                                    <h4>{{ $teacher->name }}</h4>
-                                    <p>{{ $teacher->designation->name }}</p>
+                    @php
+                        $teachersByDesignation = $teachers->groupBy(function($teacher) {
+                            return $teacher->designation ? $teacher->designation->name : 'Other';
+                        });
+                    @endphp
+                    
+                    @foreach($teachersByDesignation as $designationName => $designationTeachers)
+                        <div class="designation-section mb-5">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h3 class="text-center fw-bold mb-4" style="color: #333; border-bottom: 3px solid #007bff; padding-bottom: 10px; display: inline-block; width: 100%;">
+                                        {{ $designationName }}
+                                    </h3>
                                 </div>
                             </div>
+                            <div class="row justify-content-center">
+                                @foreach($designationTeachers as $teacher)
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <div class="teacher-card text-center rounded" style="cursor:pointer;"
+                                        data-bs-toggle="modal" data-bs-target="#teacherModal"
+                                        data-name="{{ $teacher->name }}"
+                                        data-designation="{{ $teacher->designation ? $teacher->designation->name : 'N/A' }}"
+                                        data-photo="{{ asset($teacher->photo_path) }}"
+                                        data-qualification="{{ $teacher->qualification }}"
+                                        data-biography="{{ $teacher->biography }}"
+                                        data-join_date="{{ \Carbon\Carbon::parse($teacher->join_date)->format('d M Y') }}">
+                                        <img src="{{ asset($teacher->photo_path) }}" alt="{{ __('teacher_team.teacher_photo_alt') }}"
+                                            class="teacher-img">
+                                        <div class="teacher-info mt-3">
+                                            <h4>{{ $teacher->name }}</h4>
+                                            <p>{{ $teacher->designation ? $teacher->designation->name : 'N/A' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </div>
 
                 <div class="modal fade" id="teacherModal" tabindex="-1" aria-labelledby="teacherModalLabel"
