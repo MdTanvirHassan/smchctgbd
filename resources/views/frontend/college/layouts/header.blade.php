@@ -113,16 +113,6 @@
           </ul>
         </li>
 
-        <!-- Gallery Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->routeIs('image_category','image_gallery','video_category','video_gallery') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.gallery') }}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item {{ request()->routeIs('image_category','image_gallery') ? 'active' : '' }}" href="{{ route('image_category') }}">{{ __('header.image_gallery') }}</a></li>
-            <li><a class="dropdown-item {{ request()->routeIs('video_category','video_gallery') ? 'active' : '' }}" href="{{ route('video_category') }}">{{ __('header.video_gallery') }}</a></li>
-          </ul>
-        </li>
-
         <!-- Hospital Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('hospital_department.frontend') ? 'active' : '' }}" href="#" role="button"
@@ -135,7 +125,8 @@
         
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact_us') ? 'active' : '' }}" href="{{ route('contact_us') }}">{{ __('header.contact') }}</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}" href="{{ route('login') }}">{{ __('header.login') }}</a></li>
-        <li class="nav-item dropdown">
+
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{ $currentLocale === 'bn' ? __('header.language_bangla') : __('header.language_english') }}
@@ -152,7 +143,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
       </ul>
     </div>
