@@ -14,6 +14,7 @@ use App\Http\Controllers\VideoGalleryController;
 use App\Http\Controllers\MBBSCOURSEController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\EligibilityCriteriaController;
+use App\Http\Controllers\HospitalDepartmentController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/mbbs-course-new-curriculum', 'mbbsCourseNewCurriculum')->name('mbbs_course_new_curriculum');
     Route::get('/facilities/{section?}', 'facilities')->name('facilities.frontend');
     Route::get('/eligibility-criteria-of-college-campus', 'eligibilityCriteriaOfCollegeCampus')->name('eligibility_criteria_of_college_campus.frontend');
+    Route::get('/hospital-department/{department?}', 'hospitalDepartment')->name('hospital_department.frontend');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -264,6 +266,15 @@ Route::controller(EligibilityCriteriaController::class)->group(function () {
     Route::put('/dashboard/eligibility-criteria-of-college-campus/{id}', 'update')->name('eligibility_criteria_of_college_campus.update');
     Route::get('/dashboard/eligibility-criteria-of-college-campus-status/{id}', 'status')->name('eligibility_criteria_of_college_campus.status');
     Route::delete('/dashboard/eligibility-criteria-of-college-campus/{id}', 'destroy')->name('eligibility_criteria_of_college_campus.destroy');
+});
+
+Route::controller(HospitalDepartmentController::class)->group(function () {
+    // Hospital Department routes
+    Route::get('/dashboard/hospital-department', 'index')->name('hospital_department.index');
+    Route::post('/dashboard/hospital-department/{department}', 'store')->name('hospital_department.store');
+    Route::put('/dashboard/hospital-department/{department}/{id}', 'update')->name('hospital_department.update');
+    Route::get('/dashboard/hospital-department-status/{id}', 'status')->name('hospital_department.status');
+    Route::delete('/dashboard/hospital-department/{id}', 'destroy')->name('hospital_department.destroy');
 });
 
 Route::controller(RoutineController::class)->group(function () {

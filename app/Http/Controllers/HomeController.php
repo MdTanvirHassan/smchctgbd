@@ -216,4 +216,18 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.eligibility_criteria_of_college_campus', compact('eligibilityCriteria'));
     }
 
+    // Hospital Department Page
+    public function hospitalDepartment($department = null)
+    {
+        $indoorPatient = Content::where('type', 'hospital_indoor_patient_department')->where('is_published', 1)->first();
+        $outPatient = Content::where('type', 'hospital_out_patient_department')->where('is_published', 1)->first();
+
+        // Set default department if not provided
+        if (!$department) {
+            $department = 'indoor_patient_department';
+        }
+
+        return view('frontend.' . get_setting('template_name') . '.hospital_department', compact('indoorPatient', 'outPatient', 'department'));
+    }
+
 }

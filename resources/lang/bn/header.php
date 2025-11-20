@@ -37,5 +37,8 @@ return [
     'prospectus' => 'প্রসপেক্টাস',
     'research_cell' => 'গবেষণা সেল',
     'eligibility_criteria_of_college_campus' => 'কলেজ ক্যাম্পাসের যোগ্যতার মানদণ্ড',
+    'hospital' => 'হাসপাতাল',
+    'indoor_patient_department' => 'ইনডোর পেশেন্ট বিভাগ',
+    'out_patient_department' => 'আউটডোর পেশেন্ট বিভাগ',
 ];
 

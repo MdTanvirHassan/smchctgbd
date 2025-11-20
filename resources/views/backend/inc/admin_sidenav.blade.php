@@ -52,15 +52,15 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed {{ is_active(['notice.*', 'event.*', 'officiallink.*', 'importantinformationlink.*', 'fileupload.*', 'faq.*', 'important.notice.*']) }}"
+                <a class="nav-link collapsed {{ is_active(['notice.*', 'event.*', 'officiallink.*', 'importantinformationlink.*', 'fileupload.*', 'faq.*', 'important.notice.*', 'facilities.*', 'eligibility_criteria_of_college_campus.*', 'hospital_department.*']) }}"
                     data-bs-toggle="collapse" href="#importantInfoMenu" role="button"
-                    aria-expanded="{{ is_menu_open(['notice.*', 'event.*', 'officiallink.*', 'importantinformationlink.*', 'fileupload.*', 'faq.*', 'important.notice.*']) ? 'true' : 'false' }}"
+                    aria-expanded="{{ is_menu_open(['notice.*', 'event.*', 'officiallink.*', 'importantinformationlink.*', 'fileupload.*', 'faq.*', 'important.notice.*', 'facilities.*', 'eligibility_criteria_of_college_campus.*', 'hospital_department.*']) ? 'true' : 'false' }}"
                     aria-controls="importantInfoMenu">
                     <i class="fas fa-calendar"></i>
                     <span>Important Information</span>
                     <i class="fas fa-chevron-down arrow ms-auto"></i>
                 </a>
-                <div class="collapse {{ is_menu_open(['notice.*', 'event.*', 'officiallink.*', 'importantinformationlink.*', 'fileupload.*', 'faq.*', 'important.notice.*']) }}"
+                <div class="collapse {{ is_menu_open(['notice.*', 'event.*', 'officiallink.*', 'importantinformationlink.*', 'fileupload.*', 'faq.*', 'important.notice.*', 'facilities.*', 'eligibility_criteria_of_college_campus.*', 'hospital_department.*']) }}"
                     id="importantInfoMenu" data-bs-parent="#sidebarAccordion">
                     <div class="submenu">
                         <h6 class="text-light pt-2 mt-2 mb-2">Notices & Events</h6>
@@ -81,6 +81,9 @@
                         <a href="{{ route('faq.index') }}" class="nav-link {{ is_active('faq.*') }}">FAQs</a>
                         <a href="{{ route('facilities.index') }}" class="nav-link {{ is_active('facilities.*') }}">Facilities</a>
                         <a href="{{ route('eligibility_criteria_of_college_campus.index') }}" class="nav-link {{ is_active('eligibility_criteria_of_college_campus.*') }}">Eligibility Criteria</a>
+
+                        <h6 class="text-light mt-3 mb-2">Hospital</h6>
+                        <a href="{{ route('hospital_department.index') }}" class="nav-link {{ is_active('hospital_department.*') }}">Hospital Department</a>
                     </div>
                 </div>
             </li>
