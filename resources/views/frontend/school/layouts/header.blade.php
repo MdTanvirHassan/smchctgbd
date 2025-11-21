@@ -61,9 +61,12 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">ভর্তি</a>
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('admission_info', 'frontend.admission_links') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">ভর্তি</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('admission_info') }}">ভর্তি তথ্য</a></li>
+                            <li><a class="dropdown-item {{ request()->routeIs('admission_info') ? 'active' : '' }}" href="{{ route('admission_info') }}">ভর্তি তথ্য</a></li>
+                            <li><a class="dropdown-item {{ request()->routeIs('frontend.admission_links') ? 'active' : '' }}" href="{{ route('frontend.admission_links') }}">
+                              <i class="fas fa-link me-2"></i>ভর্তি লিংক
+                            </a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('routine') }}">রুটিন</a></li>

@@ -233,6 +233,38 @@
                 </div>
             </div>
 
+            <!-- Admission Links -->
+            @if($admission_links->count() > 0)
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-link me-2"></i>Admission Links</h5>
+                </div>
+                <div class="card-body px-2">
+                    <div class="list-group list-group-flush">
+                        @foreach($admission_links->take(5) as $admission_link)
+                        <a href="{{ $admission_link->link_url }}" class="list-group-item list-group-item-action" target="_blank">
+                            <i class="fas fa-external-link-alt text-primary me-2"></i>
+                            {{ $admission_link->title }}
+                            @if($admission_link->end_date && \Carbon\Carbon::parse($admission_link->end_date)->isFuture())
+                                <small class="text-muted d-block">
+                                    <i class="fas fa-clock me-1"></i>
+                                    Until: {{ \Carbon\Carbon::parse($admission_link->end_date)->format('M d, Y') }}
+                                </small>
+                            @endif
+                        </a>
+                        @endforeach
+                    </div>
+                    @if($admission_links->count() > 5)
+                    <div class="card-footer text-center">
+                        <a href="{{ route('frontend.admission_links') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-eye me-1"></i>View All ({{ $admission_links->count() }})
+                        </a>
+                    </div>
+                    @endif
+                </div>
+            </div>
+            @endif
+
             <!-- Official Links -->
             <div class="card mb-4">
                 <div class="card-header bg-warning text-dark">

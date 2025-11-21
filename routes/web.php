@@ -15,6 +15,9 @@ use App\Http\Controllers\MBBSCOURSEController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\EligibilityCriteriaController;
 use App\Http\Controllers\HospitalDepartmentController;
+use App\Http\Controllers\OrganogramController;
+use App\Http\Controllers\ApplicationProcessController;
+use App\Http\Controllers\AdmissionLinksController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +50,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/total_students', 'total_students')->name('total_students');
     Route::get('/class_summery', 'class_summery')->name('class_summery');
     Route::get('/admission_info', 'admission_info')->name('admission_info');
+    Route::get('/admission_links', 'admission_links')->name('frontend.admission_links');
     Route::get('/routine', 'routine')->name('routine');
     Route::get('/exam_result', 'exam_result')->name('exam_result');
     Route::get('/notice', 'notice')->name('notice');
@@ -62,6 +66,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/facilities/{section?}', 'facilities')->name('facilities.frontend');
     Route::get('/eligibility-criteria-of-college-campus', 'eligibilityCriteriaOfCollegeCampus')->name('eligibility_criteria_of_college_campus.frontend');
     Route::get('/hospital-department/{department?}', 'hospitalDepartment')->name('hospital_department.frontend');
+    Route::get('/organogram', 'organogram')->name('organogram.frontend');
+    Route::get('/application-process', 'applicationProcess')->name('application_process.frontend');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -240,6 +246,17 @@ Route::controller(MBBSCOURSEController::class)->group(function () {
     Route::delete('/dashboard/mbbs-course/{id}', 'destroy')->name('mbbs-course.destroy');
 });
 
+Route::controller(AdmissionLinksController::class)->group(function () {
+    // Admission Links routes
+    Route::get('/dashboard/admission-links', 'index')->name('admission_links.index');
+    Route::get('/dashboard/admission-links/create', 'create')->name('admission_links.create');
+    Route::post('/dashboard/admission-links', 'store')->name('admission_links.store');
+    Route::get('/dashboard/admission-links/{id}/edit', 'edit')->name('admission_links.edit');
+    Route::put('/dashboard/admission-links/{id}', 'update')->name('admission_links.update');
+    Route::get('/dashboard/admission-links/{id}/toggle-status', 'toggleStatus')->name('admission_links.toggle_status');
+    Route::delete('/dashboard/admission-links/{id}', 'destroy')->name('admission_links.destroy');
+});
+
 Route::controller(ClassResultController::class)->group(function () {
     // Class Result File Upload routes
     Route::get('/dashboard/classresult', 'classresult')->name('classresult.index');
@@ -275,6 +292,24 @@ Route::controller(HospitalDepartmentController::class)->group(function () {
     Route::put('/dashboard/hospital-department/{department}/{id}', 'update')->name('hospital_department.update');
     Route::get('/dashboard/hospital-department-status/{id}', 'status')->name('hospital_department.status');
     Route::delete('/dashboard/hospital-department/{id}', 'destroy')->name('hospital_department.destroy');
+});
+
+Route::controller(OrganogramController::class)->group(function () {
+    // Organogram routes
+    Route::get('/dashboard/organogram', 'index')->name('organogram.index');
+    Route::post('/dashboard/organogram', 'store')->name('organogram.store');
+    Route::put('/dashboard/organogram/{id}', 'update')->name('organogram.update');
+    Route::get('/dashboard/organogram-status/{id}', 'status')->name('organogram.status');
+    Route::delete('/dashboard/organogram/{id}', 'destroy')->name('organogram.destroy');
+});
+
+Route::controller(ApplicationProcessController::class)->group(function () {
+    // Application Process routes
+    Route::get('/dashboard/application-process', 'index')->name('application_process.index');
+    Route::post('/dashboard/application-process', 'store')->name('application_process.store');
+    Route::put('/dashboard/application-process/{id}', 'update')->name('application_process.update');
+    Route::get('/dashboard/application-process-status/{id}', 'status')->name('application_process.status');
+    Route::delete('/dashboard/application-process/{id}', 'destroy')->name('application_process.destroy');
 });
 
 Route::controller(RoutineController::class)->group(function () {

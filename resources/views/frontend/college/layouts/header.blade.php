@@ -67,13 +67,15 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->routeIs('admission_info') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">{{ __('header.admission') }}</a>
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('admission_info', 'mbbs_course_new_curriculum', 'organogram.frontend', 'application_process.frontend', 'frontend.admission_links') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">{{ __('header.admission') }}</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.admission_info') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('admission_info') ? 'active' : '' }}" href="{{ route('admission_info') }}">{{ __('header.admission_info') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('mbbs_course_new_curriculum') ? 'active' : '' }}" href="{{ route('mbbs_course_new_curriculum') }}">{{ __('header.mbbs_course_new_curriculum') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.organogram') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.application_process') }}</a></li>
-            <li><a class="dropdown-item" href="{{ route('admission_info') }}">{{ __('header.admission_circular') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('organogram.frontend') ? 'active' : '' }}" href="{{ route('organogram.frontend') }}">{{ __('header.organogram') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('application_process.frontend') ? 'active' : '' }}" href="{{ route('application_process.frontend') }}">{{ __('header.application_process') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('frontend.admission_links') ? 'active' : '' }}" href="{{ route('frontend.admission_links') }}">
+              <i class="fas fa-link me-2"></i>Admission Links
+            </a></li>
           </ul>
         </li>
 

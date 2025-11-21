@@ -43,6 +43,7 @@ class HomeController extends Controller
         $officiallinks = Content::getLatestPublished('link');
         $files = Content::getLatestPublished('file');
         $importantinformationlinks = Content::getLatestPublished('important_information_link');
+        $admission_links = Content::getLatestPublished('admission_link', 10);
 
         $teachers = Teacher::all();
         $committees = Committee::all();
@@ -56,7 +57,7 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        return view('frontend.' . get_setting('template_name') . '.landing_page', compact('important_notices', 'notices', 'faqs', 'teachers', 'committees', 'officiallinks', 'importantinformationlinks', 'files', 'videos'));
+        return view('frontend.' . get_setting('template_name') . '.landing_page', compact('important_notices', 'notices', 'faqs', 'teachers', 'committees', 'officiallinks', 'importantinformationlinks', 'files', 'videos', 'admission_links'));
     }
 
     // Head Page  
@@ -102,6 +103,17 @@ class HomeController extends Controller
     public function admission_info()
     {
         return view('frontend.' . get_setting('template_name') . '.admission_info');
+    }
+
+    // Admission Links Page  
+    public function admission_links()
+    {
+        $admission_links = Content::where('type', 'admission_link')
+            ->where('is_published', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('frontend.' . get_setting('template_name') . '.admission_links', compact('admission_links'));
     }
 
     // Routine Page  
@@ -228,6 +240,26 @@ class HomeController extends Controller
         }
 
         return view('frontend.' . get_setting('template_name') . '.hospital_department', compact('indoorPatient', 'outPatient', 'department'));
+    }
+
+    // Organogram Page
+    public function organogram()
+    {
+        $organogram = Content::where('type', 'organogram')->where('is_published', 1)->first();
+        return view('frontend.' . get_setting('template_name') . '.organogram', compact('organogram'));
+    }
+
+    // Application Process Page
+    public function applicationProcess()
+    {
+        $applicationProcess = Content::where('type', 'application_process')->where('is_published', 1)->first();
+        $admission_links = Content::where('type', 'admission_link')
+            ->where('is_published', 1)
+            ->orderBy('created_at', 'desc')
+            ->limit(6)
+            ->get();
+        
+        return view('frontend.' . get_setting('template_name') . '.application_process', compact('applicationProcess', 'admission_links'));
     }
 
 }

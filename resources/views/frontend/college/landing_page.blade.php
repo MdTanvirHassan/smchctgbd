@@ -405,6 +405,25 @@
                 </div>
 
 
+                @if($admission_links->count() > 0)
+                <div class="official-link mb-4">
+                    <h3><i class="fas fa-link me-2"></i>{{ __('landing.admission_links_title', 'Admission Links') }}</h3>
+                    <ul>
+                        @foreach($admission_links as $admission_link)
+                        <li><a href="{{ $admission_link->link_url }}" target="_blank"><i
+                                    class="fa fa-external-link-alt"
+                                    aria-hidden="true"></i>{{ $admission_link->title }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    <div class="text-center mt-3">
+                        <a href="{{ route('frontend.admission_links') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-eye me-1"></i>View All Admission Links
+                        </a>
+                    </div>
+                </div>
+                @endif
+
                 <div class="official-link">
                     <h3>{{ __('landing.official_links_title') }}</h3>
                     <ul>

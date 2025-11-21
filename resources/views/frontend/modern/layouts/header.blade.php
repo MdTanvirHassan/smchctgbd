@@ -59,6 +59,9 @@
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('exam_result') ? 'active' : '' }}" href="{{ route('exam_result') }}">ফলাফল</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('notice') ? 'active' : '' }}" href="{{ route('notice') }}">নোটিশ</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('event') ? 'active' : '' }}" href="{{ route('event') }}">ইভেন্ট</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->routeIs('frontend.admission_links') ? 'active' : '' }}" href="{{ route('frontend.admission_links') }}">
+          <i class="fas fa-link me-1"></i>ভর্তি লিংক
+        </a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('image_category') ? 'active' : '' }}" href="{{ route('image_category') }}">গ্যালারী</a></li>
         <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact_us') ? 'active' : '' }}" href="{{ route('contact_us') }}">যোগাযোগ</a></li>
       </ul>
