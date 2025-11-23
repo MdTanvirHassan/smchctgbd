@@ -262,4 +262,38 @@ class HomeController extends Controller
         return view('frontend.' . get_setting('template_name') . '.application_process', compact('applicationProcess', 'admission_links'));
     }
 
+    // IERB Page
+    public function ierb()
+    {
+        return view('frontend.' . get_setting('template_name') . '.ierb');
+    }
+
+    // Library Page
+    public function library()
+    {
+        $library = Content::where('type', 'library')->where('is_published', 1)->first();
+        return view('frontend.' . get_setting('template_name') . '.library', compact('library'));
+    }
+
+    // Hostel Page
+    public function hostel()
+    {
+        $hostel = Content::where('type', 'hostel')->where('is_published', 1)->first();
+        return view('frontend.' . get_setting('template_name') . '.hostel', compact('hostel'));
+    }
+
+    // Cafeteria Page
+    public function cafeteria()
+    {
+        $cafeteria = Content::where('type', 'cafeteria')->where('is_published', 1)->first();
+        return view('frontend.' . get_setting('template_name') . '.cafeteria', compact('cafeteria'));
+    }
+
+    // Extra Curricular Activities Page
+    public function extraCurricularActivities()
+    {
+        $extraCurricularActivities = Content::where('type', 'extra_curricular_activities')->where('is_published', 1)->first();
+        return view('frontend.' . get_setting('template_name') . '.extra_curricular_activities', compact('extraCurricularActivities'));
+    }
+
 }

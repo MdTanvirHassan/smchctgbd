@@ -18,6 +18,10 @@ use App\Http\Controllers\HospitalDepartmentController;
 use App\Http\Controllers\OrganogramController;
 use App\Http\Controllers\ApplicationProcessController;
 use App\Http\Controllers\AdmissionLinksController;
+use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\HostelController;
+use App\Http\Controllers\CafeteriaController;
+use App\Http\Controllers\ExtraCurricularActivitiesController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +72,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/hospital-department/{department?}', 'hospitalDepartment')->name('hospital_department.frontend');
     Route::get('/organogram', 'organogram')->name('organogram.frontend');
     Route::get('/application-process', 'applicationProcess')->name('application_process.frontend');
+    Route::get('/ierb', 'ierb')->name('ierb');
+    Route::get('/library', 'library')->name('library.frontend');
+    Route::get('/hostel', 'hostel')->name('hostel.frontend');
+    Route::get('/cafeteria', 'cafeteria')->name('cafeteria.frontend');
+    Route::get('/extra-curricular-activities', 'extraCurricularActivities')->name('extra_curricular_activities.frontend');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -310,6 +319,38 @@ Route::controller(ApplicationProcessController::class)->group(function () {
     Route::put('/dashboard/application-process/{id}', 'update')->name('application_process.update');
     Route::get('/dashboard/application-process-status/{id}', 'status')->name('application_process.status');
     Route::delete('/dashboard/application-process/{id}', 'destroy')->name('application_process.destroy');
+});
+
+Route::controller(LibraryController::class)->group(function () {
+    // Library routes
+    Route::get('/dashboard/library', 'index')->name('library.index');
+    Route::post('/dashboard/library', 'store')->name('library.store');
+    Route::put('/dashboard/library/{id}', 'update')->name('library.update');
+    Route::get('/dashboard/library-status/{id}', 'status')->name('library.status');
+});
+
+Route::controller(HostelController::class)->group(function () {
+    // Hostel routes
+    Route::get('/dashboard/hostel', 'index')->name('hostel.index');
+    Route::post('/dashboard/hostel', 'store')->name('hostel.store');
+    Route::put('/dashboard/hostel/{id}', 'update')->name('hostel.update');
+    Route::get('/dashboard/hostel-status/{id}', 'status')->name('hostel.status');
+});
+
+Route::controller(CafeteriaController::class)->group(function () {
+    // Cafeteria routes
+    Route::get('/dashboard/cafeteria', 'index')->name('cafeteria.index');
+    Route::post('/dashboard/cafeteria', 'store')->name('cafeteria.store');
+    Route::put('/dashboard/cafeteria/{id}', 'update')->name('cafeteria.update');
+    Route::get('/dashboard/cafeteria-status/{id}', 'status')->name('cafeteria.status');
+});
+
+Route::controller(ExtraCurricularActivitiesController::class)->group(function () {
+    // Extra Curricular Activities routes
+    Route::get('/dashboard/extra-curricular-activities', 'index')->name('extra_curricular_activities.index');
+    Route::post('/dashboard/extra-curricular-activities', 'store')->name('extra_curricular_activities.store');
+    Route::put('/dashboard/extra-curricular-activities/{id}', 'update')->name('extra_curricular_activities.update');
+    Route::get('/dashboard/extra-curricular-activities-status/{id}', 'status')->name('extra_curricular_activities.status');
 });
 
 Route::controller(RoutineController::class)->group(function () {

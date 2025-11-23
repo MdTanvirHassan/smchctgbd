@@ -100,6 +100,11 @@
             <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'teaching_activities' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'teaching_activities') }}">{{ __('header.teaching_activities') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'activities_of_meu' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'activities_of_meu') }}">{{ __('header.activities_of_meu') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'research_cell' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'research_cell') }}">{{ __('header.research_cell') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('ierb') ? 'active' : '' }}" href="{{ route('ierb') }}">{{ __('header.IERB') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('library.frontend') ? 'active' : '' }}" href="{{ route('library.frontend') }}">{{ __('header.Library') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('hostel.frontend') ? 'active' : '' }}" href="{{ route('hostel.frontend') }}">{{ __('header.Hostel') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('cafeteria.frontend') ? 'active' : '' }}" href="{{ route('cafeteria.frontend') }}">{{ __('header.Cafeteria') }}</a></li>
+            <li><a class="dropdown-item {{ request()->routeIs('extra_curricular_activities.frontend') ? 'active' : '' }}" href="{{ route('extra_curricular_activities.frontend') }}">{{ __('header.Extra Curricular Activities') }}</a></li>
           </ul>
         </li>
         

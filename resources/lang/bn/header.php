@@ -40,5 +40,10 @@ return [
     'hospital' => 'হাসপাতাল',
     'indoor_patient_department' => 'ইনডোর পেশেন্ট বিভাগ',
     'out_patient_department' => 'আউটডোর পেশেন্ট বিভাগ',
+    'IERB' => 'IERB',
+    'Library' => 'লাইব্রেরি',
+    'Hostel' => 'হোস্টেল',
+    'Cafeteria' => 'ক্যাফেটেরিয়া',
+    'Extra Curricular Activities' => 'সহ-পাঠ্যক্রমিক কার্যক্রম',
 ];
 

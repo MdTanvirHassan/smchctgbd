@@ -79,8 +79,15 @@
                         <a href="{{ route('fileupload.index') }}"
                             class="nav-link {{ is_active('fileupload.*') }}">Files</a>
                         <a href="{{ route('faq.index') }}" class="nav-link {{ is_active('faq.*') }}">FAQs</a>
-                        <a href="{{ route('facilities.index') }}" class="nav-link {{ is_active('facilities.*') }}">Facilities</a>
+                        
                         <a href="{{ route('eligibility_criteria_of_college_campus.index') }}" class="nav-link {{ is_active('eligibility_criteria_of_college_campus.*') }}">Eligibility Criteria</a>
+                        
+                        <h6 class="text-light mt-3 mb-2">Facilities</h6>
+                        <a href="{{ route('facilities.index') }}" class="nav-link {{ is_active('facilities.*') }}">Facilities</a>
+                        <a href="{{ route('library.index') }}" class="nav-link {{ is_active('library.*') }}">Library</a>
+                        <a href="{{ route('hostel.index') }}" class="nav-link {{ is_active('hostel.*') }}">Hostel</a>
+                        <a href="{{ route('cafeteria.index') }}" class="nav-link {{ is_active('cafeteria.*') }}">Cafeteria</a>
+                        <a href="{{ route('extra_curricular_activities.index') }}" class="nav-link {{ is_active('extra_curricular_activities.*') }}">Extra Curricular Activities</a>
 
                         <h6 class="text-light mt-3 mb-2">Hospital</h6>
                         <a href="{{ route('hospital_department.index') }}" class="nav-link {{ is_active('hospital_department.*') }}">Hospital Department</a>

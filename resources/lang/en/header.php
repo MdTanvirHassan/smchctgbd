@@ -40,5 +40,10 @@ return [
     'hospital' => 'Hospital',
     'indoor_patient_department' => 'Indoor Patient Department',
     'out_patient_department' => 'Out Patient Department',
+    'IERB' => 'IERB',
+    'Library' => 'Library',
+    'Hostel' => 'Hostel',
+    'Cafeteria' => 'Cafeteria',
+    'Extra Curricular Activities' => 'Extra Curricular Activities',
 ];
 
