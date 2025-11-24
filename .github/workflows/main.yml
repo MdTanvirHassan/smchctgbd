@@ -18,8 +18,8 @@ jobs:
       if: github.ref == 'refs/heads/main'
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ftp.smchctgbd.com
-        username: school@demo2.smchctgbd.com
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /
         # protocol: ftps
