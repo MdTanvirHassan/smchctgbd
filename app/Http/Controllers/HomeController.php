@@ -69,7 +69,7 @@ class HomeController extends Controller
     // Teachers Page  
     public function teacher_team()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::with(['department', 'designation'])->get();
         return view('frontend.' . get_setting('template_name') . '.teacher_team', compact('teachers'));
     }
 

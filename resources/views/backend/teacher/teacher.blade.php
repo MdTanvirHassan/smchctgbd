@@ -58,6 +58,7 @@
                                             data-action="{{ route('teacher.update', ':id') }}" data-bs-toggle="modal"
                                             data-bs-target="#editteacherModal" data-id="{{ $teacher->id }}"
                                             data-name="{{ $teacher->name }}" data-designation="{{ $teacher->designation_id }}"
+                                            data-department="{{ $teacher->department_id }}"
                                             data-email="{{ $teacher->email }}" data-phone="{{ $teacher->phone }}"
                                             data-join_date="{{ $teacher->join_date }}"
                                             data-qualification="{{ $teacher->qualification }}"
@@ -146,6 +147,19 @@
                                     @endforeach
                                 </select>
                                 <div class="invalid-feedback">Please select a designation.</div>
+                            </div>
+                        </div>
+
+                        {{-- Row 1.5: Department --}}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Department</label>
+                                <select name="department" class="form-select form-select-sm">
+                                    <option value="">Select Department</option>
+                                    @foreach($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -239,6 +253,19 @@
                             </div>
                         </div>
 
+                        {{-- Row 1.5: Department --}}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Department</label>
+                                <select name="department" id="edit_department" class="form-select form-select-sm">
+                                    <option value="">Select Department</option>
+                                    @foreach($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         {{-- Row 2: Email & Phone --}}
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -319,6 +346,7 @@
             var id = button.data('id');
             var name = button.data('name');
             var designation = button.data('designation');
+            var department = button.data('department');
             var email = button.data('email');
             var phone = button.data('phone');
             var join_date = button.data('join_date');
@@ -332,6 +360,7 @@
 
             form.find('input[name="name"]').val(name);
             form.find('select[name="designation"]').val(designation);
+            form.find('select[name="department"]').val(department);
             form.find('input[name="email"]').val(email);
             form.find('input[name="phone"]').val(phone);
             form.find('input[name="join_date"]').val(join_date);

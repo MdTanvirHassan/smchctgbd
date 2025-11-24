@@ -150,6 +150,12 @@ Route::controller(NoticeEventController::class)->group(function () {
 
 
 Route::controller(TeacherController::class)->group(function () {
+    // department routes   
+    Route::get('/dashboard/department', 'department')->name('department.index');
+    Route::post('/dashboard/department-store', 'departmentStore')->name('department.store');
+    Route::put('/dashboard/department/{id}', 'departmentUpdate')->name('department.update');
+    Route::delete('/dashboard/department/{id}', 'departmentDestroy')->name('department.destroy');
+
     // designation routes   
     Route::get('/dashboard/designation', 'designation')->name('designation.index');
     Route::post('/dashboard/designation-store', 'designationStore')->name('designation.store');

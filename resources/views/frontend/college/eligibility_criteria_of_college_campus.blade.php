@@ -13,7 +13,13 @@
         @if($eligibilityCriteria)
             @php
                 $data = json_decode($eligibilityCriteria->description, true);
-                $links = $data && isset($data['links']) ? $data['links'] : [];
+                $pdfs = $data && isset($data['pdfs']) ? $data['pdfs'] : [];
+                // Handle backward compatibility - convert string paths to objects
+                if (!empty($pdfs) && is_string($pdfs[0] ?? null)) {
+                    $pdfs = array_map(function($path) {
+                        return ['path' => $path, 'title' => basename($path)];
+                    }, $pdfs);
+                }
             @endphp
             <div class="card shadow-sm border-0 rounded-3 mb-4">
                 <div class="card-header bg-primary text-white">
@@ -37,21 +43,31 @@
                             </div>
                         @endif
 
-                        <!-- Links Section -->
-                        @if(count($links) > 0)
+                        <!-- PDFs Section -->
+                        @if(count($pdfs) > 0)
                             <div class="col-md-12">
-                                <h5 class="mb-3 fw-bold">Related Links</h5>
+                                <h5 class="mb-3 fw-bold">PDF Documents</h5>
                                 <div class="list-group">
-                                    @foreach($links as $link)
-                                        <a href="{{ $link['url'] }}" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    @foreach($pdfs as $pdf)
+                                        @php
+                                            $pdfPath = is_array($pdf) ? ($pdf['path'] ?? '') : $pdf;
+                                            $pdfTitle = is_array($pdf) ? ($pdf['title'] ?? basename($pdfPath)) : basename($pdfPath);
+                                            $pdfUrl = asset($pdfPath);
+                                        @endphp
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
                                             <div>
-                                                <i class="fas fa-external-link-alt me-2 text-primary"></i>
-                                                <span class="fw-semibold">{{ $link['title'] }}</span>
+                                                <i class="fas fa-file-pdf me-2 text-danger"></i>
+                                                <span class="fw-semibold">{{ $pdfTitle }}</span>
                                             </div>
-                                            <button class="btn btn-sm btn-primary">
-                                                <i class="fas fa-eye me-1"></i>View
-                                            </button>
-                                        </a>
+                                            <div class="btn-group" role="group">
+                                                <a href="{{ $pdfUrl }}" target="_blank" class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-eye me-1"></i>View
+                                                </a>
+                                                <a href="{{ $pdfUrl }}" download class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-download me-1"></i>Download
+                                                </a>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -71,18 +87,28 @@
 <style>
     .eligibility-criteria-section .list-group-item {
         transition: all 0.3s ease;
-        border-left: 4px solid #007bff;
+        border-left: 4px solid #dc3545;
+        margin-bottom: 0.5rem;
     }
     
     .eligibility-criteria-section .list-group-item:hover {
         background-color: #f8f9fa;
         transform: translateX(5px);
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-left-color: #c82333;
     }
     
     .eligibility-criteria-section .description-content {
         font-size: 1.1rem;
         color: #333;
+    }
+    
+    .eligibility-criteria-section .list-group-item .btn-group {
+        gap: 0.5rem;
+    }
+    
+    .eligibility-criteria-section .list-group-item .btn {
+        white-space: nowrap;
     }
 </style>
 @endsection

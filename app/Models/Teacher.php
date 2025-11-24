@@ -15,6 +15,7 @@ class Teacher extends Model
         'phone',
         'photo_path',
         'designation_id',
+        'department_id',
         'qualification',
         'biography',
         'join_date'
@@ -23,5 +24,10 @@ class Teacher extends Model
     public function designation()
     {
         return $this->belongsTo(Designation::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }

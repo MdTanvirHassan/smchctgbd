@@ -20,27 +20,28 @@
                 </div>
                 <div class="container">
                     @php
-                        $teachersByDesignation = $teachers->groupBy(function($teacher) {
-                            return $teacher->designation ? $teacher->designation->name : 'Other';
+                        $teachersByDepartment = $teachers->groupBy(function($teacher) {
+                            return $teacher->department ? $teacher->department->name : 'Other';
                         });
                     @endphp
                     
-                    @foreach($teachersByDesignation as $designationName => $designationTeachers)
-                        <div class="designation-section mb-5">
+                    @foreach($teachersByDepartment as $departmentName => $departmentTeachers)
+                        <div class="department-section mb-5">
                             <div class="row mb-4">
                                 <div class="col-12">
                                     <h3 class="text-center fw-bold mb-4" style="color: #333; border-bottom: 3px solid #007bff; padding-bottom: 10px; display: inline-block; width: 100%;">
-                                        {{ $designationName }}
+                                        {{ $departmentName }}
                                     </h3>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
-                                @foreach($designationTeachers as $teacher)
+                                @foreach($departmentTeachers as $teacher)
                                 <div class="col-md-3 col-sm-6 mb-3">
                                     <div class="teacher-card text-center rounded" style="cursor:pointer;"
                                         data-bs-toggle="modal" data-bs-target="#teacherModal"
                                         data-name="{{ $teacher->name }}"
                                         data-designation="{{ $teacher->designation ? $teacher->designation->name : 'N/A' }}"
+                                        data-department="{{ $teacher->department ? $teacher->department->name : 'N/A' }}"
                                         data-photo="{{ asset($teacher->photo_path) }}"
                                         data-qualification="{{ $teacher->qualification }}"
                                         data-biography="{{ $teacher->biography }}"
@@ -50,6 +51,9 @@
                                         <div class="teacher-info mt-3">
                                             <h4>{{ $teacher->name }}</h4>
                                             <p>{{ $teacher->designation ? $teacher->designation->name : 'N/A' }}</p>
+                                            @if($teacher->department)
+                                                <p class="text-muted small">{{ $teacher->department->name }}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -87,6 +91,7 @@
                                     <div class="text-center text-md-start">
                                         <h4 id="modalTeacherName" class="fw-bold mb-2"></h4>
                                         <p id="modalTeacherDesignation" class="mb-1"></p>
+                                        <p id="modalTeacherDepartment" class="mb-1 text-muted"></p>
                                         <p id="modalTeacherQualification" class="mb-1"></p>
                                         <p id="modalTeacherJoinDate" class="mb-0"></p>
                                     </div>
@@ -121,6 +126,7 @@
             let trigger = $(event.relatedTarget);
             let name = trigger.data('name');
             let designation = trigger.data('designation');
+            let department = trigger.data('department');
             let photo = trigger.data('photo');
             let qualification = trigger.data('qualification');
             let biography = trigger.data('biography');
@@ -129,10 +135,15 @@
             let modal = $(this);
             modal.find('#modalTeacherName').text(name);
             modal.find('#modalTeacherDesignation').text(designation);
+            if(department && department !== 'N/A') {
+                modal.find('#modalTeacherDepartment').text('Department: ' + department).show();
+            } else {
+                modal.find('#modalTeacherDepartment').hide();
+            }
             modal.find('#modalTeacherPhoto').attr('src', photo);
-            modal.find('#modalTeacherQualification').text(translations.qualification + ": " + qualification);
-            modal.find('#modalTeacherJoinDate').text(translations.joined_on + ": " + joinDate);
-            modal.find('#modalTeacherBiography').text(biography);
+            modal.find('#modalTeacherQualification').text(translations.qualification + ": " + (qualification || 'N/A'));
+            modal.find('#modalTeacherJoinDate').text(translations.joined_on + ": " + (joinDate || 'N/A'));
+            modal.find('#modalTeacherBiography').text(biography || 'No biography available.');
         });
     });
 </script>

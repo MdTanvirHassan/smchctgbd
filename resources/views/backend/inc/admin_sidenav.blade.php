@@ -138,17 +138,19 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed {{ is_active(['designation.*', 'teacher.*', 'committee.*']) }}"
+                <a class="nav-link collapsed {{ is_active(['department.*', 'designation.*', 'teacher.*', 'committee.*']) }}"
                     data-bs-toggle="collapse" href="#teacherMenu" role="button"
-                    aria-expanded="{{ is_menu_open(['designation.*', 'teacher.*', 'committee.*']) ? 'true' : 'false' }}"
+                    aria-expanded="{{ is_menu_open(['department.*', 'designation.*', 'teacher.*', 'committee.*']) ? 'true' : 'false' }}"
                     aria-controls="teacherMenu">
                     <i class="fa-solid fa-chalkboard-user"></i>
                     <span>Teachers & Committee</span>
                     <i class="fas fa-chevron-down arrow ms-auto"></i>
                 </a>
-                <div class="collapse {{ is_menu_open(['designation.*', 'teacher.*', 'committee.*']) }}" id="teacherMenu"
+                <div class="collapse {{ is_menu_open(['department.*', 'designation.*', 'teacher.*', 'committee.*']) }}" id="teacherMenu"
                     data-bs-parent="#sidebarAccordion">
                     <div class="submenu">
+                        <a href="{{ route('department.index') }}"
+                            class="nav-link {{ is_active('department.*') }}">Department</a>
                         <a href="{{ route('designation.index') }}"
                             class="nav-link {{ is_active('designation.*') }}">Designation</a>
                         <a href="{{ route('teacher.index') }}" class="nav-link {{ is_active('teacher.*') }}">Teacher</a>

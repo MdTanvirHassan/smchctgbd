@@ -16,7 +16,13 @@
         <div class="card-body">
             @php
                 $data = $eligibilityCriteria ? json_decode($eligibilityCriteria->description, true) : null;
-                $links = $data && isset($data['links']) ? $data['links'] : [];
+                $pdfs = $data && isset($data['pdfs']) ? $data['pdfs'] : [];
+                // Handle backward compatibility - convert string paths to objects
+                if (!empty($pdfs) && is_string($pdfs[0] ?? null)) {
+                    $pdfs = array_map(function($path) {
+                        return ['path' => $path, 'title' => basename($path)];
+                    }, $pdfs);
+                }
             @endphp
             <form action="{{ $eligibilityCriteria ? route('eligibility_criteria_of_college_campus.update', $eligibilityCriteria->id) : route('eligibility_criteria_of_college_campus.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -43,53 +49,69 @@
                         <textarea name="description" class="form-control" rows="6" placeholder="Enter description here...">{{ $data['description'] ?? '' }}</textarea>
                     </div>
 
-                    <!-- Links Section -->
+                    <!-- PDF Uploads Section -->
                     <div class="col-md-12">
-                        <label class="form-label">Links</label>
-                        <div id="links-container">
-                            @if(count($links) > 0)
-                                @foreach($links as $index => $link)
-                                    <div class="link-row mb-3 border p-3 rounded">
+                        <label class="form-label">PDF Documents</label>
+                        
+                        <!-- Existing PDFs -->
+                        @if(count($pdfs) > 0)
+                            <div class="mb-3" id="existing-pdfs-container">
+                                <label class="form-label small text-muted">Existing PDFs:</label>
+                                @foreach($pdfs as $index => $pdf)
+                                    @php
+                                        $pdfPath = is_array($pdf) ? ($pdf['path'] ?? '') : $pdf;
+                                        $pdfTitle = is_array($pdf) ? ($pdf['title'] ?? basename($pdfPath)) : basename($pdfPath);
+                                    @endphp
+                                    <div class="existing-pdf-row mb-3 p-3 border rounded" data-pdf-path="{{ $pdfPath }}">
                                         <div class="row g-2">
                                             <div class="col-md-5">
-                                                <label class="form-label small">Link Title</label>
-                                                <input type="text" name="links[{{ $index }}][title]" class="form-control form-control-sm" value="{{ $link['title'] ?? '' }}" placeholder="Enter link title">
+                                                <label class="form-label small">PDF Title</label>
+                                                <input type="text" name="existing_pdf_titles[{{ $index }}]" class="form-control form-control-sm" value="{{ $pdfTitle }}" placeholder="Enter PDF title">
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label small">Link URL</label>
-                                                <input type="url" name="links[{{ $index }}][url]" class="form-control form-control-sm" value="{{ $link['url'] ?? '' }}" placeholder="https://example.com">
+                                                <label class="form-label small">PDF File</label>
+                                                <div>
+                                                    <a href="{{ asset($pdfPath) }}" target="_blank" class="btn btn-sm btn-info">
+                                                        <i class="fa fa-file-pdf"></i> View PDF
+                                                    </a>
+                                                </div>
                                             </div>
                                             <div class="col-md-1 d-flex align-items-end">
-                                                <button type="button" class="btn btn-danger btn-sm remove-link" onclick="removeLinkRow(this)">
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="removeExistingPdf(this, '{{ $pdfPath }}')">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="existing_pdfs[{{ $index }}]" value="{{ $pdfPath }}">
                                     </div>
                                 @endforeach
-                            @else
-                                <div class="link-row mb-3 border p-3 rounded">
-                                    <div class="row g-2">
-                                        <div class="col-md-5">
-                                            <label class="form-label small">Link Title</label>
-                                            <input type="text" name="links[0][title]" class="form-control form-control-sm" placeholder="Enter link title">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label small">Link URL</label>
-                                            <input type="url" name="links[0][url]" class="form-control form-control-sm" placeholder="https://example.com">
-                                        </div>
-                                        <div class="col-md-1 d-flex align-items-end">
-                                            <button type="button" class="btn btn-danger btn-sm remove-link" onclick="removeLinkRow(this)">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </div>
+                            </div>
+                        @endif
+
+                        <!-- New PDF Upload Fields -->
+                        <div id="pdfs-container">
+                            <div class="pdf-row mb-3 border p-3 rounded">
+                                <div class="row g-2">
+                                    <div class="col-md-5">
+                                        <label class="form-label small">PDF Title</label>
+                                        <input type="text" name="pdf_titles[]" class="form-control form-control-sm" placeholder="Enter PDF title">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small">Upload PDF</label>
+                                        <input type="file" name="pdfs[]" class="form-control form-control-sm" accept="application/pdf">
+                                    </div>
+                                    <div class="col-md-1 d-flex align-items-end">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="removePdfRow(this)">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </div>
                                 </div>
-                            @endif
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-sm btn-success mt-2" onclick="addLinkRow()">
-                            <i class="fa fa-plus"></i> Add Link
+                        <button type="button" class="btn btn-sm btn-success mt-2" onclick="addPdfRow()">
+                            <i class="fa fa-plus"></i> Add PDF
                         </button>
+                        <small class="text-muted d-block mt-1">Upload PDF documents (Max: 10MB per file, Format: PDF)</small>
                     </div>
 
                     <!-- Action Buttons -->
@@ -136,36 +158,43 @@
 </div>
 
 <script>
-    let linkIndex = {{ count($links) > 0 ? count($links) : 1 }};
-
-    function addLinkRow() {
-        const container = document.getElementById('links-container');
+    function addPdfRow() {
+        const container = document.getElementById('pdfs-container');
         const newRow = document.createElement('div');
-        newRow.className = 'link-row mb-3 border p-3 rounded';
+        newRow.className = 'pdf-row mb-3 border p-3 rounded';
         newRow.innerHTML = `
             <div class="row g-2">
                 <div class="col-md-5">
-                    <label class="form-label small">Link Title</label>
-                    <input type="text" name="links[${linkIndex}][title]" class="form-control form-control-sm" placeholder="Enter link title">
+                    <label class="form-label small">PDF Title</label>
+                    <input type="text" name="pdf_titles[]" class="form-control form-control-sm" placeholder="Enter PDF title">
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label small">Link URL</label>
-                    <input type="url" name="links[${linkIndex}][url]" class="form-control form-control-sm" placeholder="https://example.com">
+                    <label class="form-label small">Upload PDF</label>
+                    <input type="file" name="pdfs[]" class="form-control form-control-sm" accept="application/pdf">
                 </div>
                 <div class="col-md-1 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger btn-sm remove-link" onclick="removeLinkRow(this)">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removePdfRow(this)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </div>
             </div>
         `;
         container.appendChild(newRow);
-        linkIndex++;
     }
 
-    function removeLinkRow(button) {
-        const row = button.closest('.link-row');
+    function removePdfRow(button) {
+        const row = button.closest('.pdf-row');
         row.remove();
+    }
+
+    function removeExistingPdf(button, pdfPath) {
+        const row = button.closest('.existing-pdf-row');
+        // Change the hidden input to mark it for deletion
+        const hiddenInput = row.querySelector('input[name="existing_pdfs[]"]');
+        hiddenInput.name = 'deleted_pdfs[]';
+        hiddenInput.value = pdfPath;
+        // Hide the row visually
+        row.style.display = 'none';
     }
 
     function confirmDelete(id) {

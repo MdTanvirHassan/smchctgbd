@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Committee;
 use App\Models\Teacher;
 use App\Models\Designation;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 use function PHPSTORM_META\type;
@@ -64,13 +65,56 @@ class TeacherController extends Controller
         return redirect()->back()->with('error', 'Designation deleted successfully.');
     }
 
+    // Department Page  
+    public function department()
+    {
+        $departments = Department::get();
+        return view('backend.teacher.department', compact('departments'));
+    }
+
+    public function departmentStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+        ]);
+
+        Department::create([
+            'name' => $validated['name'],
+        ]);
+
+        return redirect()->route('department.index')->with('success', 'Department added successfully!');
+    }
+
+    public function departmentUpdate(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+        ]);
+
+        $department = Department::findOrFail($id);
+
+        $department->name = $validated['name'];
+        $department->save();
+
+        return redirect()->route('department.index')->with('success', 'Department updated successfully.');
+    }
+
+    public function departmentDestroy($id)
+    {
+        $department = Department::findOrFail($id);
+        $department->delete();
+
+        return redirect()->back()->with('error', 'Department deleted successfully.');
+    }
+
 
     // Teacher Page  
     public function teacher()
     {
         $teachers = Teacher::get();
         $designations = Designation::all();
-        return view('backend.teacher.teacher', compact('teachers', 'designations'));
+        $departments = Department::all();
+        return view('backend.teacher.teacher', compact('teachers', 'designations', 'departments'));
     }
 
     public function teacherStore(Request $request)
@@ -82,6 +126,7 @@ class TeacherController extends Controller
             'phone' => 'nullable|string|max:20',
             'qualification' => 'nullable|string|max:255',
             'designation' => 'nullable|integer',
+            'department' => 'nullable|integer',
             'biography' => 'nullable|string',
             'join_date' => 'nullable|date',
             'photo_path' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
@@ -110,6 +155,7 @@ class TeacherController extends Controller
             'phone' => $validated['phone'],
             'qualification' => $validated['qualification'],
             'designation_id' => $validated['designation'],
+            'department_id' => $validated['department'] ?? null,
             'biography' => $validated['biography'],
             'join_date' => $validated['join_date'],
             'photo_path' => $photo_path
@@ -128,6 +174,7 @@ class TeacherController extends Controller
             'phone' => 'nullable|string|max:20',
             'qualification' => 'nullable|string|max:255',
             'designation' => 'nullable|integer',
+            'department' => 'nullable|integer',
             'biography' => 'nullable|string',
             'join_date' => 'nullable|date',
             'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
@@ -167,6 +214,7 @@ class TeacherController extends Controller
             'phone' => $validated['phone'],
             'qualification' => $validated['qualification'],
             'designation_id' => $validated['designation'],
+            'department_id' => $validated['department'] ?? null,
             'biography' => $validated['biography'],
             'join_date' => $validated['join_date'],
             'photo_path' => $photo_path,
