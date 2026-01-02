@@ -217,14 +217,13 @@
                                 style="max-height:120px; max-width:150px; object-fit:contain; display:none; border:1px solid #ddd; padding:4px; border-radius:6px;">
                         </div>
                     </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Update</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline-primary btn-sm">Update</button>
-            </div>
-            </form>
         </div>
-    </div>
     </div>
 @endsection
 

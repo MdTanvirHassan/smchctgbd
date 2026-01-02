@@ -1,0 +1,12 @@
+[01-Dec-2025 02:11:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/smchctgb/public_html/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/smchctgb/public_html/config/database.php on line 19
+[01-Dec-2025 02:11:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/smchctgb/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/smchctgb/public_html/config/app.php on line 16
+[01-Dec-2025 02:11:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/smchctgb/public_html/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/smchctgb/public_html/config/mail.php on line 17

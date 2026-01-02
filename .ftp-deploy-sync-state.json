@@ -1,0 +1,2361 @@
+{
+    "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
+    "version": "1.0.0",
+    "generatedTime": 1763976841286,
+    "data": [
+        {
+            "type": "file",
+            "name": ".editorconfig",
+            "size": 258,
+            "hash": "d9a5756ca5adea55000be0ee4f5af68946e3554c986981b7f8e35e7acaad28fa"
+        },
+        {
+            "type": "file",
+            "name": ".env.example",
+            "size": 1076,
+            "hash": "344cf356109da05cc80115187c5d9b4eb98d9a63480998ce3d1f46b9c5a4f508"
+        },
+        {
+            "type": "file",
+            "name": ".htaccess",
+            "size": 740,
+            "hash": "b7e379c77639fd56144947dbae84c84eb466d9c686ea81f2f013ae85421da923"
+        },
+        {
+            "type": "folder",
+            "name": "app"
+        },
+        {
+            "type": "file",
+            "name": "README.md",
+            "size": 3971,
+            "hash": "eb6d4f5c328ca118232a701324b71f01c0fdad9ce6199d95bd1f7805d9e5fce7"
+        },
+        {
+            "type": "file",
+            "name": "artisan",
+            "size": 425,
+            "hash": "f91a517c0c5d3a904c3f390933964a5e08ec1fc68146882730daac4aca4ffcec"
+        },
+        {
+            "type": "folder",
+            "name": "bootstrap"
+        },
+        {
+            "type": "file",
+            "name": "composer.json",
+            "size": 2538,
+            "hash": "a8f9cafa9f0c75628f87588408dc58ee0a507b402462c5fdd384650d55c95264"
+        },
+        {
+            "type": "file",
+            "name": "composer.lock",
+            "size": 302133,
+            "hash": "b56fe8b1e1f3c3819dc2e9cdc0b4ea028c5be3c023d8b28fe03d7308ba41c6ee"
+        },
+        {
+            "type": "folder",
+            "name": "config"
+        },
+        {
+            "type": "folder",
+            "name": "database"
+        },
+        {
+            "type": "file",
+            "name": "default.php",
+            "size": 16369,
+            "hash": "aba5b5856471c610e4dd52c322c7a72a895fc9bf98ac1d027528d0e7de1f7e45"
+        },
+        {
+            "type": "file",
+            "name": "index.php",
+            "size": 534,
+            "hash": "8fa456bfda081d7a3cc7b8c41d31f14970439e52d4107b7526e44709fd217692"
+        },
+        {
+            "type": "file",
+            "name": "mbbs_course_categories_database.sql",
+            "size": 2129,
+            "hash": "485dd4a3c735b528b6e7ff3d9e086f6e7fef536dd53ce4b258823516573fbc24"
+        },
+        {
+            "type": "file",
+            "name": "mbbs_course_categories_manual.sql",
+            "size": 4305,
+            "hash": "3823aed1f7825aabaded10ce5698233c52261fccc13d9d6bbb4d26f989e0b4d7"
+        },
+        {
+            "type": "file",
+            "name": "mbbs_course_categories_updated.sql",
+            "size": 5450,
+            "hash": "8cdb7c865d88eaa455c5e5ca8f7805ec9661979d92967ad96a086f95c9bb69e3"
+        },
+        {
+            "type": "file",
+            "name": "mbbs_course_table_check.sql",
+            "size": 505,
+            "hash": "4963deee4c2529a8bf55b5858be9814db3d30037aeed6b0fb636bb77c3ea9040"
+        },
+        {
+            "type": "file",
+            "name": "package-lock.json",
+            "size": 114880,
+            "hash": "48821d17b27117863b34053a23966f1baf38dcc9def979030180471ff829ec5d"
+        },
+        {
+            "type": "file",
+            "name": "phpunit.xml",
+            "size": 1228,
+            "hash": "77375a009b932c7ef3326c30c524785a46f69437c38f6ac46ff9d98a04b97b62"
+        },
+        {
+            "type": "file",
+            "name": "package.json",
+            "size": 509,
+            "hash": "1717bf2b95a267f864bc6f10274ae4b416d74e7fe2cb138e959c6f97b81fbceb"
+        },
+        {
+            "type": "folder",
+            "name": "public"
+        },
+        {
+            "type": "folder",
+            "name": "resources"
+        },
+        {
+            "type": "folder",
+            "name": "routes"
+        },
+        {
+            "type": "folder",
+            "name": "storage"
+        },
+        {
+            "type": "folder",
+            "name": "tests"
+        },
+        {
+            "type": "file",
+            "name": "video_gallery_add_url_column.sql",
+            "size": 399,
+            "hash": "e4223be425abee0fec67244d6aa828f27c4fddbb7f740c4d5d302045c579bb6a"
+        },
+        {
+            "type": "file",
+            "name": "video_gallery_alter_table.sql",
+            "size": 448,
+            "hash": "8fdfa22db62b82334d8ca53f7637b0de20bdcd5e3f5dc11949642867ef880c6e"
+        },
+        {
+            "type": "file",
+            "name": "video_gallery_database.sql",
+            "size": 1373,
+            "hash": "11e64e845b533e4ab976b289478c2dbc306e910be4e7e5629175fade813259d7"
+        },
+        {
+            "type": "file",
+            "name": "vite.config.js",
+            "size": 312,
+            "hash": "83642a6e78507ff0c79d66e1e4ac7657e2982f46bcd676024b7854644e3a5bb2"
+        },
+        {
+            "type": "folder",
+            "name": "app/Helpers"
+        },
+        {
+            "type": "folder",
+            "name": "app/Http"
+        },
+        {
+            "type": "folder",
+            "name": "app/Models"
+        },
+        {
+            "type": "folder",
+            "name": "app/Providers"
+        },
+        {
+            "type": "folder",
+            "name": "bootstrap/cache"
+        },
+        {
+            "type": "file",
+            "name": "bootstrap/app.php",
+            "size": 713,
+            "hash": "62382a59536c80c8eea0bf9bf4b809779e9f67d825208daedb743e17619aa6bd"
+        },
+        {
+            "type": "file",
+            "name": "bootstrap/providers.php",
+            "size": 64,
+            "hash": "2ef405f988a6ef3f5222bfbdd89352a6ad7b2e9e21aa25e236ac5dff58358953"
+        },
+        {
+            "type": "file",
+            "name": "config/auth.php",
+            "size": 4029,
+            "hash": "50f8a6fabf848d20ea42a21e01066dd8a75bd822c8251a45f8939616432424dc"
+        },
+        {
+            "type": "file",
+            "name": "config/app.php",
+            "size": 4272,
+            "hash": "78dcd36b226fd7b24057cb95f567cb6e96561c2406653892d8aef6dcea8461e4"
+        },
+        {
+            "type": "file",
+            "name": "config/cache.php",
+            "size": 3480,
+            "hash": "38e71cb151e7506907ee1c4a6a27d0f49acc5cd177aaac08e14041907fe16567"
+        },
+        {
+            "type": "file",
+            "name": "config/database.php",
+            "size": 6262,
+            "hash": "52a439973c1e4fcb079622bbca306c743466c3b524796f4a98558e619301be7d"
+        },
+        {
+            "type": "file",
+            "name": "config/filesystems.php",
+            "size": 2500,
+            "hash": "46b977d9555ed617aa0d42055a0c76a34c9d16c63ee634ff6683bc95712c9317"
+        },
+        {
+            "type": "file",
+            "name": "config/logging.php",
+            "size": 4327,
+            "hash": "d90f24826a3330437f2f2fc12bb28680abe1281d35d62b082c234f4b69873835"
+        },
+        {
+            "type": "file",
+            "name": "config/mail.php",
+            "size": 3614,
+            "hash": "825c4b149f2fe412a2e37199794e7c05df7ed86fb51811777faf80238f748aae"
+        },
+        {
+            "type": "file",
+            "name": "config/queue.php",
+            "size": 3824,
+            "hash": "a185a3e86b65db26938204f4f50cf0c0ca99974e9926b9cdcef6b7743feea482"
+        },
+        {
+            "type": "file",
+            "name": "config/services.php",
+            "size": 1035,
+            "hash": "4edcfb0bcee9523fc1173ca11cb193313af3d073e9a86c547ba08f927cf942d2"
+        },
+        {
+            "type": "file",
+            "name": "config/session.php",
+            "size": 7849,
+            "hash": "12ec2d64eaffa4a9378a7f0d49f4ffd117f798b6b60a6efd3be067e4b01f1f95"
+        },
+        {
+            "type": "folder",
+            "name": "database/migrations"
+        },
+        {
+            "type": "folder",
+            "name": "database/factories"
+        },
+        {
+            "type": "folder",
+            "name": "database/seeders"
+        },
+        {
+            "type": "folder",
+            "name": "database/sql"
+        },
+        {
+            "type": "folder",
+            "name": "public/assets"
+        },
+        {
+            "type": "file",
+            "name": "public/favicon.ico",
+            "size": 0,
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+            "type": "file",
+            "name": "public/robots.txt",
+            "size": 24,
+            "hash": "e5c4b84484ee4216e9373be99380320c25dd94805f99f0a805846f087636553f"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads"
+        },
+        {
+            "type": "folder",
+            "name": "resources/css"
+        },
+        {
+            "type": "folder",
+            "name": "resources/js"
+        },
+        {
+            "type": "folder",
+            "name": "resources/lang"
+        },
+        {
+            "type": "folder",
+            "name": "resources/sass"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views"
+        },
+        {
+            "type": "file",
+            "name": "routes/console.php",
+            "size": 210,
+            "hash": "9adccc33e7dd400683e434774077c7fdb2f299c5712cedf16a43fdf56f2850fa"
+        },
+        {
+            "type": "file",
+            "name": "routes/web.php",
+            "size": 23919,
+            "hash": "b34fe3953ab5b647d1a62d5e91c5a75fdbe774f81010c56003ded4fb018de4f1"
+        },
+        {
+            "type": "folder",
+            "name": "storage/app"
+        },
+        {
+            "type": "folder",
+            "name": "storage/framework"
+        },
+        {
+            "type": "folder",
+            "name": "storage/logs"
+        },
+        {
+            "type": "folder",
+            "name": "tests/Feature"
+        },
+        {
+            "type": "file",
+            "name": "tests/TestCase.php",
+            "size": 142,
+            "hash": "c7c209f5579c42647c1f7b2a79ac828e8b54ac62a98442045a6e94fa2c0d0ebc"
+        },
+        {
+            "type": "folder",
+            "name": "tests/Unit"
+        },
+        {
+            "type": "file",
+            "name": "app/Helpers/helpers.php",
+            "size": 1818,
+            "hash": "fa6900b1f8ee6319001943ab41d55a89f21444ee8e0019eb5ee366a2720be443"
+        },
+        {
+            "type": "folder",
+            "name": "app/Http/Controllers"
+        },
+        {
+            "type": "folder",
+            "name": "app/Http/Middleware"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/ClassResult.php",
+            "size": 429,
+            "hash": "6138548914ba2fe02aba3d8fba617f2c0fcbd010459b91748059bdf4fe65ef47"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/ClassRoutine.php",
+            "size": 487,
+            "hash": "e6cdc8fa496a2723fa91adfe6aec74852f5e95611bad7616923f8cba5fb072bb"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Classes.php",
+            "size": 364,
+            "hash": "b982154366bcea063b16fda9d451f04696737c00e2b90ddd7ffb253b8f188ef0"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Committee.php",
+            "size": 352,
+            "hash": "b4b671805a2d636e3da64d63e2c6b4596a2c3848bde84d7286b00ea8084095de"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Content.php",
+            "size": 759,
+            "hash": "2e6b90deaa14370eed89b09b7ae6df0fc4ba2e7d0df35046dd64beea48371537"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Countdown.php",
+            "size": 112,
+            "hash": "e4c1271cb623b5f910d5571c4a449227bf6e541c858542e65fe90e5ae82f8a30"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Department.php",
+            "size": 219,
+            "hash": "4c8ba98c0343cfa16b114855472b2a67ec978821310161aae9afe43964c7145e"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Designation.php",
+            "size": 219,
+            "hash": "40ce37062e13ef4e3ce3f514c68e2846bb11d53804c49e9a9008d090658e12c4"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/FailedJob.php",
+            "size": 112,
+            "hash": "872b46fcc0f8d6dfa6f3d6e687d3fe95ac3eeb90cff2bcaafa483578b070cdc0"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Fee.php",
+            "size": 327,
+            "hash": "be4a589c1d8c1d49b13fde9d8791091a433bba6a2257e4c04772a252e8e0c6f3"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/GalleryCategory.php",
+            "size": 256,
+            "hash": "ca77d74a1f496961ccd7b4979edd8bc0d2641c028a88433eb694083172f3a6af"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/GalleryImage.php",
+            "size": 403,
+            "hash": "ff068303f1f533a04607fe89aad761f4f5a7db2fc78d28032ac63d0b4a0b9b8c"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/MBBSCOURSECategory.php",
+            "size": 1835,
+            "hash": "5903be31ae1758f018f1274bead894a9a9dc5d9e9d4b1b9bcf0ca2a98d31797a"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Page.php",
+            "size": 360,
+            "hash": "43c7a427fd324171a0b6014a8740d96277aedc13bd43d6c801d274a06e9e4884"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/PasswordResetToken.php",
+            "size": 121,
+            "hash": "5c183210bd49db4b2dce6bbf22b8dcc0dc3152007ed0ccdf1f98e8c26cd63c65"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Session.php",
+            "size": 110,
+            "hash": "c7bb2ceb9df1a617e5ac4a957a868b35fbdd24022bd60d59c032265ae767b773"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Setting.php",
+            "size": 232,
+            "hash": "fce7ce2f46024d1cda583965c73ce966a6e0d39e2e369211e56916da3439c51f"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Student.php",
+            "size": 545,
+            "hash": "95d157ae0fc32705273640ee41cbfa9dd99c58ba43fa2277b126d77238b70118"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/Teacher.php",
+            "size": 601,
+            "hash": "4a19e334fb5422cc44979944d0426441d52e773763e21319f664d8bc412b2fbf"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/User.php",
+            "size": 1009,
+            "hash": "e0f171d54e3f65fdca8442e730ee7f75a1ed8985ad8f1585682b28d60ee99467"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/VideoGallery.php",
+            "size": 423,
+            "hash": "aa979f15ce0fdb4a695e48159eb5a01add72186fc61315e7ebd46d9613d688a4"
+        },
+        {
+            "type": "file",
+            "name": "app/Models/VideoGalleryCategory.php",
+            "size": 262,
+            "hash": "ac887e13840efa3a0319dbe5123595780d98041197b2875bc9d2ebd7e14298ff"
+        },
+        {
+            "type": "file",
+            "name": "app/Providers/AppServiceProvider.php",
+            "size": 538,
+            "hash": "1fdb391fbb1464129783d980f4429b56997431c02ea04fcd204ba90189e16cc3"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/0001_01_01_000000_create_users_table.php",
+            "size": 1473,
+            "hash": "10d79883bc08ce46510f9ad8b1830b4d06d586dc56ae2c8bac3b3e491f69a90f"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/0001_01_01_000001_create_cache_table.php",
+            "size": 849,
+            "hash": "20f769d3c11748c1cc42c41cd3789b0b9b2cd0db44ee22d378addac3ff8aed4f"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/0001_01_01_000002_create_jobs_table.php",
+            "size": 1812,
+            "hash": "7c9c712adf4091c87bf2612f4d0dccdfa1df4501553e4ac068b83d7bd5462fa5"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061418_create_classes_table.php",
+            "size": 581,
+            "hash": "65541684d40a41baa2b73b5ee0dac9a491c2cf2be993a454deed91f77c449c29"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061419_create_class_results_table.php",
+            "size": 918,
+            "hash": "d9c95d867c4c8b183f76760964ef2e485e137ff533e881217a6cc984535ef6f1"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061419_create_class_routines_table.php",
+            "size": 961,
+            "hash": "7cc617f0d7d805b8dc45dc04dfc6ac6d36980c71ebb817d23465fee6483659e0"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061419_create_contents_table.php",
+            "size": 845,
+            "hash": "88ac190165056687648e577924539a4b1da93161fadd84dd02dc16eba6df5c63"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061420_create_departments_table.php",
+            "size": 493,
+            "hash": "93ace1f1727fc85e3573c99927cd5300502dc92ed51d11ab3f52f26658978185"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061420_create_designations_table.php",
+            "size": 494,
+            "hash": "54e1e0e18927f21a4608fe06ae668bf45a4e5dda2771d3712187c8a34e63be7d"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061421_create_gallery_categories_table.php",
+            "size": 622,
+            "hash": "55ddd6b6cb7e5e4bfecec21f1db7477ae4a872df1893685d5bd450cd81eade81"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061421_create_gallery_images_table.php",
+            "size": 760,
+            "hash": "1175e7aca5c34f6aec2abb925f6ad071a4746ef2eea2b38c6e96a17e13b06d49"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061421_create_pages_table.php",
+            "size": 817,
+            "hash": "1e70ce0b197008a043cb1fc9079ee13de182f01d4800eb3ef44414507184360d"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061423_create_settings_table.php",
+            "size": 580,
+            "hash": "250dd11f862204a5c21e4e32647a21c8a27e3726b6cd886009fc8c0d4efa6581"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061423_create_students_table.php",
+            "size": 1127,
+            "hash": "9ab91934f0c1e395c11ff92f788846f51a89756755b74454dfa97ad6dbe7060a"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_06_061423_create_teachers_table.php",
+            "size": 901,
+            "hash": "8431e9c4c36f2f98eaa8e0f791276a09b91c85f3768786d5c60a7feb3480b095"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_12_061424_create_committee_table.php",
+            "size": 818,
+            "hash": "7b23d9e86df19d99e6045ad111aac1503f09a88e27a0ba210035d4400323605e"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_08_18_050814_create_fees_table.php",
+            "size": 736,
+            "hash": "ad341ab4490f493901d93aeb0fa5ab6313a3ac0d2d7cd53a3f480347047c0d37"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_14_083007_create_video_gallery_categories_table.php",
+            "size": 732,
+            "hash": "893a24a0ee7e974726c1f88c3b129c880c5eeb57f6e583064d378609e089b869"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_14_083010_create_video_galleries_table.php",
+            "size": 936,
+            "hash": "0655143f1325b82ecda7196a19425472420e28ff7283fafc7b241ffe9bb56034"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_14_154955_create_countdowns_table.php",
+            "size": 537,
+            "hash": "eaabaad249fd5a55d36d305ec511dd4ac96968976115a778595095384237c6ee"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_14_173520_create_mbbs_course_categories_table.php",
+            "size": 1197,
+            "hash": "8a9f64e3ea3aa49efc457bc82771824d8c5bd9be6d272c1b4d2692321ca6e518"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_21_175715_add_link_title_and_secondary_image_to_contents_table.php",
+            "size": 536,
+            "hash": "c9b792b656a8cf56ec9d99df0127e03c56395198866bcfeb9fb36f817425e69f"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_21_180210_add_link_title_and_secondary_image_to_contents_table.php",
+            "size": 536,
+            "hash": "c9b792b656a8cf56ec9d99df0127e03c56395198866bcfeb9fb36f817425e69f"
+        },
+        {
+            "type": "file",
+            "name": "database/migrations/2025_11_24_091335_add_department_id_to_teachers_table.php",
+            "size": 742,
+            "hash": "241fea36d13f66d72f749b7c7832ae0faf251dfa8ffb376e7af7dc6691b1954a"
+        },
+        {
+            "type": "file",
+            "name": "database/factories/UserFactory.php",
+            "size": 1075,
+            "hash": "05c4cfa8e4dc7ebe659c66717b30ea6970f62d732a1bbce32b55650cccc6aa8d"
+        },
+        {
+            "type": "file",
+            "name": "database/seeders/DatabaseSeeder.php",
+            "size": 516,
+            "hash": "73b09cd6689592fdacd96f0e00843203e8056ef42b21512593db89a16c996fdf"
+        },
+        {
+            "type": "file",
+            "name": "database/sql/create_departments_table.sql",
+            "size": 471,
+            "hash": "6e5f55dabcb80ed6468bda3db743ce20b01319d5c6295788540682e353df7ada"
+        },
+        {
+            "type": "folder",
+            "name": "public/assets/css"
+        },
+        {
+            "type": "folder",
+            "name": "public/assets/icons"
+        },
+        {
+            "type": "folder",
+            "name": "public/assets/js"
+        },
+        {
+            "type": "folder",
+            "name": "public/assets/video"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/application_process"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/cafeteria"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/countdown.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/eligibility_criteria"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/extra_curricular_activities"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/facilities"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/hospital_department"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/hostel"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/library"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/meeting_minutes"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/notices"
+        },
+        {
+            "type": "folder",
+            "name": "public/uploads/organogram"
+        },
+        {
+            "type": "file",
+            "name": "resources/css/app.css",
+            "size": 389,
+            "hash": "fc855574fdd600e30821a5b0c9d51e668d64e006cf030ffc23d083718fc36724"
+        },
+        {
+            "type": "file",
+            "name": "resources/js/app.js",
+            "size": 22,
+            "hash": "cf6dab196c721f6911ff99cc4f910897f978599a2d289971a316a5fc33091f94"
+        },
+        {
+            "type": "file",
+            "name": "resources/js/bootstrap.js",
+            "size": 1235,
+            "hash": "5737e7434d3ac41afc2005cf670d0ec69afe3f6ec89f1aa334ff1cfd62ae000d"
+        },
+        {
+            "type": "file",
+            "name": "resources/js/hummingbird-treeview.js",
+            "size": 56028,
+            "hash": "19d302bbfef3db282e7bbe656abbc660d13b050d3768407c0b55e560b180a9af"
+        },
+        {
+            "type": "file",
+            "name": "resources/js/intlTelutils.js",
+            "size": 245884,
+            "hash": "296e05debe566282bde87bc3de5e06990abbb5a622e7564ead60f4b35f50520b"
+        },
+        {
+            "type": "file",
+            "name": "resources/js/vendors.js",
+            "size": 1503232,
+            "hash": "6f7b70f51f244c9fd0d439cb3d57b4b0317ee1d265f25ed951da8c272c3eb8b6"
+        },
+        {
+            "type": "folder",
+            "name": "resources/lang/bn"
+        },
+        {
+            "type": "folder",
+            "name": "resources/lang/en"
+        },
+        {
+            "type": "file",
+            "name": "resources/sass/_variables.scss",
+            "size": 138,
+            "hash": "be4490e8eeab84b8422e242865a80e5e8d9975adea391e2d265ac12c8d4d9ad6"
+        },
+        {
+            "type": "file",
+            "name": "resources/sass/app.scss",
+            "size": 152,
+            "hash": "a134dd13ca8754a8f9e61232bd16cf0a3f32cfbe14cfeddca4c53fe4c9168870"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/auth"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/install"
+        },
+        {
+            "type": "folder",
+            "name": "storage/app/private"
+        },
+        {
+            "type": "folder",
+            "name": "storage/app/public"
+        },
+        {
+            "type": "folder",
+            "name": "storage/framework/cache"
+        },
+        {
+            "type": "folder",
+            "name": "storage/framework/sessions"
+        },
+        {
+            "type": "folder",
+            "name": "storage/framework/testing"
+        },
+        {
+            "type": "folder",
+            "name": "storage/framework/views"
+        },
+        {
+            "type": "file",
+            "name": "tests/Feature/ExampleTest.php",
+            "size": 359,
+            "hash": "aaa4a192fb4aa96d4e81eda06a29968da3d9a73b71026b87a67297e66dd985b8"
+        },
+        {
+            "type": "file",
+            "name": "tests/Unit/ExampleTest.php",
+            "size": 243,
+            "hash": "ffacae5c1a2a44c809420af5b3b404910da1b12167d58764dac6d10b8ba8cfaf"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/AdmissionLinksController.php",
+            "size": 7713,
+            "hash": "a9522d0ff9167db90ee4c8dd0b4fa7c9ae9c50b1208787fcc120f1cb32df791d"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/ApplicationProcessController.php",
+            "size": 6099,
+            "hash": "23dc41082b546b43af678cc52d3472666734ca27f50a7ba2ec6323ab5261a038"
+        },
+        {
+            "type": "folder",
+            "name": "app/Http/Controllers/Auth"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/CafeteriaController.php",
+            "size": 3690,
+            "hash": "03d3340b0a2fda27cceb6bc111cf3442dfde11edebdc4ded0141a8f8642abada"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/ClassResultController.php",
+            "size": 4576,
+            "hash": "28dd7a09358bc16324e60f6e1cb34049c16efcbe6e2367aa2f9c05309c1345b2"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Controller.php",
+            "size": 299,
+            "hash": "663e9f40be59adb09c7acd871da814b78216e79120f10375da0a31a6cef968eb"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/DashboardController.php",
+            "size": 1326,
+            "hash": "d308dbb33b1e25598466e646b76c6372a3eb0ec2966eecbbd4ed2dbcf5209037"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/EligibilityCriteriaController.php",
+            "size": 8214,
+            "hash": "7dcd7e9b9c1ec4a0638ddef6868b26fb2fa9653974c7e67d7cd28260248ef3fe"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/ExtraCurricularActivitiesController.php",
+            "size": 4200,
+            "hash": "38aa82495566dc0d40f20ae443f33f1fd642a5b3ec1f137e2785ea0a0104c900"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/FacilitiesController.php",
+            "size": 11993,
+            "hash": "63910e5394248534f21caf20ca6ba66c539e2acd9591da65570a0df476c6a9e4"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/GalleryImageController.php",
+            "size": 7928,
+            "hash": "f6583a8a81cc81c33849220a736d23ca1f562c264be0e2c0fe5e504be23c0c91"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/HomeController.php",
+            "size": 10991,
+            "hash": "b068dd3b196f94f427c2adaf9d83a0a2c45d8eac992e56e6dae416f1f9676490"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/HospitalDepartmentController.php",
+            "size": 6803,
+            "hash": "91356459b892da0e26a2dd3bfd89c13d3892d06d96c6434e2d44831091334240"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/HostelController.php",
+            "size": 6900,
+            "hash": "06e12bb2bd915a0dd521a69e4f2a7b4622ea04e5ef5008b216dee8ed4d211243"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/InstallController.php",
+            "size": 2995,
+            "hash": "1796c60aae731398a2e60c27a35e3a8083df02853a7ddee4570d9494c631df3f"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/LanguageController.php",
+            "size": 675,
+            "hash": "969cd5169affb3f6fce12e9a297cf6717881fda9809b17c4b2966c18f562443a"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/LibraryController.php",
+            "size": 4618,
+            "hash": "3853c876291a67df58766e2f67ef4e1cf446431ce763103754cfa29c405aed49"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/MBBSCOURSEController.php",
+            "size": 18548,
+            "hash": "feb005c43c11e20fbe785acc7cd8a0274aab5517e42bc3b81993020832ce4b55"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/NoticeEventController.php",
+            "size": 23957,
+            "hash": "6a622e27f38c108d2e1357b04a43de41e712e085fbc8e8c6028b0e12a96d12bc"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/OrganogramController.php",
+            "size": 4045,
+            "hash": "bae7a5cdfbed5e9943821f84c6ea8f9ca72510b0afb7560e5d552fe53c6af6f3"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/RoutineController.php",
+            "size": 9281,
+            "hash": "ff19890049013640803656ecfa827cc994bbca7aec88d61bbf13fbec764026eb"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/SettingController.php",
+            "size": 8998,
+            "hash": "43a28b876184fc5093a878928f3b361d47befcfca08b9841f5ed43ca72b17c3c"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/StudentController.php",
+            "size": 7410,
+            "hash": "dab2530af1bf59e5e452d0895495809ab35d3e74b52e97e76159863f5556a9ca"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/TeacherController.php",
+            "size": 12013,
+            "hash": "c3d82228526f99cfea40f0ac9fb9966176b2f8b2d6008183ae041e41b72e2e4d"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/VideoGalleryController.php",
+            "size": 10216,
+            "hash": "84e03e99b65e6933e607f2687398446de46da9533bb2e1a777b1f76d3fbf766a"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Middleware/CheckInstallation.php",
+            "size": 806,
+            "hash": "a177f2d078ac571d8a2c034c53e91f099922c504cc8e58387922d477de301650"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Middleware/SetLocale.php",
+            "size": 428,
+            "hash": "00e4861be278f00a70d57ece5f01236da8656463aa3208e599a2f7ce8a2d40c3"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/css/aiz-core.css",
+            "size": 251942,
+            "hash": "736e4438606c83fdb88ab9d30289b962be5dd13d85be59007e17b9e04287781d"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/css/bg.png",
+            "size": 6909,
+            "hash": "82803f6735a16062dfae8266ece08bf4946bd144d73310a648ec43cd5a69e32a"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/css/bootstrap-rtl.min.css",
+            "size": 153350,
+            "hash": "3dcc448b66ddd90e3c69c15d0b44ea820d771fed60bdf1a583660ae1594db9f9"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/css/college.css",
+            "size": 24004,
+            "hash": "993b9c716b206587e7116f0a3879425c9912be636be8f6d4340f9dab0f5d8900"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/css/school.css",
+            "size": 20411,
+            "hash": "dbd5922c2a8f91e94266ce0ce7f853db257e0d80a9f74ab84b58846035dc3778"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/css/vendors.css",
+            "size": 468556,
+            "hash": "746d16475d01642b80913807f8a98dd62e662751351556ab08ba64e1801e6e95"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/academic_Information.png",
+            "size": 14961,
+            "hash": "21d0429316598ae31ef4fc3142806a6dc736dc2a2621c617d447e65691d52b38"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/biddaniketon-logo.png",
+            "size": 38732,
+            "hash": "f7714a79c78d70b4d22e06d4e9642b9b629d4503742d2c7259f3191a60097538"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/call.png",
+            "size": 35816,
+            "hash": "efd1eaf9812d0ec9e9ec42acc484415069e9a02d5762e7c398c849e4815fe2a4"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/download.png",
+            "size": 23561,
+            "hash": "bd216f51eac30e6cc8756b7e90cf65a04ef67519df92ddf038e5942580bac61f"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/location.png",
+            "size": 21318,
+            "hash": "9d5c0a3ddc37ac16b88998b67d3d41912644da179098f608d8b32c72d98df1ae"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/students_Information.png",
+            "size": 29102,
+            "hash": "7b9e4deba509950bd4dd6974e80b0b79e173280e69be2e7b8600b6a4bfebd860"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/teachers_Information.png",
+            "size": 22894,
+            "hash": "0490dabd377a603c6f9062573d89ad93da331e3312270b8cbe904af76384092e"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/user.png",
+            "size": 65884,
+            "hash": "eb47a8b2fb47d9546449a5d435694562151a30ed003f506ca900be57f41502e4"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/icons/watch.png",
+            "size": 70551,
+            "hash": "c2a11624ce6865631f109b74914a3aa468fe209ff6b01aeaab037af5fb89ee0d"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/js/aiz-core.js",
+            "size": 100398,
+            "hash": "607ee0cc17b601cee102e8ae1c41aff12b33996954c24b7dd9a9b07a2fd65828"
+        },
+        {
+            "type": "folder",
+            "name": "public/assets/video/gallery"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/application_process/application_process_primary_1763748506_6920aa9ac9908.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/application_process/application_process_secondary_1763748506_6920aa9ac9b7e.png",
+            "size": 72463,
+            "hash": "e203f7acb15bbcb01f1551722981e07c6d248c70081211c09f53ad5d2c826c2f"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/cafeteria/cafeteria_1763882365_1_6922b57dc7ff5.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/cafeteria/cafeteria_1763882365_2_6922b57dc8319.png",
+            "size": 495340,
+            "hash": "5d918cd8cbeb754dcfd619f7a9b1af7b642ebb1c9f28f0421f2d33bbc9d0413d"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/cafeteria/cafeteria_1763882365_3_6922b57dc848f.png",
+            "size": 187623,
+            "hash": "fb5ee94ba285076ab67b78f5be9709eb6a282c9d92c3d81c02780fe8f07fb138"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/eligibility_criteria/eligibility_criteria_1763665276_691f657c79be5.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/eligibility_criteria/eligibility_criteria_pdf_1763973641_69241a094c762.pdf",
+            "size": 474399,
+            "hash": "0a2b69fdb8a3af102430b421a8e368410296f220dc270c0a0d7ccf6441a1044d"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/eligibility_criteria/eligibility_criteria_pdf_1763973641_69241a094c990.pdf",
+            "size": 484547,
+            "hash": "cec0979408781781685da7093f6766ce55d032d7f6a84464173f39f682d71fdf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/extra_curricular_activities/extra_curricular_1763882414_1_6922b5aee3b9f.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/extra_curricular_activities/extra_curricular_1763882414_2_6922b5aee3e24.png",
+            "size": 20552,
+            "hash": "3a1b37d23709cdbe066efff1da567031f90103cee2830c0ef34646ae1d94bbe7"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/extra_curricular_activities/extra_curricular_1763882414_3_6922b5aee3f59.png",
+            "size": 495340,
+            "hash": "5d918cd8cbeb754dcfd619f7a9b1af7b642ebb1c9f28f0421f2d33bbc9d0413d"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/extra_curricular_activities/extra_curricular_1763882414_4_6922b5aee40de.jpg",
+            "size": 3309,
+            "hash": "7962106800c51cebcd3a80d13cb34d4b8bf5bbdf5ce1e5c10e6c124f4a717c3f"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/academic_calendar_1763153473_6917964170672.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/academic_facility_1763153473_1_691796417027e.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/academic_facility_1763153473_2_69179641704f3.png",
+            "size": 20552,
+            "hash": "3a1b37d23709cdbe066efff1da567031f90103cee2830c0ef34646ae1d94bbe7"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/teaching_activities_1763154134_1_691798d61b702.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/teaching_activities_1763154134_2_691798d61cd63.png",
+            "size": 187623,
+            "hash": "fb5ee94ba285076ab67b78f5be9709eb6a282c9d92c3d81c02780fe8f07fb138"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/teaching_activities_1763154134_3_691798d61d2ea.jpg",
+            "size": 3309,
+            "hash": "7962106800c51cebcd3a80d13cb34d4b8bf5bbdf5ce1e5c10e6c124f4a717c3f"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/facilities/teaching_activities_1763154134_4_691798d61d7c9.png",
+            "size": 187623,
+            "hash": "fb5ee94ba285076ab67b78f5be9709eb6a282c9d92c3d81c02780fe8f07fb138"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hospital_department/indoor_patient_department_1763667043_691f6c63c8d71_9854.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hospital_department/indoor_patient_department_1763667043_691f6c63c8f44_3986.png",
+            "size": 495340,
+            "hash": "5d918cd8cbeb754dcfd619f7a9b1af7b642ebb1c9f28f0421f2d33bbc9d0413d"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hospital_department/out_patient_department_1763666960_691f6c10b4b52_8670.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hostel/boys_hostel_1763882281_1_6922b529be184.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hostel/boys_hostel_1763882281_2_6922b529be4ce.png",
+            "size": 187623,
+            "hash": "fb5ee94ba285076ab67b78f5be9709eb6a282c9d92c3d81c02780fe8f07fb138"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hostel/girls_hostel_1763882281_1_6922b529be74f.png",
+            "size": 495340,
+            "hash": "5d918cd8cbeb754dcfd619f7a9b1af7b642ebb1c9f28f0421f2d33bbc9d0413d"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/hostel/girls_hostel_1763882281_2_6922b529be93b.jpg",
+            "size": 3309,
+            "hash": "7962106800c51cebcd3a80d13cb34d4b8bf5bbdf5ce1e5c10e6c124f4a717c3f"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/library/library_1763882140_1_6922b49c44300.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/library/library_1763882140_2_6922b49c446be.png",
+            "size": 187623,
+            "hash": "fb5ee94ba285076ab67b78f5be9709eb6a282c9d92c3d81c02780fe8f07fb138"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/meeting_minutes/1763107147_6916e14b22c11.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/notices/1763102106_6916cd9a0aeee.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/uploads/organogram/organogram_1763667602_691f6e928169a.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/admission_info.php",
+            "size": 321,
+            "hash": "4aa289d1feb99352d75233b897ce235e323a24f1b4475051312ec31f4ef7c43d"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/class_summary.php",
+            "size": 210,
+            "hash": "2a96bedb3bdf31e5c888f1ef601994c2dd6dc2888481ae444570b539c256b67b"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/contact_us.php",
+            "size": 519,
+            "hash": "cb53b207aeea334d7da3f1986485d777e443336631db6ef77d95f90b774c2344"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/event.php",
+            "size": 542,
+            "hash": "e2aa38c1f586587cf67011cc6ef1d800b2c8931e639ce2462ad5f44e2afeb3d5"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/exam_result.php",
+            "size": 785,
+            "hash": "010f345fad31c7bb0d7a03743d089dea9c4942e5f27d6b487dc1658aee2a7627"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/head_master.php",
+            "size": 503,
+            "hash": "f453aca5baecbcb35bf72682c338d4c882b8e6e31e82b5aa7ff2e1a310631273"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/footer.php",
+            "size": 569,
+            "hash": "08680492ed1e7d7d3bdae7f20c9aeeec1388bf505112083fc173e5f7fe539f57"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/header.php",
+            "size": 2675,
+            "hash": "5a26cabad5372909d71f5a6a2da0b29c1764b65675095c7630ad9f2f4853750b"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/landing.php",
+            "size": 4746,
+            "hash": "a2d753b417dc4324ff9ff4ebc7b42294a57d1923771746575f875d426c750c40"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/notice.php",
+            "size": 598,
+            "hash": "dada527999bc94509e38b4b03464e21c715ff220cffadf3a118edb4672e28405"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/meeting_minutes.php",
+            "size": 637,
+            "hash": "cd9e6dcf6f738e0fb850350f3f77dad63a4b102f505d02cdfb82031daca4460c"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/routine.php",
+            "size": 697,
+            "hash": "15039245238b95410ebf99b568a967231b6278a11b3cad73295ff3b536906bf5"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/teacher_team.php",
+            "size": 570,
+            "hash": "ea147eef61497381cc865bc4691b6168a243b911ec6b5e4800dbbc90bfc87a28"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/bn/total_students.php",
+            "size": 459,
+            "hash": "89d890bbe634845f39ab229e17b322931878bbf8f3a6f6946c96c513a351cd1c"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/admission_info.php",
+            "size": 255,
+            "hash": "e51edcadf9aa8d146322f4fb94c0a94248d8a7b56957be2b3dfbfafc9b676828"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/class_summary.php",
+            "size": 151,
+            "hash": "a0e640f3aaae27cc875e5333dc69d64dc01d43f4defb72bcaaa595e1909f4de2"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/contact_us.php",
+            "size": 305,
+            "hash": "2fb24d0a256b8db776eef69a9362f99753b78b5c0320eaa7febf95091fa4937e"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/event.php",
+            "size": 344,
+            "hash": "92adf282d5b2a8a2f0b7b01abb578e46591ca50ceb458de03dee62a6bc0bafc0"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/exam_result.php",
+            "size": 505,
+            "hash": "3b018192ab9a839154186520f949d7e8bbef8304a4c55090bd10ae537e227c37"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/footer.php",
+            "size": 386,
+            "hash": "1b2ac71326048ede427e21253a35504842ebab8543e517b298d494cfe0480257"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/head_master.php",
+            "size": 328,
+            "hash": "8c31ae2b237f1f1c2df011d6ddcd78824f8bb8ee1c31daa1976b1510a8eaaabb"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/header.php",
+            "size": 1744,
+            "hash": "f4861420c40d1443d48676c5a178c5919070741f9e4b7d48624ba5db925729b0"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/landing.php",
+            "size": 3202,
+            "hash": "2f637302f61f18baf85fbd48976f2068675fa7ac7ae494055e27ca5cd561cebf"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/meeting_minutes.php",
+            "size": 402,
+            "hash": "58bd8d3e18b6206825b7c98f37ca5e976f36c61941e755b81ba62813e1faa637"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/notice.php",
+            "size": 389,
+            "hash": "73f72f3fd1555954da422131fecc02bf5948eeea21335ce9ebfdb82af8593c64"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/routine.php",
+            "size": 473,
+            "hash": "8c0111b0c6607e442ef32c25a9f0b2bf0483a48788b929717e3e4435c446d169"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/teacher_team.php",
+            "size": 349,
+            "hash": "a3f889ae002718e2b22a330610c3820cd86f79e61e278e558870b3e8443db12c"
+        },
+        {
+            "type": "file",
+            "name": "resources/lang/en/total_students.php",
+            "size": 285,
+            "hash": "56513ece1a438134c0c211620569d2dba6577890f10dd368f54b9d55b4075760"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/auth/login.blade.php",
+            "size": 5364,
+            "hash": "fd960375405e305b307b6b851a583ba55c3925eba9aa0fb99ee996f10fc639ba"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/auth/passwords"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/auth/register.blade.php",
+            "size": 4529,
+            "hash": "a0a7bf52f57f4d059ea203bf7fb59b2f17ea02891dfd03e6e848734816882df2"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/auth/verify.blade.php",
+            "size": 1180,
+            "hash": "4d69ee63173466dbca5951f740550306c697aaf5eded3d029999ee1b712a2d4a"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/admission_links"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/application_process"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/cafeteria"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/class_result.blade.php",
+            "size": 21213,
+            "hash": "77685c3408aafb0a516c440ee9cbec5630f5f7aff9a666cfc9ba5cb4d97dadf5"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/class_routine.blade.php",
+            "size": 20230,
+            "hash": "662c6b1e272e1645a18330e857350291c069aed26d31ef5894ea8d95313590d5"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/dashboard.blade.php",
+            "size": 5312,
+            "hash": "b63a1dd1055972c1e43542eeb9aecfa116a1b087ca5a0c6888347eabd8e15a88"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/eligibility_criteria"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/event.blade.php",
+            "size": 18586,
+            "hash": "036a3a338e48ec3405c35e2aa7ae2e9391a32274e3fc3f7045bc3bcb51033e91"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/exam_routine.blade.php",
+            "size": 20149,
+            "hash": "0bc2f87776b2c24d7ffd0f3fec8de467851293ec762ed3be9e53e3b065f34323"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/extra_curricular_activities"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/facilities"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/faq.blade.php",
+            "size": 13845,
+            "hash": "0e915781b2abc4094eb66a9841048c00f8f8a67f2ab737b968ab32f2be86f623"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/file_upload.blade.php",
+            "size": 14533,
+            "hash": "bc788c0cecbed554a9b63282b3fab306ac967eb7d7881d2c885e6c7e7ae9314c"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/gallery"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/hostel"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/hospital_department"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/important_information_link.blade.php",
+            "size": 15266,
+            "hash": "d993397b5ad30cf58b96566bfbfa53d78bd1b7ff8ea64f7c610b2a1e0f6d7e01"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/important_notice.blade.php",
+            "size": 16935,
+            "hash": "e2314da17de13b0c6e86097b6c66ff7cfcbea2088abe99f83d08d425ec2c3ffd"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/inc"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/layouts"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/library"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/mbbs_course"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/meeting_minutes.blade.php",
+            "size": 24389,
+            "hash": "60e48d6d6b1166235cb0f88494e62dcf8e072f987d5870c64feea04a003549e8"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/notice.blade.php",
+            "size": 23793,
+            "hash": "3028e4d8a2ab50cc71a84a4142a2a92f1bb99b457f04adefffcb36ef388c639f"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/official_link.blade.php",
+            "size": 14938,
+            "hash": "4791700e183ba09a8bf335e2ea72d8e48ad9fa5d8e856fb41d59af1a3e3e14a3"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/organogram"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/setting"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/student"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/backend/teacher"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend/college"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend/modern"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend/school"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/install/form.blade.php",
+            "size": 4282,
+            "hash": "75c68a03d97b5d12a36908efdd565ac60bbba8c032d786698495e16e83da23da"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/install/success.blade.php",
+            "size": 1527,
+            "hash": "8cfaae28bb597d2f1bbf2de0003b3b9e71f4bac65eb1a6452fcea8ba491b087d"
+        },
+        {
+            "type": "folder",
+            "name": "storage/framework/cache/data"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Auth/ForgotPasswordController.php",
+            "size": 667,
+            "hash": "69c2a109ef0802b93693b1f7318144d7bfcd871e0dad6e011eb374211c5da53f"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Auth/ConfirmPasswordController.php",
+            "size": 965,
+            "hash": "616b7370b9ad3776fce5ca7962e7be80a83c00c81c2b93baba450bc3d8cb8549"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Auth/LoginController.php",
+            "size": 999,
+            "hash": "6dc1cbb1801c7b063aaeb83a91cf00818a56df318b528fcbe9e4fe9823a2401d"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Auth/RegisterController.php",
+            "size": 1905,
+            "hash": "ab5ae9b316425397e886d9c0b9c6d631b6c5f4fb197bd1a6b080db41598a2c79"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Auth/ResetPasswordController.php",
+            "size": 785,
+            "hash": "a2f2b0dbe125461f7f15e007fc7b5896eca5e577204abe2c8ff6d2b0935ff9b5"
+        },
+        {
+            "type": "file",
+            "name": "app/Http/Controllers/Auth/VerificationController.php",
+            "size": 1071,
+            "hash": "6ef3591ace164dc2a7fecd9e35a15217b1db91b6e005ee37cf7fca398785dafa"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/video/gallery/1763109343_6916e9df9e3c5.jpg",
+            "size": 42861,
+            "hash": "47ee0413b2733e5c9abd9c24d005f75e25e709964a3a8d050b820d9a4c6feeaf"
+        },
+        {
+            "type": "file",
+            "name": "public/assets/video/gallery/1763109380_6916ea0410be6.mp4",
+            "size": 1665666,
+            "hash": "4022633bf80c95dd67eac694fb377e94f66f54bc65b7452aba84b0983be5fdbf"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/auth/passwords/confirm.blade.php",
+            "size": 2056,
+            "hash": "5c001b868c46725acdd20889d409ed8ef08eb8b2b3d3f1101cde81f8b5d7a98d"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/auth/passwords/email.blade.php",
+            "size": 1894,
+            "hash": "ccb0bdfb4570059552d097a0fa554545d63aaa33824c9c874d109b3f256bfb1d"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/auth/passwords/reset.blade.php",
+            "size": 2984,
+            "hash": "7a62c58aa8fdfb747a95628a5c86cf65d6ae20589958df283ab9b2c43488f4a4"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/admission_links/create.blade.php",
+            "size": 18953,
+            "hash": "a4c7081d90b2065d709aa649a316c29e6995f11c306043e67238dd32ed65b43a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/admission_links/edit.blade.php",
+            "size": 8128,
+            "hash": "59bc361672032359111c6c00f5977a6892648ac4264cd5ae13a65d77a99d4364"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/admission_links/index.blade.php",
+            "size": 8701,
+            "hash": "01ae2b680161b8d25f12dcb93ccaeabcba1f74a95ce2834bf2ad55fe05e5cb89"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/application_process/index.blade.php",
+            "size": 6114,
+            "hash": "194e48f6eaf581cb0d24000bac55fc87af134d87d5f94e044063e06320a153b1"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/cafeteria/index.blade.php",
+            "size": 5690,
+            "hash": "0f953dffa1b86ff9b7052d7621f93125f31d8f8beaef4a2608f27d6b730eadab"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/eligibility_criteria/index.blade.php",
+            "size": 11332,
+            "hash": "19507741cfdb15d2a79d02375ef8086a6f67d7d5f048a02400522bfeb6e4f062"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/extra_curricular_activities/index.blade.php",
+            "size": 6249,
+            "hash": "9b53518d4a79df2895738711f313a8df65ee85569042cd3a5080272ec3a94f3a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/facilities/index.blade.php",
+            "size": 15786,
+            "hash": "51e1ee800634a08f3d140e67b9e283f0708b9f054a2e8bea7916ec0a4a386770"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/gallery/gallerycategory.blade.php",
+            "size": 15622,
+            "hash": "ea0ce47e0ec2a05eda764c789bb10fff1f34eb0902b26f66345421535add8215"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/gallery/galleryimage.blade.php",
+            "size": 17341,
+            "hash": "b2d8d989a4d58fdca1e1a4f5c72522efe13486122d332b6b3162eefed81d4f66"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/gallery/videogallery.blade.php",
+            "size": 31893,
+            "hash": "ee2a31ff08f5bf77045986e40db89740d99ead883729a2b312cfd46d182f368b"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/gallery/videogallerycategory.blade.php",
+            "size": 16102,
+            "hash": "03f06c07c9e01962fb45d0ccc35a74d1972273efab57774d86ff92099d48c809"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/hostel/index.blade.php",
+            "size": 4464,
+            "hash": "200c7bb557056c3ce90467a083d97579e1d290bbf5f9a2ec7323da6039b96a93"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/hospital_department/index.blade.php",
+            "size": 30098,
+            "hash": "808fa6305a19af9b1f47789ea764323bbfe86fae6764d385ad4a7b8f2fc842b0"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/inc/admin_nav.blade.php",
+            "size": 8047,
+            "hash": "d22948623931cc76460385e1827b949ec5cfdcac66cc9f93154702485a93d312"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/inc/admin_sidenav.blade.php",
+            "size": 14762,
+            "hash": "587c94e39924015a8216038ccc20db792dbd2e980fd088e631aec6dc60722585"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/inc/table_css.blade.php",
+            "size": 1212,
+            "hash": "68e0b60095a83b525a4a368520881fdd1e39c5876cc27160c6076109e08c835a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/layouts/app.blade.php",
+            "size": 16326,
+            "hash": "d8999e53768337bb67ccfd979fa8bbf8e5dc5ed2954ad7e42951bf45f693bbeb"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/library/index.blade.php",
+            "size": 3142,
+            "hash": "6f45e2cffb5bc3f0ea03c73af5c9ed814862b9411a4697b830dbd694f37c0401"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/mbbs_course/create.blade.php",
+            "size": 13346,
+            "hash": "6e38f81792216d0b3aeb6be73aace6ebb8cb9e82054784da37561fed1f3ff047"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/mbbs_course/index.blade.php",
+            "size": 8032,
+            "hash": "cdbdf3121f48f9e808226e147710fd15aba5a8d2759035d84288c96852e9dccc"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/mbbs_course/edit.blade.php",
+            "size": 19590,
+            "hash": "8d0a5b8d4c259a3aa3334aa3ad8716d17282e43a2f3e0e27cb0b7be5fb7a4848"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/organogram/index.blade.php",
+            "size": 5255,
+            "hash": "e3a52f4e62e41a67c06a8fc4ce7eebfd04298707d806e37047849a1d37b592da"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/setting/appearence.blade.php",
+            "size": 9987,
+            "hash": "cae61c27559a49488c8ad122b9aaf27aeab4aef9de714a84714614fc6a069973"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/setting/seo_setting.blade.php",
+            "size": 9553,
+            "hash": "f5ba73625aea3cb08835c0dd56d9425960a7e80557fe7752f6b1047fff96fe3f"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/setting/site_setting.blade.php",
+            "size": 13473,
+            "hash": "fb51cf56f0570cf67106ecea0aa8d03ececd03b5ebd5bbf0ff1bd0f069890af3"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/student/class.blade.php",
+            "size": 6412,
+            "hash": "68286a6216e879b7de7e995a03ce3b9c465b033e844074a78ca8d5352fa45ae2"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/student/fee.blade.php",
+            "size": 9733,
+            "hash": "5d262aac1a4c4215ce4b8209bd722141d2aec9875f247f2240e44fa49024dd8a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/student/section.blade.php",
+            "size": 6183,
+            "hash": "7bf3abfbd11d12ebd4a748316a79571b8656491c39abcdbbe071991c9c624209"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/student/student.blade.php",
+            "size": 18454,
+            "hash": "eb7dff62250a71f7dc9542abe74c27760179069af5c24ab4eef9c70d39691d05"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/teacher/committee.blade.php",
+            "size": 19716,
+            "hash": "f4a34e8ac446c42b2300817006944e37202134bf7aa0ff4742f484e4f4808971"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/teacher/department.blade.php",
+            "size": 6892,
+            "hash": "0600f3496ac0b3040c1de11f9014272f01fcd19ab387ddf76890ff6bb6422545"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/teacher/designation.blade.php",
+            "size": 6919,
+            "hash": "7e59b7ce896cf3ca8764c8930d457384634a31bd37cfb30a97928f3907bcc103"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/backend/teacher/teacher.blade.php",
+            "size": 25800,
+            "hash": "38067528b85a897e67bbb8f9cf9ae70e1f7d5f758995daea8c5845fd4fa0bcfa"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/admission_info.blade.php",
+            "size": 4065,
+            "hash": "58452c5961a56a385e7b3bf3ba85e103bfcb235f366315513bc7bec97357ea80"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/admission_links.blade.php",
+            "size": 7086,
+            "hash": "994e986b3f7481f4e6e2a924da74533d14b3a359c93b73490a5cbbf3831633d2"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/cafeteria.blade.php",
+            "size": 1204,
+            "hash": "4d208839dd9f60c8024700c2ff51f4f184b6e6a87fb65710ff04abdeeaf941a6"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/application_process.blade.php",
+            "size": 29251,
+            "hash": "d30ce6d3672e85d0b87ccd4ac49b4adc259378539a64ddf31665e9347e91cb73"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/class_summery.blade.php",
+            "size": 2643,
+            "hash": "f9341412cfe8c6301802ae87a61f26131f2d4b78f97ebb56bd48e3629282c9fb"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/contact_us.blade.php",
+            "size": 3531,
+            "hash": "9195bb3277296885ddf62a870af301067ed32430cc98b6ac4b3d47b72f62e795"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/eligibility_criteria_of_college_campus.blade.php",
+            "size": 5314,
+            "hash": "e06de077fc331d830d393abb4bb926a98d8f3900ccd8521c255b15330eacab15"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/event.blade.php",
+            "size": 6627,
+            "hash": "e68dc43b9883f929c69d7d05336c6e788732b97e217d307c948465285bfcbced"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/exam_result.blade.php",
+            "size": 4316,
+            "hash": "37fce1cd568e337c5960a1a5bfb247ddc73d86ce2a947e602db87b1401fa4108"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/extra_curricular_activities.blade.php",
+            "size": 1948,
+            "hash": "08862ae04990fcbcb3fa6460acedfd3ffb8b18f73939188a69ee6e4486f8d7b5"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/facilities.blade.php",
+            "size": 11000,
+            "hash": "9cc4e78ef7f16618e4128b1c411d6fedaa83cc971fd73940733aa500c1d78efb"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/governing_body.blade.php",
+            "size": 6677,
+            "hash": "1fb9df986e8b8a60770d0adff6a107cdd05fcdd7890e8c8362dc1e4f97c57377"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/head_master.blade.php",
+            "size": 3886,
+            "hash": "ea8738fd10bc05780e8c976f2122a3b452f5dd41c19b9df7df43362f6c8946fe"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/hospital_department.blade.php",
+            "size": 9960,
+            "hash": "a3e88c258dae37d9568771b035e31a1a94b3cc1fe2d72e7bca032cddf4f5eb5d"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/hostel.blade.php",
+            "size": 2244,
+            "hash": "b89464c7a2773595764de08311d84b2bdc217372f160933a607c663a96aa293e"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/ierb.blade.php",
+            "size": 9583,
+            "hash": "75dffe045b2b56fff0116a30dc3b96240ca5460397f90002ceb2c96cae12ff07"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/image_category.blade.php",
+            "size": 3713,
+            "hash": "bd312068f24b1e3215566ab7b2fd0af3661a0810e1e264583e42504b91abae6a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/image_gallery.blade.php",
+            "size": 2243,
+            "hash": "92630b0346b01886a9375d7cfad9cf1fddab696914d2ac2d7b5eba81b30b8096"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/landing_page.blade.php",
+            "size": 61037,
+            "hash": "17b9122da2fd309922dbebfa17bf7e8e9aa9f343607f6763b2f2ce30c7eadff4"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend/college/layouts"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/library.blade.php",
+            "size": 1780,
+            "hash": "bf0f50f56132bccb71dbf3d7850472aad91abbb499178b43925ebbaa3bb8a54f"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/mbbs_course_new_curriculum.blade.php",
+            "size": 4248,
+            "hash": "89ded17b006ee83fd339f71fea9da9bd4c32748c888559bb87e4db3c9c3c706f"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/meeting_minutes.blade.php",
+            "size": 15150,
+            "hash": "1ada6b9565bfb95da6600729b216dc5af7d0529584ef359b624fe06cfcaf7236"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/notice.blade.php",
+            "size": 14557,
+            "hash": "ee8ba2637fa9ee396580007628ac97f19fcb8ad73d965e1dba9e5df0bd48dcaa"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/organogram.blade.php",
+            "size": 2513,
+            "hash": "8b1c687455bd929f06b66d5bf1ce89de8302787ec35d1c257a1bfba72b39afd7"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/routine.blade.php",
+            "size": 7019,
+            "hash": "b5bad8c74e3487beb328950963bd18b1e544cb29a9cfe509a032516aa6849f2f"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/teacher_team.blade.php",
+            "size": 8197,
+            "hash": "f00541f443053d473aad3d94846ac10a889ef91d7d29511b83c72a413484760b"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/total_students.blade.php",
+            "size": 3058,
+            "hash": "f3d0055b9c594e149b6b55361644a33b285fdf41a0cca7747610b938aef40a23"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/video_category.blade.php",
+            "size": 3934,
+            "hash": "699a4bff151fe2cd205a0c6f57784abdde7f52d952eee8d2a162f7ed72672ae0"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/video_gallery.blade.php",
+            "size": 9153,
+            "hash": "2ddc65bb7f58a179ad83fdc092d36e4c346e633c7bd6c390f50cba6ab5e48b23"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/admission_info.blade.php",
+            "size": 2021,
+            "hash": "f3ef1a2c925b41f02b7bd9e51f6d4864830ed75fdae43775d5ff4aa155ec5bc7"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/admission_links.blade.php",
+            "size": 7187,
+            "hash": "35078648277ca6f2c576f8d409168eebf28f8c8fb123134121091c34c840b7b4"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/class_summery.blade.php",
+            "size": 2642,
+            "hash": "d516aca34edd3ff40b18e3cca8b2bf364aa59e96e4f6fd9617d80870290991f6"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/contact_us.blade.php",
+            "size": 2886,
+            "hash": "2c498d8b27eb9b12378388ad11caaaec8d9ada22c2f24a9c02557204d4a3d65f"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/event.blade.php",
+            "size": 4369,
+            "hash": "7fdf94e22b261316e5c2ae833a06381b40ea066a51f42e046242b8a4ab035b2c"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/exam_result.blade.php",
+            "size": 2454,
+            "hash": "167f27a4247239b215d8c7a56a5f057f4a7b0a69fb5970c92f5caa3d0925fef0"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/head_master.blade.php",
+            "size": 3881,
+            "hash": "3ffae45d4661129600cafddc64e351be4bab351cc6962ff0910e9989d3eaa5ce"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/image_gallery.blade.php",
+            "size": 2234,
+            "hash": "815c9a5326ed072659fdf2bcff1f0b343cc54e5beef3377ab57a6c8669b7025c"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/image_category.blade.php",
+            "size": 3659,
+            "hash": "8a718a18ae67830fc56aba6c901c9e9980050911433d49c53dac92b3464e01dc"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/landing_page.blade.php",
+            "size": 27075,
+            "hash": "44cbfc5380012c841aeaa687fd628564235cdc29453786a93f6f3df392c5f7f4"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend/modern/layouts"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/mbbs_course_new_curriculum.blade.php",
+            "size": 4247,
+            "hash": "c212ce08c56c22c1dcfb7bce52a9abad797d70e29f4caa467b08b0c3ee809a15"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/notice.blade.php",
+            "size": 4349,
+            "hash": "c58e14105f48674bee81099bb483abaf374e7fbcea6a9f4b0a44dd64a58d3d21"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/routine.blade.php",
+            "size": 4229,
+            "hash": "ba7d175a9f0810d488206adca5ac7f6a9d827c57f287c723d88d75358a301df4"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/teacher_team.blade.php",
+            "size": 6170,
+            "hash": "65f424fecb8891023ba7090f68934cac9658aa4b3307dd92aaaa525dbc81828c"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/total_students.blade.php",
+            "size": 1200,
+            "hash": "d0f514bf706bc4d531c88d52431289ca9b891c8ef34b89ccc435dc2c078e48ed"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/admission_info.blade.php",
+            "size": 2002,
+            "hash": "aef3fd135d3d631d42a057b5493ed7da98696ca7b33468127c02791760f589c2"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/admission_links.blade.php",
+            "size": 7085,
+            "hash": "0941377d53da766324fd7c6aec57b58ca7a29427cc8e370f8c107b582db702c4"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/class_summery.blade.php",
+            "size": 2400,
+            "hash": "3f4e05c02a9f032c64774b6f59fc09a53a6dd73b7ac24c55fc3c75ce50ed2e27"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/contact.blade.php",
+            "size": 0,
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/contact_us.blade.php",
+            "size": 3976,
+            "hash": "5e68c3e317f7bffc4e6ce9e32c4ee9ef6b5d6a1a194954580e9f159d310fdb8c"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/event.blade.php",
+            "size": 2526,
+            "hash": "6a79a7f2366e13ecb602da1d4403234935d8d9048a0f2e23c9179151b73d5d72"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/exam_result.blade.php",
+            "size": 3031,
+            "hash": "78fcee86786c7047c732eb101eb203ebf8cfed691607c35397130ef1524e185d"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/head_master.blade.php",
+            "size": 2239,
+            "hash": "481a841ab5f725cea7f0def11d0a6f24701207125f391b0d8eb008e47c344277"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/image_category.blade.php",
+            "size": 4123,
+            "hash": "e566554dabdc12c190e60ae1ac82a4ce3f250c0599760f5d27317fdf01cb4d64"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/image_gallery.blade.php",
+            "size": 2373,
+            "hash": "0802bd82acff112d7acb784e14e60fe931fcd565ac0b997d0bf1f2e024cfcb8a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/landing_page.blade.php",
+            "size": 44099,
+            "hash": "98befb6e480ad0d1535e3b6449249b087cab69d4488ac8e266de4aa29454920a"
+        },
+        {
+            "type": "folder",
+            "name": "resources/views/frontend/school/layouts"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/managing_committee.blade.php",
+            "size": 6683,
+            "hash": "c5fcad30de34613416dfcf60bb76f63e5c971be587ea39560d3f435769e5e2fc"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/notice.blade.php",
+            "size": 2432,
+            "hash": "257a5655cf168c9678676fe9c74ba31dd6ffb0cb05d0aeabe91be5c0632ec4c2"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/mbbs_course_new_curriculum.blade.php",
+            "size": 4247,
+            "hash": "c50fe10eeffc28d2c828e9a0f4f3261126fad73df2b64211bfcc342090318280"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/online_class_link.blade.php",
+            "size": 763,
+            "hash": "80fb66ed342451f2b896e22e83d71983a54b83235cfb026a97151cc0c0a4d9b5"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/routine.blade.php",
+            "size": 3635,
+            "hash": "870ecb38230a7e94ae0ab17011b7815149bd45c78235926a7e04c54d7d33fd8e"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/teacher_team.blade.php",
+            "size": 6608,
+            "hash": "497511f2b42d8846ae7fb4b2580c74972f9a5a83830b70793f866a38f12ec6c6"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/total_students.blade.php",
+            "size": 1806,
+            "hash": "8b741272a961151ff131809bf90c9ea6d972f8fa2e605245f1f87745723db150"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/layouts/app.blade.php",
+            "size": 4609,
+            "hash": "9e5f7b2292590f5078d1fb8bcc164d24cf8a3a9badafaa35d99c99adf488ae72"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/layouts/footer.blade.php",
+            "size": 5919,
+            "hash": "baabec35df7f5210b8a556e6fdb83249b6d68699ad87ca1caeead45fa1f43435"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/college/layouts/header.blade.php",
+            "size": 12130,
+            "hash": "c5a3571ae13301ad1a7ca741059641674b815ddc6325c603be76a99984368b5a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/layouts/app.blade.php",
+            "size": 4456,
+            "hash": "4310b447c96d509770ee8dd62c5f74d45de3807c48159b259810048d0ef8a030"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/layouts/css.blade.php",
+            "size": 7366,
+            "hash": "5c0290ca1538951e5bb56fbb031cfd5d30e39c5cdf77a35fad5439adbd5a3200"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/layouts/footer.blade.php",
+            "size": 3233,
+            "hash": "961ae0eb414e77ada29e20a70eb91797b4221993ab0fe62e1c8abf8f2686fae7"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/layouts/header.blade.php",
+            "size": 6625,
+            "hash": "c8d396b0253c37f16942ae12b6036239b13e640f265af18046d2fdef09d83d1e"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/modern/layouts/js.blade.php",
+            "size": 8322,
+            "hash": "5d26c382312301e13d9bb5b822fb4e89623f2f2531a01b15fa047e52dad318b8"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/layouts/app.blade.php",
+            "size": 4582,
+            "hash": "753f941a7b2950ea7d3fb4904b2b49af5aa612005201aa929f29b48f0505351b"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/layouts/footer.blade.php",
+            "size": 4832,
+            "hash": "c662062c23e8457fb860535e095a9fb48becc841de4f7a71b1fd68178784ba9a"
+        },
+        {
+            "type": "file",
+            "name": "resources/views/frontend/school/layouts/header.blade.php",
+            "size": 6433,
+            "hash": "de85e1611924209bc32ae62c0b1da1d254a62b0171f332e7f3f6ad79335acb59"
+        }
+    ]
+}
