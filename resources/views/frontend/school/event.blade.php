@@ -27,7 +27,7 @@
                                 </td>
                                 <td>
                                     <a href="#" class="notice-link"
-                                        data-content="{{ $event->description ? $event->description : 'NA' }}">
+                                        data-content-html="{{ $event->description ? htmlspecialchars($event->description, ENT_QUOTES, 'UTF-8') : 'NA' }}">
                                         {{ $event->title ? $event->title : 'NA' }}
                                     </a>
                                 </td>
@@ -56,5 +56,68 @@
         </div>
     </div>
 
-
+<style>
+    /* Styles for Summernote rich text content */
+    .notice-section .summernote-content,
+    #modalNoticeContent {
+        word-wrap: break-word;
+    }
+    
+    #modalNoticeContent p {
+        margin-bottom: 1rem;
+    }
+    
+    #modalNoticeContent ul,
+    #modalNoticeContent ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    #modalNoticeContent li {
+        margin-bottom: 0.5rem;
+    }
+    
+    #modalNoticeContent h1,
+    #modalNoticeContent h2,
+    #modalNoticeContent h3,
+    #modalNoticeContent h4,
+    #modalNoticeContent h5,
+    #modalNoticeContent h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    #modalNoticeContent table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    #modalNoticeContent table td,
+    #modalNoticeContent table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    #modalNoticeContent table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    #modalNoticeContent img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    #modalNoticeContent a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    #modalNoticeContent a:hover {
+        color: #0a58ca;
+    }
+</style>
 @endsection

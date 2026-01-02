@@ -10,9 +10,9 @@
                 @php
                     $admissionDescription = get_setting('admission_description_' . app()->getLocale()) ?: get_setting('admission_description');
                 @endphp
-                <p>
-                    {{ $admissionDescription }}
-                </p>
+                <div class="summernote-content">
+                    {!! $admissionDescription !!}
+                </div>
                 <p><strong>{{ __('admission_info.form_price') }} :</strong> {{ get_setting('monthly_fee') }}<br><strong>{{ __('admission_info.admission_fee') }} :</strong> {{ get_setting('admission_fee') }}</p>
 
                 <div class="principal-signature">
@@ -40,4 +40,67 @@
 
     </section>
 
+<style>
+    /* Styles for Summernote rich text content */
+    .admission-info-section .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .admission-info-section .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .admission-info-section .summernote-content ul,
+    .admission-info-section .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .admission-info-section .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .admission-info-section .summernote-content h1,
+    .admission-info-section .summernote-content h2,
+    .admission-info-section .summernote-content h3,
+    .admission-info-section .summernote-content h4,
+    .admission-info-section .summernote-content h5,
+    .admission-info-section .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .admission-info-section .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .admission-info-section .summernote-content table td,
+    .admission-info-section .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .admission-info-section .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .admission-info-section .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .admission-info-section .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .admission-info-section .summernote-content a:hover {
+        color: #0a58ca;
+    }
+</style>
 @endsection

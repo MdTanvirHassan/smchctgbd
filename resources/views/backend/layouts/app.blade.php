@@ -11,6 +11,8 @@
     <link rel="shortcut icon" href="{{ asset(get_setting('school_logo', 'favicon.ico')) }}" type="image/x-icon">
     <link rel="icon" href="{{ asset(get_setting('school_logo', 'favicon.ico')) }}" type="image/x-icon">
 
+    @yield('styles')
+
     <style>
         :root {
             --sidebar-bg: #232734;

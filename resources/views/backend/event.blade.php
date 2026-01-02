@@ -1,5 +1,21 @@
 @extends('backend.layouts.app')
 
+@section('styles')
+<!-- Summernote CSS -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.css" rel="stylesheet">
+<style>
+    .note-color-palette { display: block !important; padding: 5px; min-width: 160px; }
+    .note-color-palette .note-color-row { display: flex; flex-wrap: wrap; margin: 0; }
+    .note-color-palette .note-color-btn { width: 24px; height: 24px; padding: 0; margin: 2px; border: 1px solid #ddd; cursor: pointer; display: inline-block; border-radius: 2px; }
+    .note-color-palette .note-color-btn:hover { border-color: #333; transform: scale(1.1); }
+    .note-color button { cursor: pointer; }
+    .note-color .dropdown-toggle::after { display: none; }
+    .note-color.open .dropdown-menu { display: block !important; }
+    .note-color .dropdown-menu { display: none; position: absolute; z-index: 1000; min-width: 160px; padding: 5px; background-color: #fff; border: 1px solid rgba(0,0,0,.15); border-radius: 0.25rem; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+    .note-popover { z-index: 1050 !important; }
+</style>
+@endsection
+
 @section('contents')
     @include('backend.inc.table_css')
 
@@ -144,8 +160,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label small">Description</label>
-                            <textarea name="description" class="form-control form-control-sm" rows="3" required></textarea>
+                            <textarea name="description" id="add-event-description" class="form-control form-control-sm" rows="3" required></textarea>
                             <div class="invalid-feedback">Please enter a description.</div>
+                            <small class="text-muted">Format your text with bold, italic, colors, lists, and more.</small>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -192,9 +209,10 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label small">Description</label>
-                            <textarea name="description" id="description" class="form-control form-control-sm" rows="3"
+                            <textarea name="description" id="edit-event-description" class="form-control form-control-sm" rows="3"
                                 required></textarea>
                             <div class="invalid-feedback">Please enter a description.</div>
+                            <small class="text-muted">Format your text with bold, italic, colors, lists, and more.</small>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -225,7 +243,53 @@
 @endsection
 
 @section('scripts')
+<!-- Summernote JS -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.js"></script>
     <script>
+        // Summernote configuration
+        var summernoteConfig = {
+            height: 250,
+            toolbar: [
+                ['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                ['fontname', ['fontname']], ['fontsize', ['fontsize']], ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']],
+                ['insert', ['link', 'picture']], ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],
+            fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '24', '36', '48'],
+            placeholder: 'Enter description here...',
+            dialogsInBody: true,
+            disableDragAndDrop: true,
+            popatmouse: true
+        };
+
+        // Initialize Summernote for Add Modal
+        $('#addEventModal').on('shown.bs.modal', function () {
+            if (!$('#add-event-description').next('.note-editor').length) {
+                $('#add-event-description').summernote(summernoteConfig);
+            }
+        });
+
+        // Initialize Summernote for Edit Modal
+        $('#editEventModal').on('shown.bs.modal', function () {
+            if (!$('#edit-event-description').next('.note-editor').length) {
+                $('#edit-event-description').summernote(summernoteConfig);
+            }
+        });
+
+        // Destroy Summernote when modals close
+        $('#addEventModal').on('hidden.bs.modal', function () {
+            if ($('#add-event-description').next('.note-editor').length) {
+                $('#add-event-description').summernote('destroy');
+            }
+        });
+
+        $('#editEventModal').on('hidden.bs.modal', function () {
+            if ($('#edit-event-description').next('.note-editor').length) {
+                $('#edit-event-description').summernote('destroy');
+            }
+        });
+
         // Fill Edit Modal
         $('#editEventModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
@@ -239,7 +303,13 @@
             form.attr('action', action);
             form.find('#event_id').val(id);
             form.find('#title').val(title);
-            form.find('#description').val(description);
+            form.find('#edit-event-description').val(description);
+            // Update Summernote content if already initialized
+            setTimeout(function() {
+                if ($('#edit-event-description').next('.note-editor').length) {
+                    $('#edit-event-description').summernote('code', description);
+                }
+            }, 100);
             form.find('#start_date').val(start_date);
             form.find('#end_date').val(end_date);
         });

@@ -31,7 +31,7 @@
                                 data-bs-target="#noticeModal"
                                 data-title="{{ $notice->title }}"
                                 data-date="{{ $notice->start_date }}"
-                                data-description="{{ $notice->description }}"
+                                data-description-html="{{ htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') }}"
                                 onclick="showNoticeModal(this)">
                                 {{ $notice->title }}
                             </a>
@@ -44,7 +44,7 @@
                                 data-bs-target="#noticeModal"
                                 data-title="{{ $notice->title }}"
                                 data-date="{{ $notice->start_date }}"
-                                data-description="{{ $notice->description }}"
+                                data-description-html="{{ htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') }}"
                                 onclick="showNoticeModal(this)">
                                 বিস্তারিত
                             </button>
@@ -68,7 +68,7 @@
                 <div class="modal-body">
                     <h5 id="modalNoticeTitle" class="fw-semibold mb-3"></h5>
                     <small id="modalNoticeDate" class="text-muted d-block mb-2"></small>
-                    <p id="modalNoticeContent" class="mb-0"></p>
+                    <div id="modalNoticeContent" class="summernote-content mb-0" style="line-height: 1.8;"></div>
                 </div>
                 <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
@@ -84,11 +84,84 @@
     function showNoticeModal(element) {
         const title = element.getAttribute('data-title');
         const date = element.getAttribute('data-date');
-        const description = element.getAttribute('data-description');
+        const descriptionHtml = element.getAttribute('data-description-html');
 
         document.getElementById('modalNoticeTitle').innerText = title;
         document.getElementById('modalNoticeDate').innerText = date;
-        document.getElementById('modalNoticeContent').innerText = description;
+        
+        // Decode HTML entities and render as HTML
+        if (descriptionHtml) {
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.innerHTML = descriptionHtml;
+            const decodedHtml = tempTextarea.value;
+            document.getElementById('modalNoticeContent').innerHTML = decodedHtml;
+        } else {
+            document.getElementById('modalNoticeContent').innerHTML = '';
+        }
     }
 </script>
+
+<style>
+    /* Styles for Summernote rich text content */
+    .notice-section .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .notice-section .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .notice-section .summernote-content ul,
+    .notice-section .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .notice-section .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .notice-section .summernote-content h1,
+    .notice-section .summernote-content h2,
+    .notice-section .summernote-content h3,
+    .notice-section .summernote-content h4,
+    .notice-section .summernote-content h5,
+    .notice-section .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .notice-section .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .notice-section .summernote-content table td,
+    .notice-section .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .notice-section .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .notice-section .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .notice-section .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .notice-section .summernote-content a:hover {
+        color: #0a58ca;
+    }
+</style>
 @endsection

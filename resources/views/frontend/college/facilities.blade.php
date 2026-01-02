@@ -54,7 +54,9 @@
                         @endif
                         @if($academicData && isset($academicData['description']))
                             <div class="col-md-12">
-                                <p class="lead">{{ $academicData['description'] }}</p>
+                                <div class="summernote-content" style="line-height: 1.8; text-align: justify;">
+                                    {!! $academicData['description'] !!}
+                                </div>
                             </div>
                         @endif
                         @if($academicFacility->link_url)
@@ -89,7 +91,9 @@
                         @if(isset($teachingData['images']))
                             <div class="col-md-12 mb-3">
                                 @if(isset($teachingData['description1']))
-                                    <p class="lead mb-3">{{ $teachingData['description1'] }}</p>
+                                    <div class="summernote-content mb-3" style="line-height: 1.8; text-align: justify;">
+                                        {!! $teachingData['description1'] !!}
+                                    </div>
                                 @endif
                                 <div class="row g-3">
                                     @foreach(array_slice($teachingData['images'], 0, 2) as $index => $image)
@@ -101,7 +105,9 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 @if(isset($teachingData['description2']))
-                                    <p class="lead mb-3">{{ $teachingData['description2'] }}</p>
+                                    <div class="summernote-content mb-3" style="line-height: 1.8; text-align: justify;">
+                                        {!! $teachingData['description2'] !!}
+                                    </div>
                                 @endif
                                 <div class="row g-3">
                                     @foreach(array_slice($teachingData['images'], 2, 2) as $index => $image)
@@ -142,7 +148,9 @@
                         @endif
                         @if($meuData && isset($meuData['description']))
                             <div class="col-md-6">
-                                <p class="lead">{{ $meuData['description'] }}</p>
+                                <div class="summernote-content" style="line-height: 1.8; text-align: justify;">
+                                    {!! $meuData['description'] !!}
+                                </div>
                                 @if($activitiesOfMeu->link_url)
                                     <a href="{{ $activitiesOfMeu->link_url }}" target="_blank" class="btn btn-info text-white">
                                         <i class="fas fa-external-link-alt me-2"></i>View More
@@ -173,7 +181,9 @@
                         @endif
                         @if($researchData && isset($researchData['description']))
                             <div class="col-md-6">
-                                <p class="lead">{{ $researchData['description'] }}</p>
+                                <div class="summernote-content" style="line-height: 1.8; text-align: justify;">
+                                    {!! $researchData['description'] !!}
+                                </div>
                                 @if($researchCell->link_url)
                                     <a href="{{ $researchCell->link_url }}" target="_blank" class="btn btn-warning">
                                         <i class="fas fa-external-link-alt me-2"></i>View More
@@ -210,5 +220,69 @@
         @endif
     </div>
 </section>
+
+<style>
+    /* Styles for Summernote rich text content */
+    .facilities-section .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .facilities-section .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .facilities-section .summernote-content ul,
+    .facilities-section .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .facilities-section .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .facilities-section .summernote-content h1,
+    .facilities-section .summernote-content h2,
+    .facilities-section .summernote-content h3,
+    .facilities-section .summernote-content h4,
+    .facilities-section .summernote-content h5,
+    .facilities-section .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .facilities-section .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .facilities-section .summernote-content table td,
+    .facilities-section .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .facilities-section .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .facilities-section .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .facilities-section .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .facilities-section .summernote-content a:hover {
+        color: #0a58ca;
+    }
+</style>
 @endsection
 

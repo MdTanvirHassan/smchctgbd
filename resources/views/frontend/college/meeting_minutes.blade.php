@@ -61,7 +61,7 @@
                                         data-bs-target="#meetingMinutesModal"
                                         data-title="{{ $meetingMinute->title }}"
                                         data-date="{{ \Carbon\Carbon::parse($meetingMinute->start_date)->format('d M Y') }}"
-                                        data-description="{{ $meetingMinute->description }}"
+                                        data-description-html="{{ htmlspecialchars($meetingMinute->description, ENT_QUOTES, 'UTF-8') }}"
                                         data-image="{{ $meetingMinute->file_path ?? '' }}"
                                         onclick="showMeetingMinutesModal(this)">
                                         {{ $meetingMinute->title }}
@@ -78,7 +78,7 @@
                                             data-bs-target="#meetingMinutesModal"
                                             data-title="{{ $meetingMinute->title }}"
                                             data-date="{{ \Carbon\Carbon::parse($meetingMinute->start_date)->format('d M Y') }}"
-                                            data-description="{{ $meetingMinute->description }}"
+                                            data-description-html="{{ htmlspecialchars($meetingMinute->description, ENT_QUOTES, 'UTF-8') }}"
                                             data-image="{{ $meetingMinute->file_path ?? '' }}"
                                             onclick="showMeetingMinutesModal(this)">
                                             {{ __('meeting_minutes.details') }}
@@ -151,7 +151,7 @@
                 <div class="modal-body">
                     <h5 id="modalMeetingMinutesTitle" class="fw-semibold mb-3"></h5>
                     <small id="modalMeetingMinutesDate" class="text-muted d-block mb-2"></small>
-                    <p id="modalMeetingMinutesContent" class="mb-3"></p>
+                    <div id="modalMeetingMinutesContent" class="summernote-content mb-3" style="line-height: 1.8;"></div>
                     
                     <!-- Image Section -->
                     <div id="modalImageSection" style="display: none;">
@@ -186,12 +186,21 @@
     function showMeetingMinutesModal(element) {
         const title = element.getAttribute('data-title');
         const date = element.getAttribute('data-date');
-        const description = element.getAttribute('data-description');
+        const descriptionHtml = element.getAttribute('data-description-html');
         const imagePath = element.getAttribute('data-image');
 
         document.getElementById('modalMeetingMinutesTitle').innerText = title;
         document.getElementById('modalMeetingMinutesDate').innerText = date;
-        document.getElementById('modalMeetingMinutesContent').innerText = description;
+        
+        // Decode HTML entities and render as HTML
+        if (descriptionHtml) {
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.innerHTML = descriptionHtml;
+            const decodedHtml = tempTextarea.value;
+            document.getElementById('modalMeetingMinutesContent').innerHTML = decodedHtml;
+        } else {
+            document.getElementById('modalMeetingMinutesContent').innerHTML = '';
+        }
 
         // Handle image
         const imageSection = document.getElementById('modalImageSection');
@@ -304,5 +313,69 @@
         filterMeetingMinutes();
     });
 </script>
+
+<style>
+    /* Styles for Summernote rich text content */
+    .notice-section .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .notice-section .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .notice-section .summernote-content ul,
+    .notice-section .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .notice-section .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .notice-section .summernote-content h1,
+    .notice-section .summernote-content h2,
+    .notice-section .summernote-content h3,
+    .notice-section .summernote-content h4,
+    .notice-section .summernote-content h5,
+    .notice-section .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .notice-section .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .notice-section .summernote-content table td,
+    .notice-section .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .notice-section .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .notice-section .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .notice-section .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .notice-section .summernote-content a:hover {
+        color: #0a58ca;
+    }
+</style>
 @endsection
 

@@ -89,15 +89,36 @@
         });
 
         function showNewsModal(element) {
-            const content = element.getAttribute('data-content');
-            document.getElementById('modalContent').textContent = content;
+            const contentHtml = element.getAttribute('data-content-html') || element.getAttribute('data-content');
+            const modalContent = document.getElementById('modalContent');
+            
+            if (contentHtml) {
+                // Decode HTML entities and render as HTML
+                const tempTextarea = document.createElement('textarea');
+                tempTextarea.innerHTML = contentHtml;
+                const decodedHtml = tempTextarea.value;
+                modalContent.innerHTML = decodedHtml;
+            } else {
+                modalContent.textContent = '';
+            }
         }
 
         $(document).ready(function() {
             $('.notice-link').on('click', function(e) {
                 e.preventDefault();
-                const content = $(this).data('content');
-                $('#modalNoticeContent').text(content);
+                const contentHtml = $(this).data('content-html') || $(this).data('content');
+                const modalContent = $('#modalNoticeContent');
+                
+                if (contentHtml) {
+                    // Decode HTML entities and render as HTML
+                    const tempTextarea = document.createElement('textarea');
+                    tempTextarea.innerHTML = contentHtml;
+                    const decodedHtml = tempTextarea.value;
+                    modalContent.html(decodedHtml);
+                } else {
+                    modalContent.text('');
+                }
+                
                 const myModal = new bootstrap.Modal(document.getElementById('noticeModal'));
                 myModal.show();
             });

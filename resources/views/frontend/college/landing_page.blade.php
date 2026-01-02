@@ -14,7 +14,7 @@
                     <li class="d-flex">
                         @foreach($important_notices as $important_notice)
                         <a class="me-5" href="#" data-bs-toggle="modal" data-bs-target="#newsModal"
-                            data-content="{{$important_notice->description}}"
+                            data-content-html="{{ htmlspecialchars($important_notice->description, ENT_QUOTES, 'UTF-8') }}"
                             onclick="showNewsModal(this)">
                             <div class="datenews">{{ \Carbon\Carbon::parse($important_notice->start_date)->format('F j, Y') }}</div>
                             {{$important_notice->title}}
@@ -33,7 +33,7 @@
                         <h5 class="modal-title" id="newsModalLabel">{{ __('landing.modal_special_announcement') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" id="modalContent">
+                    <div class="modal-body summernote-content" id="modalContent" style="line-height: 1.8;">
                         <!-- Dynamic content will appear here -->
                     </div>
                 </div>
@@ -112,8 +112,8 @@
                         <h3 class="title mb-3">
                             <span>{{get_setting('school_name')}}</span>
                         </h3>
-                        <div class="desc">
-                            {{ \Illuminate\Support\Str::words(get_setting('about_us_description'), 70, '...') }}
+                        <div class="desc summernote-content">
+                            {!! \Illuminate\Support\Str::words(get_setting('about_us_description'), 70, '...') !!}
                         </div>
                     </div>
                     <div class="btn-part">
@@ -127,26 +127,33 @@
             use Illuminate\Support\Str;
 
             $headteacherMessage = get_setting('headmaster_speech');
-
             $chairmanMessage = get_setting('secretary_speech');
 
-            $headteacherPreview = Str::words(strip_tags($headteacherMessage), 30, '...');
-            $chairmanPreview = Str::words(strip_tags($chairmanMessage), 30, '...');
-
-            if (Str::endsWith($headteacherPreview, '...')) {
-            $previewWithoutEllipsis = Str::replaceLast('...', '', $headteacherPreview);
+            // For HTML content, create preview by limiting text length while preserving HTML structure
+            $headteacherPreview = $headteacherMessage;
+            $chairmanPreview = $chairmanMessage;
+            
+            // Check if content is longer than 200 characters for preview
+            $headteacherTextOnly = strip_tags($headteacherMessage);
+            $chairmanTextOnly = strip_tags($chairmanMessage);
+            
+            $headteacherNeedsMore = strlen($headteacherTextOnly) > 200;
+            $chairmanNeedsMore = strlen($chairmanTextOnly) > 200;
+            
+            if ($headteacherNeedsMore) {
+                // Create preview by truncating HTML content
+                $headteacherPreview = Str::limit($headteacherMessage, 200, '...');
+                $headteacherRemaining = str_replace($headteacherPreview, '', $headteacherMessage);
             } else {
-            $previewWithoutEllipsis = $headteacherPreview;
+                $headteacherRemaining = '';
             }
-
-            if (Str::endsWith($chairmanPreview, '...')) {
-            $previewChairmanWithoutEllipsis = Str::replaceLast('...', '', $chairmanPreview);
+            
+            if ($chairmanNeedsMore) {
+                $chairmanPreview = Str::limit($chairmanMessage, 200, '...');
+                $chairmanRemaining = str_replace($chairmanPreview, '', $chairmanMessage);
             } else {
-            $previewChairmanWithoutEllipsis = $chairmanPreview;
+                $chairmanRemaining = '';
             }
-
-            $headteacherRemaining = trim(str_replace($previewWithoutEllipsis, '', $headteacherMessage));
-            $chairmanRemaining = trim(str_replace($previewChairmanWithoutEllipsis, '', $chairmanMessage));
             @endphp
 
             <div class="col-md-8">
@@ -158,11 +165,11 @@
                     </div>
                     <div class="flex-grow-1">
                         <h5 class="mb-2" style="color: #00465b;">{{ __('landing.headteacher_message') }}</h5>
-                        <p class="desc mb-2" style="line-height: 1.7;">
-                            {!! nl2br(e($headteacherPreview)) !!}
+                        <div class="desc mb-2 summernote-content" style="line-height: 1.7;">
+                            {!! $headteacherPreview !!}
                             @if($headteacherRemaining)
                             <span id="headteacherMore" class="collapse">
-                                {!! nl2br(e($headteacherRemaining)) !!}
+                                {!! $headteacherRemaining !!}
                             </span>
                             <a href="#" class="text-danger ms-1" data-bs-toggle="collapse"
                                 data-bs-target="#headteacherMore" aria-expanded="false" data-toggle-type="readmore" aria-controls="headteacherMore"
@@ -170,7 +177,7 @@
                                 {{ __('landing.read_more') }}
                             </a>
                             @endif
-                        </p>
+                        </div>
                         <div class="mt-2">
                             <strong class="text-dark">{{ get_setting('headmaster_name') ?? 'Principal/ Headmaster' }}</strong><br />
                             <strong class="text-dark">- {{ get_setting('school_name') ?? 'school name' }}</strong>
@@ -187,11 +194,11 @@
                     </div>
                     <div class="flex-grow-1">
                         <h5 class="mb-2" style="color: #660000;">{{ __('landing.chairman_message') }}</h5>
-                        <p class="desc mb-2" style="line-height: 1.7;">
-                            {!! nl2br(e($chairmanPreview)) !!}
+                        <div class="desc mb-2 summernote-content" style="line-height: 1.7;">
+                            {!! $chairmanPreview !!}
                             @if($chairmanRemaining)
                             <span id="chairmanMore" class="collapse">
-                                {!! nl2br(e($chairmanRemaining)) !!}
+                                {!! $chairmanRemaining !!}
                             </span>
                             <a href="#" class="text-danger ms-1" data-bs-toggle="collapse" data-toggle-type="readmore"
                                 data-bs-target="#chairmanMore" aria-expanded="false" aria-controls="chairmanMore"
@@ -199,7 +206,7 @@
                                 {{ __('landing.read_more') }}
                             </a>
                             @endif
-                        </p>
+                        </div>
                         <div>
                             <strong class="text-dark">{{ get_setting('secretary_name') ?? 'Secretary' }}</strong><br />
                             <strong class="text-dark">- {{ get_setting('school_name') ?? 'school name' }}</strong>
@@ -227,9 +234,9 @@
                                 class="img-fluid image-size" />
                         </div>
                         <div class="col-md-8">
-                            <p class="m-0 p-0" style="font-size: 16px; color:#000; text-align: justify;">
-                                {{get_setting('school_history_description')}}
-                            </p>
+                            <div class="m-0 p-0 summernote-content" style="font-size: 16px; color:#000; text-align: justify;">
+                                {!! get_setting('school_history_description') !!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -463,7 +470,7 @@
                             </h2>
                             <div id="collapse{{ $index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $index }}" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body" style="font-size: 0.8rem; line-height: 1.4; max-height: 5.5em; overflow: hidden; text-overflow: ellipsis;">
-                                    {!! nl2br(e($faq->description)) !!}
+                                    {!! $faq->description !!}
                                 </div>
                             </div>
                         </div>
@@ -1144,6 +1151,130 @@
             font-size: 20px;
             line-height: 35px;
         }
+    }
+
+    /* Styles for Summernote rich text content */
+    .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .summernote-content ul,
+    .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .summernote-content h1,
+    .summernote-content h2,
+    .summernote-content h3,
+    .summernote-content h4,
+    .summernote-content h5,
+    .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .summernote-content table td,
+    .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .summernote-content a:hover {
+        color: #0a58ca;
+    }
+
+    /* Styles for Summernote rich text content */
+    .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .summernote-content ul,
+    .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .summernote-content h1,
+    .summernote-content h2,
+    .summernote-content h3,
+    .summernote-content h4,
+    .summernote-content h5,
+    .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .summernote-content table td,
+    .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .summernote-content a:hover {
+        color: #0a58ca;
     }
 </style>
 @endsection

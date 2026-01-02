@@ -50,7 +50,7 @@
                                 data-bs-target="#eventModal"
                                 data-title="{{ $event->title }}"
                                 data-date="{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}"
-                                data-description="{{ $event->description }}"
+                                data-description-html="{{ htmlspecialchars($event->description, ENT_QUOTES, 'UTF-8') }}"
                                 onclick="showEventModal(this)">
                                 {{ $event->title }}
                             </a>
@@ -63,7 +63,7 @@
                                 data-bs-target="#eventModal"
                                 data-title="{{ $event->title }}"
                                 data-date="{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}"
-                                data-description="{{ $event->description }}"
+                                data-description-html="{{ htmlspecialchars($event->description, ENT_QUOTES, 'UTF-8') }}"
                                 onclick="showEventModal(this)">
                                 {{ __('event.details') }}
                             </button>
@@ -88,7 +88,7 @@
                 <div class="modal-body">
                     <h5 id="modalEventTitle" class="fw-semibold mb-3"></h5>
                     <small id="modalEventDate" class="text-muted d-block mb-2"></small>
-                    <p id="modalEventContent" class="mb-0"></p>
+                    <div id="modalEventContent" class="summernote-content mb-0" style="line-height: 1.8;"></div>
                 </div>
                 <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('event.close') }}</button>
@@ -104,11 +104,20 @@
     function showEventModal(element) {
         const title = element.getAttribute('data-title');
         const date = element.getAttribute('data-date');
-        const description = element.getAttribute('data-description');
+        const descriptionHtml = element.getAttribute('data-description-html');
 
         document.getElementById('modalEventTitle').innerText = title;
         document.getElementById('modalEventDate').innerText = date;
-        document.getElementById('modalEventContent').innerText = description;
+        
+        // Decode HTML entities and render as HTML
+        if (descriptionHtml) {
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.innerHTML = descriptionHtml;
+            const decodedHtml = tempTextarea.value;
+            document.getElementById('modalEventContent').innerHTML = decodedHtml;
+        } else {
+            document.getElementById('modalEventContent').innerHTML = '';
+        }
     }
 
     // ✅ Filter Events
@@ -143,4 +152,68 @@
         filterEvents();
     });
 </script>
+
+<style>
+    /* Styles for Summernote rich text content */
+    .event-section .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .event-section .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .event-section .summernote-content ul,
+    .event-section .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .event-section .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .event-section .summernote-content h1,
+    .event-section .summernote-content h2,
+    .event-section .summernote-content h3,
+    .event-section .summernote-content h4,
+    .event-section .summernote-content h5,
+    .event-section .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .event-section .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .event-section .summernote-content table td,
+    .event-section .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .event-section .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .event-section .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .event-section .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .event-section .summernote-content a:hover {
+        color: #0a58ca;
+    }
+</style>
 @endsection

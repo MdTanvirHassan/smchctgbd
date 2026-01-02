@@ -93,15 +93,18 @@
                             <div class="col-md-8">
                                 <div>
                                     {{-- Preview (limit words for short view) --}}
-                                    <p id="schoolHistoryPreview" style="font-size: 16px; color:#000; text-align: justify;">
-                                        {{ \Illuminate\Support\Str::words(strip_tags(get_setting('school_history_description')), 150, '...') }}
-                                    </p>
+                                    <div id="schoolHistoryPreview" class="summernote-content" style="font-size: 16px; color:#000; text-align: justify;">
+                                        {!! \Illuminate\Support\Str::limit(get_setting('school_history_description'), 200, '...') !!}
+                                    </div>
 
                                     {{-- Full text (hidden initially) --}}
-                                    <div class="collapse" id="schoolHistoryMore">
-                                        <p style="font-size: 16px; color:#000; text-align: justify;">
-                                            {{ get_setting('school_history_description') }}
-                                        </p>
+                                    <div class="collapse summernote-content" id="schoolHistoryMore" style="font-size: 16px; color:#000; text-align: justify;">
+                                        @php
+                                            $fullText = get_setting('school_history_description');
+                                            $previewText = \Illuminate\Support\Str::limit($fullText, 200, '...');
+                                            $remainingText = str_replace($previewText, '', $fullText);
+                                        @endphp
+                                        {!! $remainingText !!}
                                     </div>
 
                                     {{-- Toggle Button --}}
@@ -145,9 +148,9 @@
                                     $headmasterDesignation = get_setting('headmaster_designation_' . app()->getLocale()) ?: get_setting('headmaster_designation');
                                     $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name', '4axiz');
                                 @endphp
-                                <p>
-                                    {{ $headmasterSpeech }}
-                                </p>
+                                <div class="summernote-content">
+                                    {!! $headmasterSpeech !!}
+                                </div>
 
                                 <div style="line-height: 1.6em; font-weight: bold;">
                                     <div>{{ $headmasterName }}</div>
@@ -855,5 +858,67 @@
             font-size: 20px;
             line-height: 35px;
         }
+    }
+
+    /* Styles for Summernote rich text content */
+    .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .summernote-content ul,
+    .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .summernote-content h1,
+    .summernote-content h2,
+    .summernote-content h3,
+    .summernote-content h4,
+    .summernote-content h5,
+    .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .summernote-content table td,
+    .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .summernote-content a:hover {
+        color: #0a58ca;
     }
 </style>

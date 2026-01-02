@@ -37,8 +37,8 @@
                         <!-- Description -->
                         @if($data && isset($data['description']) && !empty($data['description']))
                             <div class="col-md-12">
-                                <div class="description-content" style="line-height: 1.8; text-align: justify;">
-                                    {!! nl2br(e($data['description'])) !!}
+                                <div class="description-content summernote-content" style="line-height: 1.8; text-align: justify;">
+                                    {!! $data['description'] !!}
                                 </div>
                             </div>
                         @endif
@@ -101,6 +101,68 @@
     .eligibility-criteria-section .description-content {
         font-size: 1.1rem;
         color: #333;
+    }
+    
+    /* Styles for Summernote rich text content */
+    .eligibility-criteria-section .summernote-content {
+        word-wrap: break-word;
+    }
+    
+    .eligibility-criteria-section .summernote-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .eligibility-criteria-section .summernote-content ul,
+    .eligibility-criteria-section .summernote-content ol {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    
+    .eligibility-criteria-section .summernote-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .eligibility-criteria-section .summernote-content h1,
+    .eligibility-criteria-section .summernote-content h2,
+    .eligibility-criteria-section .summernote-content h3,
+    .eligibility-criteria-section .summernote-content h4,
+    .eligibility-criteria-section .summernote-content h5,
+    .eligibility-criteria-section .summernote-content h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .eligibility-criteria-section .summernote-content table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    
+    .eligibility-criteria-section .summernote-content table td,
+    .eligibility-criteria-section .summernote-content table th {
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+    }
+    
+    .eligibility-criteria-section .summernote-content table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .eligibility-criteria-section .summernote-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .eligibility-criteria-section .summernote-content a {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+    
+    .eligibility-criteria-section .summernote-content a:hover {
+        color: #0a58ca;
     }
     
     .eligibility-criteria-section .list-group-item .btn-group {
