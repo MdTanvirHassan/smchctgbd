@@ -50,11 +50,11 @@
                     </div>
                 </div>
 
-                <!-- Working Hours -->
+                <!-- Hospital Office -->
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="contact-item">
                         <img src="{{ asset('/public/assets/icons/watch.png') }}" class="img-hover"
-                            alt="Working Hours Icon" />
+                            alt="Hospital Office Icon" />
                         <h3>{{ __('contact_us.working_hours') }}</h3>
                         <p class="subtitle">
                             <span class='items'>

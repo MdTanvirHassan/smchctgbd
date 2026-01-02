@@ -53,11 +53,11 @@
         </div>
       </div>
 
-      <!-- Working Hours -->
+      <!-- Hospital Office -->
       <div class="col-md-4 col-sm-6">
         <div class="contact-card h-100">
           <div class="icon">
-            <i class="fas fa-clock"></i>
+            <i class="fas fa-hospital"></i>
           </div>
           <h4>{{ __('contact_us.working_hours') }}</h4>
           <p>
@@ -68,6 +68,27 @@
       </div>
 
     </div>
+
+    <!-- Hospital Office Working Hours -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-12">
+        <div class="contact-card">
+          <div class="icon">
+            <i class="fas fa-hospital"></i>
+          </div>
+          <h4>{{ __('contact_us.hospital_office_working_hours') }}</h4>
+          <p>
+            @php
+              $hospitalOfficeHours = get_setting('hospital_office_working_hours_schedule_' . app()->getLocale()) ?: get_setting('hospital_office_working_hours_schedule', __('contact_us.hospital_office_working_hours_schedule'));
+              $hospitalOfficeOffDay = get_setting('hospital_office_off_day_' . app()->getLocale()) ?: get_setting('hospital_office_off_day', __('contact_us.hospital_office_off_day'));
+            @endphp
+            {{ $hospitalOfficeHours }}<br>
+            {{ $hospitalOfficeOffDay }}
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 

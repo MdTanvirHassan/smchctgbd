@@ -54,11 +54,11 @@
         </div>
       </div>
 
-      <!-- Working Hours -->
+      <!-- Hospital Office -->
       <div class="col-md-4 col-sm-6">
         <div class="contact-item d-flex flex-column align-items-center align-items-md-start">
           <div class="icon mb-3">
-            <i class="fas fa-clock fa-3x text-primary"></i>
+            <i class="fas fa-hospital fa-3x text-primary"></i>
           </div>
           <h4 class="mb-3 fw-bold">{{ __('contact_us.working_hours') }}</h4>
           <p class="text-muted mb-0">
