@@ -145,12 +145,14 @@
                         </div>
 
                         <div class="mb-3">
-                            <label>Photo</label>
-                            <input type="file" name="photo" class="form-control" accept="image/*" required>
-                            <div class="invalid-feedback">Please upload a photo.</div>
+                            <label>Photos <small class="text-muted">(You can select multiple images)</small></label>
+                            <input type="file" name="photos[]" id="addPhotos" class="form-control" accept="image/*" multiple required>
+                            <div class="invalid-feedback">Please upload at least one photo.</div>
+                            <small class="text-muted d-block mt-1">Hold Ctrl (Windows) or Cmd (Mac) to select multiple images</small>
+                            <small class="text-primary d-block mt-1 fw-semibold" id="photoCount" style="display: none;"></small>
                         </div>
 
-                        <div class="mt-2 photo-preview"></div>
+                        <div class="mt-2 photo-preview row g-2" id="addPhotoPreview"></div>
 
                     </div>
                     <div class="modal-footer">
@@ -263,24 +265,52 @@
 
         // Image Live Preview
         document.addEventListener('DOMContentLoaded', function () {
-            const addPhotoInput = document.querySelector('#addGalleryImageModal input[name="photo"]');
+            const addPhotoInput = document.querySelector('#addPhotos');
             const editPhotoInput = document.querySelector('#editGalleryImageModal input[name="photo"]');
             const editPhotoPreview = document.querySelector('#photoPreview');
+            const addPhotoPreview = document.querySelector('#addPhotoPreview');
 
             if (addPhotoInput) {
                 addPhotoInput.addEventListener('change', function () {
-                    if (this.files && this.files[0]) {
-                        const reader = new FileReader();
-                        reader.onload = function (e) {
-                            let preview = addPhotoInput.closest('.mb-3').querySelector('.photo-preview');
-                            if (!preview) {
-                                preview = document.createElement('div');
-                                preview.classList.add('mt-2', 'photo-preview');
-                                addPhotoInput.closest('.mb-3').appendChild(preview);
+                    const files = this.files;
+                    const photoCount = document.getElementById('photoCount');
+                    
+                    if (files && files.length > 0) {
+                        addPhotoPreview.innerHTML = ''; // Clear previous previews
+                        
+                        // Show image count
+                        const imageCount = Array.from(files).filter(f => f.type.startsWith('image/')).length;
+                        if (imageCount > 0) {
+                            photoCount.textContent = imageCount === 1 
+                                ? '1 image selected' 
+                                : imageCount + ' images selected';
+                            photoCount.style.display = 'block';
+                        }
+                        
+                        Array.from(files).forEach(function(file) {
+                            if (file.type.startsWith('image/')) {
+                                const reader = new FileReader();
+                                reader.onload = function (e) {
+                                    const col = document.createElement('div');
+                                    col.className = 'col-6 col-md-3';
+                                    col.innerHTML = `
+                                        <div class="position-relative">
+                                            <img src="${e.target.result}" 
+                                                 class="img-fluid rounded border" 
+                                                 style="height: 100px; width: 100%; object-fit: cover; cursor: pointer;">
+                                            <div class="badge bg-secondary position-absolute top-0 end-0 m-1" style="font-size: 0.7rem;">${file.name.length > 15 ? file.name.substring(0, 15) + '...' : file.name}</div>
+                                        </div>
+                                    `;
+                                    addPhotoPreview.appendChild(col);
+                                };
+                                reader.readAsDataURL(file);
                             }
-                            preview.innerHTML = `<img src="${e.target.result}" style="max-height:120px; max-width:150px; object-fit:contain; border:1px solid #ddd; padding:4px; border-radius:6px;">`;
-                        };
-                        reader.readAsDataURL(this.files[0]);
+                        });
+                    } else {
+                        addPhotoPreview.innerHTML = '';
+                        if (photoCount) {
+                            photoCount.style.display = 'none';
+                        }
                     }
                 });
             }
@@ -297,6 +327,21 @@
                     }
                 });
             }
+
+            // Reset preview when modal closes
+            $('#addGalleryImageModal').on('hidden.bs.modal', function () {
+                if (addPhotoInput) {
+                    addPhotoInput.value = '';
+                }
+                if (addPhotoPreview) {
+                    addPhotoPreview.innerHTML = '';
+                }
+                const photoCount = document.getElementById('photoCount');
+                if (photoCount) {
+                    photoCount.style.display = 'none';
+                    photoCount.textContent = '';
+                }
+            });
         });
         function Filters() {
             const query = $('#GalleryImageSearch').val().toLowerCase();

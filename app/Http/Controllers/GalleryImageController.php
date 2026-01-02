@@ -139,28 +139,37 @@ class GalleryImageController extends Controller
             'category_id' => 'required|integer',
             'title' => 'required|string|max:100',
             'caption' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photos' => 'required|array|min:1',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_active' => 'nullable|boolean'
         ]);
 
-        $file_path = null;
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $fileName = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
-            $photo->move(public_path('assets/img/gallery'), $fileName);
-            // store path without "public/"
-            $file_path = 'public/assets/img/gallery/' . $fileName;
+        $uploadedCount = 0;
+        
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $index => $photo) {
+                // Use microtime for better uniqueness when uploading multiple files
+                $fileName = time() . '_' . uniqid() . '_' . $index . '.' . $photo->getClientOriginalExtension();
+                $photo->move(public_path('assets/img/gallery'), $fileName);
+                $file_path = 'public/assets/img/gallery/' . $fileName;
+
+                GalleryImage::create([
+                    'category_id' => $validated['category_id'],
+                    'title' => $validated['title'],
+                    'caption' => $validated['caption'],
+                    'file_path' => $file_path,
+                    'is_active' => $validated['is_active'] ?? 0
+                ]);
+                
+                $uploadedCount++;
+            }
         }
 
-        GalleryImage::create([
-            'category_id' => $validated['category_id'],
-            'title' => $validated['title'],
-            'caption' => $validated['caption'],
-            'file_path' => $file_path,
-            'is_active' => $validated['is_active'] ?? 0
-        ]);
+        $message = $uploadedCount > 1 
+            ? $uploadedCount . ' gallery images added successfully!'
+            : 'Gallery Image added successfully!';
 
-        return redirect()->route('galleryimage.index')->with('success', 'Gallery Image added successfully!');
+        return redirect()->route('galleryimage.index')->with('success', $message);
     }
 
     public function galleryimageEdit($id)
