@@ -129,36 +129,97 @@
             $headteacherMessage = get_setting('headmaster_speech');
             $chairmanMessage = get_setting('secretary_speech');
 
-            // For HTML content, create preview by limiting text length while preserving HTML structure
-            $headteacherPreview = $headteacherMessage;
-            $chairmanPreview = $chairmanMessage;
-            
-            // Check if content is longer than 200 characters for preview
-            $headteacherTextOnly = strip_tags($headteacherMessage);
-            $chairmanTextOnly = strip_tags($chairmanMessage);
-            
-            $headteacherNeedsMore = strlen($headteacherTextOnly) > 200;
-            $chairmanNeedsMore = strlen($chairmanTextOnly) > 200;
-            
-            if ($headteacherNeedsMore) {
-                // Create preview by truncating HTML content
-                $headteacherPreview = Str::limit($headteacherMessage, 200, '...');
-                $headteacherRemaining = str_replace($headteacherPreview, '', $headteacherMessage);
-            } else {
-                $headteacherRemaining = '';
+            // Function to safely truncate HTML content while preserving formatting
+            function truncateHtmlContent($html, $charLimit = 200) {
+                $plainText = strip_tags($html);
+                
+                if (strlen($plainText) <= $charLimit) {
+                    return ['preview' => $html, 'remaining' => '', 'needsMore' => false];
+                }
+                
+                $truncatedPlainText = mb_substr($plainText, 0, $charLimit);
+                $lastSpace = mb_strrpos($truncatedPlainText, ' ');
+                
+                if ($lastSpace !== false && $lastSpace > ($charLimit * 0.7)) {
+                    $truncatedPlainText = mb_substr($truncatedPlainText, 0, $lastSpace);
+                }
+                
+                // Find this character position in the original HTML
+                $charCount = 0;
+                $htmlPos = 0;
+                $targetLen = mb_strlen($truncatedPlainText);
+                
+                while ($htmlPos < strlen($html) && $charCount < $targetLen) {
+                    $char = $html[$htmlPos];
+                    
+                    if ($char === '<') {
+                        // Skip entire tag
+                        $endPos = strpos($html, '>', $htmlPos);
+                        if ($endPos !== false) {
+                            $htmlPos = $endPos + 1;
+                            continue;
+                        }
+                    }
+                    
+                    $charCount++;
+                    $htmlPos++;
+                }
+                
+                // Extract truncated HTML
+                $preview = substr($html, 0, $htmlPos);
+                
+                // Close any unclosed HTML tags
+                preg_match_all('~</?(\w+)[^>]*>~', $preview, $matches);
+                $stack = [];
+                
+                foreach ($matches[0] as $tag) {
+                    if (strpos($tag, '</') === 0) {
+                        // Closing tag
+                        preg_match('~</(\w+)~', $tag, $m);
+                        $tagName = $m[1];
+                        if (!empty($stack) && end($stack) === $tagName) {
+                            array_pop($stack);
+                        }
+                    } else if (strpos($tag, '/>') === false) {
+                        // Opening tag (not self-closing)
+                        preg_match('~<(\w+)~', $tag, $m);
+                        $tagName = $m[1];
+                        $voidTags = ['br', 'hr', 'img', 'input', 'meta', 'link', 'area', 'base', 'col', 'embed', 'source', 'track', 'wbr'];
+                        if (!in_array(strtolower($tagName), $voidTags)) {
+                            $stack[] = $tagName;
+                        }
+                    }
+                }
+                
+                // Close remaining open tags
+                while (!empty($stack)) {
+                    $preview .= '</' . array_pop($stack) . '>';
+                }
+                
+                $preview .= '...';
+                $remaining = substr($plainText, $targetLen);
+                
+                return [
+                    'preview' => $preview,
+                    'remaining' => !empty($remaining) ? $remaining : '',
+                    'needsMore' => !empty($remaining)
+                ];
             }
+
+            $headteacherData = truncateHtmlContent($headteacherMessage, 200);
+            $headteacherPreview = $headteacherData['preview'];
+            $headteacherRemaining = $headteacherData['remaining'];
+            $headteacherNeedsMore = $headteacherData['needsMore'];
             
-            if ($chairmanNeedsMore) {
-                $chairmanPreview = Str::limit($chairmanMessage, 200, '...');
-                $chairmanRemaining = str_replace($chairmanPreview, '', $chairmanMessage);
-            } else {
-                $chairmanRemaining = '';
-            }
+            $chairmanData = truncateHtmlContent($chairmanMessage, 200);
+            $chairmanPreview = $chairmanData['preview'];
+            $chairmanRemaining = $chairmanData['remaining'];
+            $chairmanNeedsMore = $chairmanData['needsMore'];
             @endphp
 
             <div class="col-md-8">
                 <!-- Headteacher Message -->
-                <div class="message-card w-100 p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-blue mb-3 border border-primary border-opacity-10" style="transition: all 0.3s ease; display: flex !important;">
+                <div class="message-card w-100 p-4 rounded-3 shadow bg-soft-blue mb-3 border border-primary border-opacity-10" style="transition: all 0.3s ease; display: flex !important; flex-direction: column !important;">
                     <div class="image-wrap me-md-4 mb-3 mb-md-0 flex-shrink-0">
                         <img src="{{asset(get_setting('headmaster_image') )}}"
                             alt="{{ __('landing.principal_photo_alt') }}" 
@@ -203,7 +264,7 @@
                 </div>
 
                 <!-- Chairman Message -->
-                <div class="message-card w-100 p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-secondary mb-3 border border-danger border-opacity-10" style="transition: all 0.3s ease; display: flex !important;">
+                <div class="message-card w-100 p-4 rounded-3 shadow bg-soft-secondary mb-3 border border-danger border-opacity-10" style="transition: all 0.3s ease; display: flex !important; flex-direction: column !important;">
                     <div class="image-wrap me-md-4 mb-3 mb-md-0 flex-shrink-0">
                         <img src="{{asset(get_setting('secretary_image') )}}"
                             alt="{{ __('landing.chairman_photo_alt') }}" 
@@ -809,6 +870,10 @@
 @endsection
 
 @section('scripts')
+<!-- Ensure Bootstrap 5 is loaded first -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsOok80cVfdvkS/FwUkZzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9WDZfcgLNstNypWYAUS9tBBLD7Bx2gMI17eZhz/3OppHKvL6xYJ9h4O5" crossorigin="anonymous"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const readMoreTexts = {
@@ -1079,6 +1144,8 @@
         }
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <style>
     /* Committee Carousel Styles - College Template */
@@ -1320,11 +1387,45 @@
     /* Message Card Styles */
     .message-card {
         transition: all 0.3s ease !important;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85)) !important;
         backdrop-filter: blur(10px);
         width: 100% !important;
         display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
         clear: both;
+        box-sizing: border-box;
+    }
+
+    .message-card .image-wrap {
+        width: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 1.5rem !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .message-card .image-wrap img {
+        max-width: 150px;
+        height: auto;
+    }
+
+    .message-card .flex-grow-1 {
+        width: 100% !important;
+    }
+
+    @media (min-width: 768px) {
+        .message-card {
+            flex-direction: row !important;
+            align-items: center !important;
+        }
+
+        .message-card .image-wrap {
+            width: auto !important;
+            margin-right: 1.5rem !important;
+            margin-bottom: 0 !important;
+            flex-shrink: 0;
+        }
     }
 
     .message-card:hover {
