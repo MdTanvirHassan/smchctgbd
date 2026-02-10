@@ -120,8 +120,14 @@ class HomeController extends Controller
     public function routine()
     {
         $classes = Classes::all();
-        $classroutines = ClassRoutine::where('type', 'class')->where('is_active', 1)->get();
-        $examroutines = ClassRoutine::where('type', 'exam')->where('is_active', 1)->get();
+        $classroutines = ClassRoutine::where('type', 'class')
+            ->where('is_active', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $examroutines = ClassRoutine::where('type', 'exam')
+            ->where('is_active', 1)
+            ->orderBy('id', 'desc')
+            ->get();
         return view('frontend.' . get_setting('template_name') . '.routine', compact('classes', 'classroutines', 'examroutines'));
     }
 

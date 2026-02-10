@@ -158,58 +158,91 @@
 
             <div class="col-md-8">
                 <!-- Headteacher Message -->
-                <div class="p-3 rounded shadow-sm d-flex flex-md-row flex-column align-items-center bg-soft-blue mb-3">
-                    <div class="image-wrap me-md-3 mb-3 mb-md-0">
+                <div class="message-card p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-blue mb-3 border border-primary border-opacity-10" style="transition: all 0.3s ease;">
+                    <div class="image-wrap me-md-4 mb-3 mb-md-0 flex-shrink-0">
                         <img src="{{asset(get_setting('headmaster_image') )}}"
-                            alt="{{ __('landing.principal_photo_alt') }}" class="img-fluid rounded message-img" />
+                            alt="{{ __('landing.principal_photo_alt') }}" 
+                            class="img-fluid rounded-3 shadow-sm message-img" 
+                            style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #00465b;" />
                     </div>
                     <div class="flex-grow-1">
-                        <h5 class="mb-2" style="color: #00465b;">{{ __('landing.headteacher_message') }}</h5>
-                        <div class="desc mb-2 summernote-content" style="line-height: 1.7;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-2">
+                                <i class="fas fa-user-tie text-primary"></i>
+                            </div>
+                            <h5 class="mb-0 fw-bold" style="color: #00465b;">{{ __('landing.headteacher_message') }}</h5>
+                        </div>
+                        <div class="desc mb-3 summernote-content" style="line-height: 1.8; text-align: justify; color: #333;">
                             {!! $headteacherPreview !!}
                             @if($headteacherRemaining)
                             <span id="headteacherMore" class="collapse">
                                 {!! $headteacherRemaining !!}
                             </span>
-                            <a href="#" class="text-danger ms-1" data-bs-toggle="collapse"
-                                data-bs-target="#headteacherMore" aria-expanded="false" data-toggle-type="readmore" aria-controls="headteacherMore"
-                                onclick="toggleReadMore(this); return false;">
-                                {{ __('landing.read_more') }}
-                            </a>
                             @endif
                         </div>
-                        <div class="mt-2">
-                            <strong class="text-dark">{{ get_setting('headmaster_name') ?? 'Principal/ Headmaster' }}</strong><br />
-                            <strong class="text-dark">- {{ get_setting('school_name') ?? 'school name' }}</strong>
+                        @if($headteacherRemaining)
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 mb-3" 
+                                type="button" 
+                                data-bs-toggle="collapse"
+                                data-bs-target="#headteacherMore" 
+                                aria-expanded="false" 
+                                data-toggle-type="readmore" 
+                                aria-controls="headteacherMore"
+                                style="transition: all 0.3s ease;">
+                            <i class="fas fa-book-open me-1"></i>
+                            <span class="read-more-text">{{ __('landing.read_more') }}</span>
+                        </button>
+                        @endif
+                        <div class="mt-2 pt-2 border-top border-primary border-opacity-25">
+                            <p class="mb-0">
+                                <strong class="text-dark fw-bold">{{ get_setting('headmaster_name') ?? 'Principal/ Headmaster' }}</strong><br />
+                                <small class="text-muted">{{ get_setting('school_name') ?? 'school name' }}</small>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Chairman Message -->
-                <div
-                    class="p-3 rounded shadow-sm d-flex flex-md-row flex-column align-items-center bg-soft-secondary mb-3">
-                    <div class="image-wrap me-md-3 mb-3 mb-md-0">
+                <div class="message-card p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-secondary mb-3 border border-danger border-opacity-10" style="transition: all 0.3s ease;">
+                    <div class="image-wrap me-md-4 mb-3 mb-md-0 flex-shrink-0">
                         <img src="{{asset(get_setting('secretary_image') )}}"
-                            alt="{{ __('landing.chairman_photo_alt') }}" class="img-fluid rounded message-img" />
+                            alt="{{ __('landing.chairman_photo_alt') }}" 
+                            class="img-fluid rounded-3 shadow-sm message-img" 
+                            style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #660000;" />
                     </div>
                     <div class="flex-grow-1">
-                        <h5 class="mb-2" style="color: #660000;">{{ __('landing.chairman_message') }}</h5>
-                        <div class="desc mb-2 summernote-content" style="line-height: 1.7;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-danger bg-opacity-10 rounded-circle p-2 me-2">
+                                <i class="fas fa-user-tie text-danger"></i>
+                            </div>
+                            <h5 class="mb-0 fw-bold" style="color: #660000;">{{ __('landing.chairman_message') }}</h5>
+                        </div>
+                        <div class="desc mb-3 summernote-content" style="line-height: 1.8; text-align: justify; color: #333;">
                             {!! $chairmanPreview !!}
                             @if($chairmanRemaining)
                             <span id="chairmanMore" class="collapse">
                                 {!! $chairmanRemaining !!}
                             </span>
-                            <a href="#" class="text-danger ms-1" data-bs-toggle="collapse" data-toggle-type="readmore"
-                                data-bs-target="#chairmanMore" aria-expanded="false" aria-controls="chairmanMore"
-                                onclick="toggleReadMore(this); return false;">
-                                {{ __('landing.read_more') }}
-                            </a>
                             @endif
                         </div>
-                        <div>
-                            <strong class="text-dark">{{ get_setting('secretary_name') ?? 'Secretary' }}</strong><br />
-                            <strong class="text-dark">- {{ get_setting('school_name') ?? 'school name' }}</strong>
+                        @if($chairmanRemaining)
+                        <button class="btn btn-sm btn-outline-danger rounded-pill px-3 py-1 mb-3" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#chairmanMore" 
+                                aria-expanded="false" 
+                                data-toggle-type="readmore" 
+                                aria-controls="chairmanMore"
+                                style="transition: all 0.3s ease;">
+                            <i class="fas fa-book-open me-1"></i>
+                            <span class="read-more-text">{{ __('landing.read_more') }}</span>
+                        </button>
+                        @endif
+                        <div class="mt-2 pt-2 border-top border-danger border-opacity-25">
+                            <p class="mb-0">
+                                <strong class="text-dark fw-bold">{{ get_setting('secretary_name') ?? 'Secretary' }}</strong><br />
+                                <small class="text-muted">{{ get_setting('school_name') ?? 'school name' }}</small>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -786,18 +819,25 @@
         // Only target toggles with data-toggle-type="readmore"
         const toggles = document.querySelectorAll('[data-bs-toggle="collapse"][data-toggle-type="readmore"]');
 
-        toggles.forEach(function(link) {
-            const targetSelector = link.getAttribute('data-bs-target');
+        toggles.forEach(function(button) {
+            const targetSelector = button.getAttribute('data-bs-target');
             const target = document.querySelector(targetSelector);
 
             if (!target) return;
 
+            // Update button text and icon
             target.addEventListener('shown.bs.collapse', function() {
-                link.textContent = readMoreTexts.less;
+                const textSpan = button.querySelector('.read-more-text');
+                const icon = button.querySelector('i');
+                if (textSpan) textSpan.textContent = readMoreTexts.less;
+                if (icon) icon.className = 'fas fa-book me-1';
             });
 
             target.addEventListener('hidden.bs.collapse', function() {
-                link.textContent = readMoreTexts.more;
+                const textSpan = button.querySelector('.read-more-text');
+                const icon = button.querySelector('i');
+                if (textSpan) textSpan.textContent = readMoreTexts.more;
+                if (icon) icon.className = 'fas fa-book-open me-1';
             });
         });
 
@@ -1275,6 +1315,57 @@
     
     .summernote-content a:hover {
         color: #0a58ca;
+    }
+
+    /* Message Card Styles */
+    .message-card {
+        transition: all 0.3s ease !important;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+        backdrop-filter: blur(10px);
+    }
+
+    .message-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .message-card .message-img {
+        transition: all 0.3s ease;
+    }
+
+    .message-card:hover .message-img {
+        transform: scale(1.05);
+    }
+
+    .message-card .collapse {
+        transition: height 0.4s ease;
+    }
+
+    .message-card button[data-bs-toggle="collapse"] {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    .message-card button[data-bs-toggle="collapse"]:hover {
+        transform: translateX(5px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .message-card {
+            padding: 1.5rem !important;
+        }
+
+        .message-card .image-wrap {
+            margin-right: 0 !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .message-card .message-img {
+            width: 120px !important;
+            height: 120px !important;
+        }
     }
 </style>
 @endsection
