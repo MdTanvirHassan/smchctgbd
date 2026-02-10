@@ -158,7 +158,7 @@
 
             <div class="col-md-8">
                 <!-- Headteacher Message -->
-                <div class="message-card p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-blue mb-3 border border-primary border-opacity-10" style="transition: all 0.3s ease;">
+                <div class="message-card w-100 p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-blue mb-3 border border-primary border-opacity-10" style="transition: all 0.3s ease; display: flex !important;">
                     <div class="image-wrap me-md-4 mb-3 mb-md-0 flex-shrink-0">
                         <img src="{{asset(get_setting('headmaster_image') )}}"
                             alt="{{ __('landing.principal_photo_alt') }}" 
@@ -203,7 +203,7 @@
                 </div>
 
                 <!-- Chairman Message -->
-                <div class="message-card p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-secondary mb-3 border border-danger border-opacity-10" style="transition: all 0.3s ease;">
+                <div class="message-card w-100 p-4 rounded-3 shadow d-flex flex-md-row flex-column align-items-center bg-soft-secondary mb-3 border border-danger border-opacity-10" style="transition: all 0.3s ease; display: flex !important;">
                     <div class="image-wrap me-md-4 mb-3 mb-md-0 flex-shrink-0">
                         <img src="{{asset(get_setting('secretary_image') )}}"
                             alt="{{ __('landing.chairman_photo_alt') }}" 
@@ -1322,6 +1322,9 @@
         transition: all 0.3s ease !important;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
         backdrop-filter: blur(10px);
+        width: 100% !important;
+        display: flex !important;
+        clear: both;
     }
 
     .message-card:hover {
