@@ -158,7 +158,7 @@
                         <a href="{{ route('committee.index') }}"
                             class="nav-link {{ is_active('committee.*') }}">Managing Committee</a>
                         <a href="{{ route('ierb_member.index') }}"
-                            class="nav-link {{ is_active('ierb_member.*') }}">IERB Member</a>
+                            class="nav-link {{ is_active('ierb_member.*') }}">IERB Members</a>
                     </div>
                 </div>
             </li>
