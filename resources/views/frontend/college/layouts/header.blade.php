@@ -58,7 +58,7 @@
           <a class="nav-link dropdown-toggle {{ request()->routeIs('total_students','class_summery','routine','exam_result') ? 'active' : '' }}" href="#" role="button"
             data-bs-toggle="dropdown">{{ __('header.academic') }}</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.students') }}</a></li>
+            <!-- <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.students') }}</a></li> -->
             <!-- <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.seat_capacity') }}</a></li> -->
             <!-- <li><a class="dropdown-item {{ request()->routeIs('class_summery') ? 'active' : '' }}" href="{{ route('class_summery') }}">{{ __('header.class_summary') }}</a></li> -->
             <li><a class="dropdown-item {{ request()->routeIs('routine') ? 'active' : '' }}" href="{{ route('routine') }}">{{ __('header.routine') }}</a></li>

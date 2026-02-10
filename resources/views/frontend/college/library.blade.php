@@ -17,7 +17,9 @@
                 <div class="col-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <p class="mb-0">{!! nl2br(e($libraryData['description'])) !!}</p>
+                            <div class="summernote-content" style="line-height: 1.8; text-align: justify;">
+                                {!! $libraryData['description'] !!}
+                            </div>
                         </div>
                     </div>
                 </div>

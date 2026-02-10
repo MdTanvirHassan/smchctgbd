@@ -36,7 +36,7 @@ return [
     'activities_of_meu' => 'Activities of MEU',
     'prospectus' => 'Prospectus',
     'research_cell' => 'Research Cell',
-    'eligibility_criteria_of_college_campus' => 'Eligibility Criteria of College Campus',
+    'eligibility_criteria_of_college_campus' => 'Mission & Vision',
     'hospital' => 'Hospital',
     'indoor_patient_department' => 'Indoor Patient Department',
     'out_patient_department' => 'Out Patient Department',

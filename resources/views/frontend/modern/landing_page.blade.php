@@ -367,7 +367,7 @@
                         </h2>
                         <div id="collapse{{ $index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $index }}" data-bs-parent="#faqAccordion">
                             <div class="accordion-body" style="font-size: 0.8rem; line-height: 1.4; max-height: 5.5em; overflow: hidden; text-overflow: ellipsis;">
-                                {!! nl2br(e($faq->description)) !!}
+                                {!! $faq->description !!}
                             </div>
                         </div>
                     </div>

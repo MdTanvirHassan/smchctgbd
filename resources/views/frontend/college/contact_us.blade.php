@@ -1,15 +1,54 @@
 @extends('frontend.college.layouts.app')
 
 @section('content')
+@php
+  $contactTitle = get_setting('contact_page_title') ?: __('contact_us.page_title');
+  $contactSubtitle = get_setting('contact_page_subtitle');
+  $contactDescription = get_setting('contact_page_description');
+  $contactExtraInfo = get_setting('contact_extra_info');
+  $primaryMapUrl = get_setting('contact_map_embed_url');
+  $secondaryMapUrl = get_setting('contact_map_embed_url_alt');
+
+  $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name');
+  $schoolAddress = get_setting('school_address_' . app()->getLocale()) ?: get_setting('school_address');
+
+  $collegeOfficeName = get_setting('college_office_name') ?: 'College Office';
+  $collegeOfficeAddress = get_setting('college_office_address') ?: $schoolAddress;
+  $collegeOfficePhone = get_setting('college_office_phone') ?: get_setting('school_phone');
+  $collegeOfficeEmail = get_setting('college_office_email') ?: get_setting('school_email');
+  $collegeOfficeTime = get_setting('college_office_time') ?: __('contact_us.working_hours_schedule');
+  $collegeOfficeOffday = get_setting('college_office_offday') ?: __('contact_us.off_day');
+
+  $hospitalOfficeName = get_setting('hospital_office_name') ?: 'Hospital Office';
+  $hospitalOfficeAddress = get_setting('hospital_office_address') ?: $schoolAddress;
+  $hospitalOfficePhone = get_setting('hospital_office_phone') ?: get_setting('school_phone');
+  $hospitalOfficeEmail = get_setting('hospital_office_email') ?: get_setting('school_email');
+  $hospitalOfficeTime = get_setting('hospital_office_time') ?: __('contact_us.working_hours_schedule');
+  $hospitalOfficeOffday = get_setting('hospital_office_offday') ?: __('contact_us.off_day');
+@endphp
 <section class="smart-hero d-flex align-items-center justify-content-center text-center text-white">
   <div class="hero-inner py-4">
-    <h1 class="display-4 fw-bold mb-0">{{ __('contact_us.page_title') }}</h1>
+    <h1 class="display-4 fw-bold mb-0">{{ $contactTitle }}</h1>
+    @if($contactSubtitle)
+      <p class="lead mb-0">{{ $contactSubtitle }}</p>
+    @endif
   </div>
 </section>
 
 
 <section class="contact-us-section my-5">
   <div class="container">
+    @if($contactDescription)
+      <div class="row g-4 mb-3">
+        <div class="col-12">
+          <div class="contact-card">
+            <h4>Contact Information</h4>
+            <div>{!! $contactDescription !!}</div>
+          </div>
+        </div>
+      </div>
+    @endif
+
     <div class="row g-4">
 
       <!-- Location -->
@@ -20,11 +59,7 @@
           </div>
           <h4>{{ __('contact_us.our_location') }}</h4>
           <p>
-            @php
-              $schoolName = get_setting('school_name_' . app()->getLocale()) ?: get_setting('school_name');
-              $schoolAddress = get_setting('school_address_' . app()->getLocale()) ?: get_setting('school_address');
-            @endphp
-            <a href="https://www.google.com/maps/search/{{ urlencode($schoolAddress) }}" 
+            <a href="https://www.google.com/maps/search/{{ urlencode($schoolAddress) }}"
                target="_blank" rel="noopener" class="link-custom">
               {{ $schoolName }}<br>
               {{ $schoolAddress }}
@@ -33,23 +68,21 @@
         </div>
       </div>
 
-      <!-- Call Us -->
+      <!-- College Office -->
       <div class="col-md-4 col-sm-6">
         <div class="contact-card h-100">
           <div class="icon">
-            <i class="fas fa-phone"></i>
+            <i class="fas fa-building"></i>
           </div>
-          <h4>{{ __('contact_us.call_us') }}</h4>
-          <p>{{ __('contact_us.email') }}: 
-            <a href="mailto:{{ get_setting('school_email') }}" class="link-custom">
-              {{ get_setting('school_email') }}
-            </a>
+          <h4>{{ $collegeOfficeName }}</h4>
+          <p>{{ $collegeOfficeAddress }}</p>
+          <p>{{ __('contact_us.email') }}:
+            <a href="mailto:{{ $collegeOfficeEmail }}" class="link-custom">{{ $collegeOfficeEmail }}</a>
           </p>
-          <p>{{ __('contact_us.number') }}: 
-            <a href="tel:{{ preg_replace('/[^0-9+]/', '', get_setting('school_phone')) }}" class="link-custom">
-              {{ get_setting('school_phone') }}
-            </a>
+          <p>{{ __('contact_us.number') }}:
+            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $collegeOfficePhone) }}" class="link-custom">{{ $collegeOfficePhone }}</a>
           </p>
+          <p>{{ $collegeOfficeTime }}<br>{{ $collegeOfficeOffday }}</p>
         </div>
       </div>
 
@@ -59,35 +92,64 @@
           <div class="icon">
             <i class="fas fa-hospital"></i>
           </div>
-          <h4>{{ __('contact_us.working_hours') }}</h4>
-          <p>
-            {{ __('contact_us.working_hours_schedule') }}<br>
-            {{ __('contact_us.off_day') }}
+          <h4>{{ $hospitalOfficeName }}</h4>
+          <p>{{ $hospitalOfficeAddress }}</p>
+          <p>{{ __('contact_us.email') }}:
+            <a href="mailto:{{ $hospitalOfficeEmail }}" class="link-custom">{{ $hospitalOfficeEmail }}</a>
           </p>
+          <p>{{ __('contact_us.number') }}:
+            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $hospitalOfficePhone) }}" class="link-custom">{{ $hospitalOfficePhone }}</a>
+          </p>
+          <p>{{ $hospitalOfficeTime }}<br>{{ $hospitalOfficeOffday }}</p>
         </div>
       </div>
 
     </div>
 
-    <!-- Hospital Office Working Hours -->
-    <div class="row g-4 mt-2">
-      <div class="col-md-12">
-        <div class="contact-card">
-          <div class="icon">
-            <i class="fas fa-hospital"></i>
+    @if($contactExtraInfo)
+      <div class="row g-4 mt-3">
+        <div class="col-12">
+          <div class="contact-card">
+            <h4>Additional Information</h4>
+            <div>{!! $contactExtraInfo !!}</div>
           </div>
-          <h4>{{ __('contact_us.hospital_office_working_hours') }}</h4>
-          <p>
-            @php
-              $hospitalOfficeHours = get_setting('hospital_office_working_hours_schedule_' . app()->getLocale()) ?: get_setting('hospital_office_working_hours_schedule', __('contact_us.hospital_office_working_hours_schedule'));
-              $hospitalOfficeOffDay = get_setting('hospital_office_off_day_' . app()->getLocale()) ?: get_setting('hospital_office_off_day', __('contact_us.hospital_office_off_day'));
-            @endphp
-            {{ $hospitalOfficeHours }}<br>
-            {{ $hospitalOfficeOffDay }}
-          </p>
         </div>
       </div>
-    </div>
+    @endif
+
+    @php
+      $primaryMapIsIframe = $primaryMapUrl && \Illuminate\Support\Str::contains($primaryMapUrl, '<iframe');
+      $secondaryMapIsIframe = $secondaryMapUrl && \Illuminate\Support\Str::contains($secondaryMapUrl, '<iframe');
+    @endphp
+    @if($primaryMapUrl || $secondaryMapUrl)
+      <div class="row g-4 mt-3">
+        <div class="col-12">
+          <div class="contact-card">
+            <h4>Maps</h4>
+            <div class="row g-3 contact-map">
+              @if($primaryMapUrl)
+                <div class="col-12 col-lg-6">
+                  @if($primaryMapIsIframe)
+                    {!! $primaryMapUrl !!}
+                  @else
+                    <iframe title="Primary map" src="{{ $primaryMapUrl }}" allowfullscreen loading="lazy"></iframe>
+                  @endif
+                </div>
+              @endif
+              @if($secondaryMapUrl)
+                <div class="col-12 col-lg-6">
+                  @if($secondaryMapIsIframe)
+                    {!! $secondaryMapUrl !!}
+                  @else
+                    <iframe title="Additional map" src="{{ $secondaryMapUrl }}" allowfullscreen loading="lazy"></iframe>
+                  @endif
+                </div>
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif
 
   </div>
 </section>
@@ -151,6 +213,13 @@
 .link-custom:hover {
   text-decoration: underline;
   color: #fff;
+}
+
+.contact-map iframe {
+  width: 100%;
+  min-height: 280px;
+  border: 0;
+  border-radius: 12px;
 }
 
 @media (max-width: 768px) {

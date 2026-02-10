@@ -352,7 +352,7 @@
                                             aria-labelledby="heading{{ $index }}" data-bs-parent="#faqAccordion">
                                             <div class="accordion-body px-4 py-3"
                                                 style="font-size: 0.9rem; line-height: 1.6; background:#fff; border-left:3px solid #0d6efd;">
-                                                {!! nl2br(e($faq->description)) !!}
+                                                {!! $faq->description !!}
                                             </div>
                                         </div>
                                     </div>
@@ -414,7 +414,7 @@
 
                                     {{-- Hidden biography div --}}
                                     <div class="d-none bio-content" id="bio-{{ $committe->id }}">
-                                        {!! nl2br(e($committe->biography ?? 'N/A')) !!}
+                                        {!! $committe->biography ?? 'N/A' !!}
                                     </div>
                                 </div>
                             @endforeach
@@ -474,7 +474,7 @@
 
                                     {{-- Hidden biography div --}}
                                     <div class="d-none bio-content" id="bio-{{ $teacher->id }}">
-                                        {!! nl2br(e($teacher->biography ?? 'N/A')) !!}
+                                        {!! $teacher->biography ?? 'N/A' !!}
                                     </div>
                                 </div>
                             @endforeach

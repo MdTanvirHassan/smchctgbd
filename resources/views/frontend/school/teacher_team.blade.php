@@ -39,7 +39,7 @@
 
                                     {{-- Hidden biography div --}}
                                     <div class="d-none bio-content" id="bio-{{ $teacher->id }}">
-                                        {!! nl2br(e($teacher->biography ?? 'N/A')) !!}
+                                        {!! $teacher->biography ?? 'N/A' !!}
                                     </div>
                                 </div>
                             @endforeach

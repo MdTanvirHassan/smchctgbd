@@ -138,7 +138,7 @@ class HomeController extends Controller
     {
         $notices = Content::where('type', 'notice')
             ->where('is_published', 1)
-            ->orderBy('start_date', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
         return view('frontend.' . get_setting('template_name') . '.notice', compact('notices'));
     }
@@ -148,7 +148,7 @@ class HomeController extends Controller
     {
         $meetingMinutes = Content::where('type', 'meeting_minutes')
             ->where('is_published', 1)
-            ->orderBy('start_date', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
         return view('frontend.' . get_setting('template_name') . '.meeting_minutes', compact('meetingMinutes'));
     }
@@ -271,7 +271,13 @@ class HomeController extends Controller
     // IERB Page
     public function ierb()
     {
-        return view('frontend.' . get_setting('template_name') . '.ierb');
+        $ierbMembers = \App\Models\IerbMember::orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
+        $ierbActivities = \App\Models\IerbActivity::orderBy('activity_date', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+        return view('frontend.' . get_setting('template_name') . '.ierb', compact('ierbMembers', 'ierbActivities'));
     }
 
     // Library Page

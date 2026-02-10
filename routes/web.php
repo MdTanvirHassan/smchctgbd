@@ -22,6 +22,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HostelController;
 use App\Http\Controllers\CafeteriaController;
 use App\Http\Controllers\ExtraCurricularActivitiesController;
+use App\Http\Controllers\IerbController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -219,6 +220,20 @@ Route::controller(SettingController::class)->group(function () {
 
     Route::get('/dashboard/appearence-setting', 'appearence_setting')->name('appearence.setting');
     Route::post('/dashboard/appearence-setting-update', 'appearence_setting_update')->name('appearence.setting.update');
+
+    Route::get('/dashboard/contact-setting', 'contact_setting')->name('contact.setting');
+    Route::post('/dashboard/contact-setting-update', 'contact_setting_update')->name('contact.setting.update');
+});
+
+Route::controller(IerbController::class)->group(function () {
+    Route::get('/dashboard/ierb-member', 'index')->name('ierb_member.index');
+    Route::post('/dashboard/ierb-member', 'memberStore')->name('ierb_member.store');
+    Route::put('/dashboard/ierb-member/{id}', 'memberUpdate')->name('ierb_member.update');
+    Route::delete('/dashboard/ierb-member/{id}', 'memberDestroy')->name('ierb_member.destroy');
+
+    Route::post('/dashboard/ierb-activity', 'activityStore')->name('ierb_activity.store');
+    Route::put('/dashboard/ierb-activity/{id}', 'activityUpdate')->name('ierb_activity.update');
+    Route::delete('/dashboard/ierb-activity/{id}', 'activityDestroy')->name('ierb_activity.destroy');
 });
 
 Route::controller(GalleryImageController::class)->group(function () {

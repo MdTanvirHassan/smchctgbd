@@ -252,4 +252,32 @@ class SettingController extends Controller
 
         return redirect()->back()->with('success', 'Homepage content updated successfully.');
     }
+
+    public function contact_setting()
+    {
+        Cache::forget('business_settings');
+        $settings = Setting::all()->pluck('value', 'type');
+        return view('backend.setting.contact_setting', compact('settings'));
+    }
+
+    public function contact_setting_update(Request $request)
+    {
+        $types = $request->input('types', []);
+
+        foreach ($types as $type) {
+            $value = $request->input($type);
+            if (is_array($value)) {
+                $value = json_encode($value);
+            }
+
+            Setting::updateOrCreate(
+                ['type' => $type],
+                ['value' => $value]
+            );
+        }
+
+        Cache::forget('business_settings');
+
+        return redirect()->route('contact.setting')->with('success', 'Contact settings updated successfully!');
+    }
 }

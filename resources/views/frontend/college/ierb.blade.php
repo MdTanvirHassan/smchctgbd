@@ -22,42 +22,20 @@
                             <thead class="table-light">
                                 <tr>
                                     <th style="width: 60%;">Name and Affiliation</th>
-                                    <th style="width: 40%;">Role</th>
+                                    <th style="width: 40%;">Role / Designation</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Prof. Dr. Dewan Asadullah, Head, Department of Community Medicine</td>
-                                    <td>Chairman</td>
-                                </tr>
-                                <tr>
-                                    <td>Prof. Dr. Dhananjay Majumdar, Head, Department of ENT</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <td>Professor Dr. Md. Atiqul Islam Chowdhury, Professor, Department of Medicine</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <td>Prof. Dr. Mehrun Kabir, Head, Department of Dermatology and Venereology</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <td>Prof. Dr. Md. Motahhar Hossain, Head, Department of Surgery</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <td>Prof. Dr. Mohammad Nasim Uddin Chowdhury, Head, Department of Physiology</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <td>Professor Gias Uddin Talukder, (Religious Leader)</td>
-                                    <td>Member (Religious Leader)</td>
-                                </tr>
-                                <tr>
-                                    <td>Dr. Shafiqul Islam Chowdhury, Professor, Department of Islamic Studies, University of Chittagong</td>
-                                    <td>Member (Lawyer)</td>
-                                </tr>
+                                @forelse($ierbMembers as $member)
+                                    <tr>
+                                        <td>{{ $member->name_affiliation }}</td>
+                                        <td>{{ $member->role }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="2" class="text-center text-muted">No members found.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -81,72 +59,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Importance and challenges of medicolegal education: A questionnaire based study on medical under graduates</td>
-                                    <td>Dr. Sabrina Karim</td>
-                                    <td>30.07.2023</td>
-                                </tr>
-                                <tr>
-                                    <td>02</td>
-                                    <td>A comparative Study Between the Perception of Teaching Methodology among Phase I MBBS Students: Traditional Chalk and Board versus Power Point Presentation</td>
-                                    <td>Dr. Rummana Khair</td>
-                                    <td>10.01.2023</td>
-                                </tr>
-                                <tr>
-                                    <td>03</td>
-                                    <td>Prevalence of Chronic Complications of Type 2 Diabetes Mellitus: Results from a Hospital OPD and Personal Chamber Based Cross Sectional Study</td>
-                                    <td>Dr. Md. Minhazul Alam</td>
-                                    <td>22.12.2022</td>
-                                </tr>
-                                <tr>
-                                    <td>04</td>
-                                    <td>Study on spectrum of presentation of Covid-19 patient as clinical, biochemical and radiological findings at different Isolation centre & hospital in Chattogram</td>
-                                    <td>Dr. Md. Atiquel Islam Chowdhury</td>
-                                    <td>09.11.2021</td>
-                                </tr>
-                                <tr>
-                                    <td>05</td>
-                                    <td>Study on spectrum of presentation of Covid-19 patient as clinical, biochemical and radiological findings at different Isolation centre & hospital in Chattogram</td>
-                                    <td>Dr. Dewan Asadullah</td>
-                                    <td>07.09.2021</td>
-                                </tr>
-                                <tr>
-                                    <td>06</td>
-                                    <td>A study on morphometry of verlebral canal in lumbar region</td>
-                                    <td>Dr. Rummana Khair</td>
-                                    <td>11.07.2021</td>
-                                </tr>
-                                <tr>
-                                    <td>07</td>
-                                    <td>Incidence of Myopia among medical students attending online class during Covid-19 Pandemic</td>
-                                    <td>Dr. Dewan Asadullah</td>
-                                    <td>18.01.2021</td>
-                                </tr>
-                                <tr>
-                                    <td>08</td>
-                                    <td>Study of pedicles in dried human lumbar verlebra: a morphometric analysis</td>
-                                    <td>Dr. Rummana Khair</td>
-                                    <td>10.10.2020</td>
-                                </tr>
-                                <tr>
-                                    <td>09</td>
-                                    <td>Efficacy of the modified (local) version of ready to use therapeutic food (RUTF) in the severely malnourished children of urban slum</td>
-                                    <td>Prof. Dr. Jhulan Das Sharma</td>
-                                    <td>17.02.2019</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Clinicomycological study on onychomycosis</td>
-                                    <td>Dr. Meherun Kabir</td>
-                                    <td>05.02.2019</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>Outcome of Training on Doctor-Patient Communication skill for the Pre-intern Physicians</td>
-                                    <td>Dr. Meherunnissa Khanom</td>
-                                    <td>07.03.2017</td>
-                                </tr>
+                                @forelse($ierbActivities as $activity)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $activity->topic }}</td>
+                                        <td>{{ $activity->principal_investigator }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($activity->activity_date)->format('d.m.Y') }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted">No activities found.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

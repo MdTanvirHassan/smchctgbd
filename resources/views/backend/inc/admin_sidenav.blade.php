@@ -47,6 +47,7 @@
                         <a href="{{ route('site.setting') }}" class="nav-link {{ is_active('site.setting') }}">Site
                             Settings</a>
                         <a href="{{ route('seo.setting') }}" class="nav-link {{ is_active('seo.setting') }}">SEO</a>
+                        <a href="{{ route('contact.setting') }}" class="nav-link {{ is_active('contact.setting') }}">Contact</a>
                     </div>
                 </div>
             </li>
@@ -156,6 +157,8 @@
                         <a href="{{ route('teacher.index') }}" class="nav-link {{ is_active('teacher.*') }}">Teacher</a>
                         <a href="{{ route('committee.index') }}"
                             class="nav-link {{ is_active('committee.*') }}">Managing Committee</a>
+                        <a href="{{ route('ierb_member.index') }}"
+                            class="nav-link {{ is_active('ierb_member.*') }}">IERB Member</a>
                     </div>
                 </div>
             </li>

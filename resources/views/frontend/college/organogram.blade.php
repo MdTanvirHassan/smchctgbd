@@ -28,7 +28,7 @@
                         @if($organogram->description)
                             <div class="col-md-12">
                                 <div class="description-content" style="line-height: 1.8; text-align: justify;">
-                                    {!! nl2br(e($organogram->description)) !!}
+                                    {!! $organogram->description !!}
                                 </div>
                             </div>
                         @endif

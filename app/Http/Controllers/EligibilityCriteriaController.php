@@ -61,7 +61,7 @@ class EligibilityCriteriaController extends Controller
         // Store JSON data in description
         $data = [
             'type' => 'eligibility_criteria_of_college_campus',
-            'title' => 'Eligibility Criteria of College Campus',
+            'title' => 'Mission & Vision',
             'file_path' => $imagePath,
             'description' => json_encode([
                 'description' => $request->input('description'),

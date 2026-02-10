@@ -72,7 +72,7 @@
 
     <div class="card border-0 shadow-sm rounded">
         <div class="card-header bg-white border-0 py-3">
-            <h6 class="mb-0 fw-bold">Eligibility Criteria of College Campus</h6>
+            <h6 class="mb-0 fw-bold">Mission & Vision</h6>
         </div>
         <div class="card-body">
             @php

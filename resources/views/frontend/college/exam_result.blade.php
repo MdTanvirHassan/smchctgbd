@@ -42,7 +42,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="resultTable">
-                                    @foreach($classresults as $key => $classresult)
+                                    @foreach($classresults->sortByDesc('id') as $key => $classresult)
                                     <tr data-class="{{ $classresult->class->name }}">
                                         <td>{{ $key + 1 }}</td>
                                         <td><span class="badge bg-info">{{ $classresult->class->name }}</span></td>
