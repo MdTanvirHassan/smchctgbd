@@ -92,6 +92,28 @@
                     }
                 ]
             });
+
+            // Enable hover for dropdown menus on desktop (992px and above)
+            if (window.innerWidth >= 992) {
+                $('.navbar .dropdown').hover(
+                    function() {
+                        $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
+                        $(this).find('.dropdown-toggle').attr('aria-expanded', 'true');
+                    },
+                    function() {
+                        $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(200);
+                        $(this).find('.dropdown-toggle').attr('aria-expanded', 'false');
+                    }
+                );
+            }
+
+            // Ensure click still works for mobile and as fallback
+            $('.navbar .dropdown-toggle').on('click', function(e) {
+                if (window.innerWidth < 992) {
+                    e.preventDefault();
+                    $(this).next('.dropdown-menu').toggle();
+                }
+            });
         });
 
         function showNewsModal(element) {

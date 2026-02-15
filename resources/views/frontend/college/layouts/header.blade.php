@@ -44,7 +44,7 @@
         <!-- প্রশাসন -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('head_master','teacher_team','governing_body') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.administration') }}</a>
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.administration') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('head_master') ? 'active' : '' }}" href="{{ route('head_master') }}">{{ __('header.principal') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('teacher_team') ? 'active' : '' }}" href="{{ route('teacher_team') }}">{{ __('header.teacher_team') }}</a></li>
@@ -56,7 +56,7 @@
         <!-- Academic -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('total_students','class_summery','routine','exam_result') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.academic') }}</a>
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.academic') }}</a>
           <ul class="dropdown-menu">
             <!-- <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.students') }}</a></li> -->
             <!-- <li><a class="dropdown-item {{ request()->routeIs('total_students') ? 'active' : '' }}" href="{{ route('total_students') }}">{{ __('header.seat_capacity') }}</a></li> -->
@@ -67,7 +67,8 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->routeIs('admission_info', 'mbbs_course_new_curriculum', 'organogram.frontend', 'application_process.frontend', 'frontend.admission_links') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">{{ __('header.admission') }}</a>
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('admission_info', 'mbbs_course_new_curriculum', 'organogram.frontend', 'application_process.frontend', 'frontend.admission_links') ? 'active' : '' }}" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.admission') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('admission_info') ? 'active' : '' }}" href="{{ route('admission_info') }}">{{ __('header.admission_info') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('mbbs_course_new_curriculum') ? 'active' : '' }}" href="{{ route('mbbs_course_new_curriculum') }}">{{ __('header.mbbs_course_new_curriculum') }}</a></li>
@@ -85,7 +86,7 @@
         <!-- Notice & Meeting Minutes -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('notice','meeting_minutes') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.notice') }}</a>
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.notice') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('notice') ? 'active' : '' }}" href="{{ route('notice') }}">{{ __('header.notice') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('meeting_minutes') ? 'active' : '' }}" href="{{ route('meeting_minutes') }}">{{ __('header.meeting_minutes') }}</a></li>
@@ -94,7 +95,7 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('facilities.frontend') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.facilities') }}</a>
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.facilities') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'academic_facility' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'academic_facility') }}">{{ __('header.academic_facility') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('facilities.frontend') && request()->segment(2) === 'teaching_activities' ? 'active' : '' }}" href="{{ route('facilities.frontend', 'teaching_activities') }}">{{ __('header.teaching_activities') }}</a></li>
@@ -113,7 +114,7 @@
         <!-- Gallery Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('image_category','image_gallery','video_category','video_gallery') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.gallery') }}</a>
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.gallery') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('image_category','image_gallery') ? 'active' : '' }}" href="{{ route('image_category') }}">{{ __('header.image_gallery') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('video_category','video_gallery') ? 'active' : '' }}" href="{{ route('video_category') }}">{{ __('header.video_gallery') }}</a></li>
@@ -123,7 +124,7 @@
         <!-- Hospital Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->routeIs('hospital_department.frontend') ? 'active' : '' }}" href="#" role="button"
-            data-bs-toggle="dropdown">{{ __('header.hospital') }}</a>
+            data-bs-toggle="dropdown" aria-expanded="false">{{ __('header.hospital') }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {{ request()->routeIs('hospital_department.frontend') && request()->segment(2) === 'indoor_patient_department' ? 'active' : '' }}" href="{{ route('hospital_department.frontend', 'indoor_patient_department') }}">{{ __('header.indoor_patient_department') }}</a></li>
             <li><a class="dropdown-item {{ request()->routeIs('hospital_department.frontend') && request()->segment(2) === 'out_patient_department' ? 'active' : '' }}" href="{{ route('hospital_department.frontend', 'out_patient_department') }}">{{ __('header.out_patient_department') }}</a></li>

@@ -75,6 +75,16 @@ a:hover {
     color: #660000 !important;
 }
 
+/* Navbar positioning and z-index */
+.navbar {
+    position: relative;
+    z-index: 1030;
+}
+
+.navbar.sticky-top {
+    z-index: 1030;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: #660000;
     font-weight: 500;
@@ -90,10 +100,31 @@ a:hover {
     border-radius: 4px;
 }
 
+/* Dropdown positioning */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    z-index: 1031;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.navbar-nav .dropdown-menu.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Ensure dropdown is visible when shown */
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+}
+
 .dropdown-menu {
     border: none;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     padding: 0;
+    margin-top: 0.125rem;
 }
 
 /* Base dropdown item */
