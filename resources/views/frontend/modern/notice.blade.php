@@ -32,6 +32,7 @@
                                 data-title="{{ $notice->title }}"
                                 data-date="{{ $notice->start_date }}"
                                 data-description-html="{{ htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') }}"
+                                data-file="{{ $notice->file_path ?? '' }}"
                                 onclick="showNoticeModal(this)">
                                 {{ $notice->title }}
                             </a>
@@ -45,6 +46,7 @@
                                 data-title="{{ $notice->title }}"
                                 data-date="{{ $notice->start_date }}"
                                 data-description-html="{{ htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') }}"
+                                data-file="{{ $notice->file_path ?? '' }}"
                                 onclick="showNoticeModal(this)">
                                 বিস্তারিত
                             </button>
@@ -69,6 +71,13 @@
                     <h5 id="modalNoticeTitle" class="fw-semibold mb-3"></h5>
                     <small id="modalNoticeDate" class="text-muted d-block mb-2"></small>
                     <div id="modalNoticeContent" class="summernote-content mb-0" style="line-height: 1.8;"></div>
+                    <div id="modalAttachmentSection" class="mt-3" style="display: none;">
+                        <img id="modalNoticeImage" src="" alt="Notice image" class="img-fluid rounded" style="max-height: 400px; display: none;">
+                        <iframe id="modalNoticePdf" src="" title="Notice PDF" style="width: 100%; height: 450px; border: 1px solid #dee2e6; display: none;"></iframe>
+                        <div class="mt-2">
+                            <a id="modalNoticeFileLink" href="#" target="_blank" class="btn btn-sm btn-outline-primary">Open File</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
@@ -81,10 +90,30 @@
 @endsection
 @section('scripts')
 <script>
+    function isPdfFile(filePath) {
+        return filePath.toLowerCase().endsWith('.pdf');
+    }
+
+    function getFileUrl(filePath) {
+        let normalizedPath = (filePath || '').trim().replace(/\\/g, '/');
+
+        if (/^https?:\/\//i.test(normalizedPath)) {
+            return normalizedPath;
+        }
+
+        normalizedPath = normalizedPath.replace(/^.*\/public\//i, 'public/').replace(/^\/+/, '');
+        if (!normalizedPath.startsWith('public/')) {
+            normalizedPath = 'public/' + normalizedPath;
+        }
+
+        return '{{ asset("") }}' + normalizedPath;
+    }
+
     function showNoticeModal(element) {
         const title = element.getAttribute('data-title');
         const date = element.getAttribute('data-date');
         const descriptionHtml = element.getAttribute('data-description-html');
+        const filePath = element.getAttribute('data-file');
 
         document.getElementById('modalNoticeTitle').innerText = title;
         document.getElementById('modalNoticeDate').innerText = date;
@@ -97,6 +126,36 @@
             document.getElementById('modalNoticeContent').innerHTML = decodedHtml;
         } else {
             document.getElementById('modalNoticeContent').innerHTML = '';
+        }
+
+        const attachmentSection = document.getElementById('modalAttachmentSection');
+        const imageElement = document.getElementById('modalNoticeImage');
+        const pdfElement = document.getElementById('modalNoticePdf');
+        const fileLink = document.getElementById('modalNoticeFileLink');
+
+        if (filePath && filePath.trim() !== '') {
+            const fileUrl = getFileUrl(filePath);
+            fileLink.href = fileUrl;
+            attachmentSection.style.display = 'block';
+
+            if (isPdfFile(filePath)) {
+                imageElement.style.display = 'none';
+                imageElement.src = '';
+                pdfElement.src = fileUrl;
+                pdfElement.style.display = 'block';
+            } else {
+                pdfElement.style.display = 'none';
+                pdfElement.src = '';
+                imageElement.src = fileUrl;
+                imageElement.style.display = 'block';
+            }
+        } else {
+            attachmentSection.style.display = 'none';
+            imageElement.style.display = 'none';
+            imageElement.src = '';
+            pdfElement.style.display = 'none';
+            pdfElement.src = '';
+            fileLink.href = '#';
         }
     }
 </script>

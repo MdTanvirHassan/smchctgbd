@@ -62,7 +62,7 @@
                                         data-title="{{ $notice->title }}"
                                         data-date="{{ \Carbon\Carbon::parse($notice->start_date)->format('d M Y') }}"
                                         data-description-html="{{ htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') }}"
-                                        data-image="{{ $notice->file_path ?? '' }}"
+                                        data-file="{{ $notice->file_path ?? '' }}"
                                         onclick="showNoticeModal(this)">
                                         {{ $notice->title }}
                                     </a>
@@ -79,25 +79,30 @@
                                             data-title="{{ $notice->title }}"
                                             data-date="{{ \Carbon\Carbon::parse($notice->start_date)->format('d M Y') }}"
                                             data-description-html="{{ htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') }}"
-                                            data-image="{{ $notice->file_path ?? '' }}"
+                                            data-file="{{ $notice->file_path ?? '' }}"
                                             onclick="showNoticeModal(this)">
                                             {{ __('notice.details') }}
                                         </button>
                                         @if($notice->file_path)
                                         @php
-                                            $imagePath = $notice->file_path;
-                                            $imageUrl = asset($imagePath);
+                                            $normalizedFilePath = str_replace('\\', '/', $notice->file_path);
+                                            $normalizedFilePath = preg_replace('/^.*\/public\//i', 'public/', $normalizedFilePath);
+                                            $normalizedFilePath = ltrim($normalizedFilePath, '/');
+                                            if (!str_starts_with($normalizedFilePath, 'public/')) {
+                                                $normalizedFilePath = 'public/' . $normalizedFilePath;
+                                            }
+                                            $fileUrl = asset($normalizedFilePath);
                                         @endphp
                                         <button type="button"
                                             class="btn btn-outline-info btn-sm px-2 rounded-pill"
-                                            onclick="viewNoticeImage('{{ $imageUrl }}')"
-                                            title="{{ __('notice.view_image') }}">
+                                            onclick="viewNoticeFile('{{ $fileUrl }}')"
+                                            title="View file">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         <button type="button"
                                             class="btn btn-outline-success btn-sm px-2 rounded-pill"
-                                            onclick="downloadNoticeImage('{{ $imageUrl }}')"
-                                            title="{{ __('notice.download_image') }}">
+                                            onclick="downloadNoticeFile('{{ $fileUrl }}')"
+                                            title="Download file">
                                             <i class="fas fa-download"></i>
                                         </button>
                                         @endif
@@ -153,22 +158,22 @@
                     <small id="modalNoticeDate" class="text-muted d-block mb-2"></small>
                     <div id="modalNoticeContent" class="summernote-content mb-3" style="line-height: 1.8;"></div>
                     
-                    <!-- Image Section -->
-                    <div id="modalImageSection" style="display: none;">
+                    <div id="modalAttachmentSection" style="display: none;">
                         <div class="mb-3">
-                            <img id="modalNoticeImage" src="" alt="Notice Image" class="img-fluid rounded shadow-sm" style="max-width: 100%; max-height: 500px; object-fit: contain;">
+                            <img id="modalNoticeImage" src="" alt="Notice Image" class="img-fluid rounded shadow-sm" style="max-width: 100%; max-height: 500px; object-fit: contain; display: none;">
+                            <iframe id="modalNoticePdf" src="" title="Notice PDF" class="rounded shadow-sm" style="width: 100%; height: 500px; border: 1px solid #dee2e6; display: none;"></iframe>
                         </div>
                         <div class="d-flex gap-2 flex-wrap">
-                            <button type="button" id="viewImageBtn" class="btn btn-primary btn-sm" onclick="viewFullImage()">
-                                <i class="fas fa-eye me-1"></i> {{ __('notice.view_image') }}
+                            <button type="button" id="viewFileBtn" class="btn btn-primary btn-sm" onclick="viewFullFile()">
+                                <i class="fas fa-eye me-1"></i> View File
                             </button>
-                            <button type="button" id="downloadImageBtn" class="btn btn-success btn-sm" onclick="downloadImage()">
-                                <i class="fas fa-download me-1"></i> {{ __('notice.download_image') }}
+                            <button type="button" id="downloadFileBtn" class="btn btn-success btn-sm" onclick="downloadFile()">
+                                <i class="fas fa-download me-1"></i> Download File
                             </button>
                         </div>
                     </div>
-                    <div id="noImageMessage" class="text-muted small" style="display: none;">
-                        {{ __('notice.no_image') }}
+                    <div id="noFileMessage" class="text-muted small" style="display: none;">
+                        No attachment available.
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -181,13 +186,30 @@
 @endsection
 @section('scripts')
 <script>
-    let currentImagePath = '';
+    function isPdfFile(filePath) {
+        return filePath.toLowerCase().endsWith('.pdf');
+    }
+
+    function getFileUrl(filePath) {
+        let normalizedPath = (filePath || '').trim().replace(/\\/g, '/');
+
+        if (/^https?:\/\//i.test(normalizedPath)) {
+            return normalizedPath;
+        }
+
+        normalizedPath = normalizedPath.replace(/^.*\/public\//i, 'public/').replace(/^\/+/, '');
+        if (!normalizedPath.startsWith('public/')) {
+            normalizedPath = 'public/' + normalizedPath;
+        }
+
+        return '{{ asset("") }}' + normalizedPath;
+    }
 
     function showNoticeModal(element) {
         const title = element.getAttribute('data-title');
         const date = element.getAttribute('data-date');
         const descriptionHtml = element.getAttribute('data-description-html');
-        const imagePath = element.getAttribute('data-image');
+        const filePath = element.getAttribute('data-file');
 
         document.getElementById('modalNoticeTitle').innerText = title;
         document.getElementById('modalNoticeDate').innerText = date;
@@ -202,44 +224,58 @@
             document.getElementById('modalNoticeContent').innerHTML = '';
         }
 
-        // Handle image
-        const imageSection = document.getElementById('modalImageSection');
-        const noImageMessage = document.getElementById('noImageMessage');
+        const attachmentSection = document.getElementById('modalAttachmentSection');
+        const noFileMessage = document.getElementById('noFileMessage');
         const imageElement = document.getElementById('modalNoticeImage');
-        const viewBtn = document.getElementById('viewImageBtn');
-        const downloadBtn = document.getElementById('downloadImageBtn');
+        const pdfElement = document.getElementById('modalNoticePdf');
+        const viewBtn = document.getElementById('viewFileBtn');
+        const downloadBtn = document.getElementById('downloadFileBtn');
 
-        if (imagePath && imagePath.trim() !== '') {
-            // Use the path as is without removing 'public/' prefix
-            let imageUrl = '{{ asset("") }}' + imagePath;
-            
-            currentImagePath = imagePath;
-            imageElement.src = imageUrl;
-            imageSection.style.display = 'block';
-            noImageMessage.style.display = 'none';
-            viewBtn.setAttribute('data-image-url', imageUrl);
-            downloadBtn.setAttribute('data-image-url', imageUrl);
+        if (filePath && filePath.trim() !== '') {
+            const fileUrl = getFileUrl(filePath);
+            const pdfFile = isPdfFile(filePath);
+
+            if (pdfFile) {
+                imageElement.style.display = 'none';
+                imageElement.src = '';
+                pdfElement.src = fileUrl;
+                pdfElement.style.display = 'block';
+            } else {
+                pdfElement.style.display = 'none';
+                pdfElement.src = '';
+                imageElement.src = fileUrl;
+                imageElement.style.display = 'block';
+            }
+
+            attachmentSection.style.display = 'block';
+            noFileMessage.style.display = 'none';
+            viewBtn.setAttribute('data-file-url', fileUrl);
+            downloadBtn.setAttribute('data-file-url', fileUrl);
         } else {
-            imageSection.style.display = 'none';
-            noImageMessage.style.display = 'block';
-            currentImagePath = '';
+            attachmentSection.style.display = 'none';
+            noFileMessage.style.display = 'block';
+            imageElement.style.display = 'none';
+            imageElement.src = '';
+            pdfElement.style.display = 'none';
+            pdfElement.src = '';
+            viewBtn.removeAttribute('data-file-url');
+            downloadBtn.removeAttribute('data-file-url');
         }
     }
 
-    function viewFullImage() {
-        const imageUrl = document.getElementById('viewImageBtn').getAttribute('data-image-url');
-        if (imageUrl) {
-            window.open(imageUrl, '_blank');
+    function viewFullFile() {
+        const fileUrl = document.getElementById('viewFileBtn').getAttribute('data-file-url');
+        if (fileUrl) {
+            window.open(fileUrl, '_blank');
         }
     }
 
-    function downloadImage() {
-        const imageUrl = document.getElementById('downloadImageBtn').getAttribute('data-image-url');
-        if (imageUrl) {
-            // Create a temporary anchor element to trigger download
+    function downloadFile() {
+        const fileUrl = document.getElementById('downloadFileBtn').getAttribute('data-file-url');
+        if (fileUrl) {
             const link = document.createElement('a');
-            link.href = imageUrl;
-            link.download = 'notice-image-' + Date.now() + '.jpg';
+            link.href = fileUrl;
+            link.download = 'notice-file-' + Date.now();
             link.target = '_blank';
             document.body.appendChild(link);
             link.click();
@@ -247,24 +283,21 @@
         }
     }
 
-    // View image from table button - opens in new tab
-    function viewNoticeImage(imageUrl) {
-        if (imageUrl) {
-            window.open(imageUrl, '_blank');
+    function viewNoticeFile(fileUrl) {
+        if (fileUrl) {
+            window.open(fileUrl, '_blank');
         }
     }
 
-    // Download image from table button
-    function downloadNoticeImage(imageUrl) {
-        if (imageUrl) {
-            // Fetch the image and convert to blob for download
-            fetch(imageUrl)
+    function downloadNoticeFile(fileUrl) {
+        if (fileUrl) {
+            fetch(fileUrl)
                 .then(response => response.blob())
                 .then(blob => {
                     const url = window.URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = url;
-                    link.download = 'notice-image-' + Date.now() + '.jpg';
+                    link.download = 'notice-file-' + Date.now();
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -272,8 +305,7 @@
                 })
                 .catch(error => {
                     console.error('Download error:', error);
-                    // Fallback: open in new tab if fetch fails
-                    window.open(imageUrl, '_blank');
+                    window.open(fileUrl, '_blank');
                 });
         }
     }

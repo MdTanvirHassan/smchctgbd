@@ -103,7 +103,7 @@ class NoticeEventController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:5120',
         ]);
 
         $data = [
@@ -115,19 +115,8 @@ class NoticeEventController extends Controller
             'is_published' => 1,
         ];
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('uploads/notices');
-            
-            // Create directory if it doesn't exist
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
-            }
-            
-            $file->move($destinationPath, $fileName);
-            $data['file_path'] = 'public/uploads/notices/' . $fileName;
+            $data['file_path'] = $this->uploadContentFile($request, 'image', 'uploads/notices');
         }
 
         Content::create($data);
@@ -148,7 +137,7 @@ class NoticeEventController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:5120',
         ]);
 
         $notice = Content::findOrFail($id);
@@ -158,30 +147,10 @@ class NoticeEventController extends Controller
         $notice->start_date = $validated['start_date'];
         $notice->end_date = $validated['end_date'];
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($notice->file_path) {
-                $oldPath = str_replace('public/', '', $notice->file_path);
-                if (file_exists(public_path($oldPath))) {
-                    unlink(public_path($oldPath));
-                }
-            }
-
-            // Upload new image
-            $file = $request->file('image');
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('uploads/notices');
-            
-            // Create directory if it doesn't exist
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
-            }
-            
-            $file->move($destinationPath, $fileName);
-            $notice->file_path = 'public/uploads/notices/' . $fileName;
+            $this->deleteContentFile($notice->file_path);
+            $notice->file_path = $this->uploadContentFile($request, 'image', 'uploads/notices');
         } elseif ($request->has('existing_image')) {
-            // Keep existing image
             $notice->file_path = $request->input('existing_image');
         }
 
@@ -203,14 +172,7 @@ class NoticeEventController extends Controller
     public function noticeDestroy($id)
     {
         $notice = Content::findOrFail($id);
-        
-        // Delete associated image file if exists
-        if ($notice->file_path) {
-            $filePath = str_replace('public/', '', $notice->file_path);
-            if (file_exists(public_path($filePath))) {
-                unlink(public_path($filePath));
-            }
-        }
+        $this->deleteContentFile($notice->file_path);
         
         $notice->delete();
 
@@ -231,7 +193,7 @@ class NoticeEventController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:5120',
         ]);
 
         $data = [
@@ -243,19 +205,8 @@ class NoticeEventController extends Controller
             'is_published' => 1,
         ];
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('uploads/meeting_minutes');
-            
-            // Create directory if it doesn't exist
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
-            }
-            
-            $file->move($destinationPath, $fileName);
-            $data['file_path'] = 'public/uploads/meeting_minutes/' . $fileName;
+            $data['file_path'] = $this->uploadContentFile($request, 'image', 'uploads/meeting_minutes');
         }
 
         Content::create($data);
@@ -270,7 +221,7 @@ class NoticeEventController extends Controller
             'description' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:5120',
         ]);
 
         $meetingMinute = Content::findOrFail($id);
@@ -280,30 +231,10 @@ class NoticeEventController extends Controller
         $meetingMinute->start_date = $validated['start_date'];
         $meetingMinute->end_date = $validated['end_date'];
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($meetingMinute->file_path) {
-                $oldPath = str_replace('public/', '', $meetingMinute->file_path);
-                if (file_exists(public_path($oldPath))) {
-                    unlink(public_path($oldPath));
-                }
-            }
-
-            // Upload new image
-            $file = $request->file('image');
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('uploads/meeting_minutes');
-            
-            // Create directory if it doesn't exist
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
-            }
-            
-            $file->move($destinationPath, $fileName);
-            $meetingMinute->file_path = 'public/uploads/meeting_minutes/' . $fileName;
+            $this->deleteContentFile($meetingMinute->file_path);
+            $meetingMinute->file_path = $this->uploadContentFile($request, 'image', 'uploads/meeting_minutes');
         } elseif ($request->has('existing_image')) {
-            // Keep existing image
             $meetingMinute->file_path = $request->input('existing_image');
         }
 
@@ -324,18 +255,42 @@ class NoticeEventController extends Controller
     public function meetingMinutesDestroy($id)
     {
         $meetingMinute = Content::findOrFail($id);
-        
-        // Delete associated image file if exists
-        if ($meetingMinute->file_path) {
-            $filePath = str_replace('public/', '', $meetingMinute->file_path);
-            if (file_exists(public_path($filePath))) {
-                unlink(public_path($filePath));
-            }
-        }
+        $this->deleteContentFile($meetingMinute->file_path);
         
         $meetingMinute->delete();
 
         return redirect()->route('meeting_minutes.index')->with('success', 'Meeting & Minutes deleted successfully!');
+    }
+
+    private function uploadContentFile(Request $request, string $fieldName, string $uploadDirectory): string
+    {
+        $file = $request->file($fieldName);
+        $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $destinationPath = public_path($uploadDirectory);
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+
+        $file->move($destinationPath, $fileName);
+
+        return 'public/' . trim($uploadDirectory, '/') . '/' . $fileName;
+    }
+
+    private function deleteContentFile(?string $filePath): void
+    {
+        if (!$filePath) {
+            return;
+        }
+
+        $relativePath = str_starts_with($filePath, 'public/')
+            ? substr($filePath, 7)
+            : $filePath;
+
+        $fullPath = public_path($relativePath);
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
     }
 
 

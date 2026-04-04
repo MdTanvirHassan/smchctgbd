@@ -27,8 +27,14 @@
                                     <div class="datenews">{{ $notice->end_date ? $notice->end_date : 'NA' }}</div>
                                 </td>
                                 <td>
-                                    <a href="#" class="notice-link"
-                                        data-content-html="{{ $notice->description ? htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') : 'NA' }}">
+                                    <a href="#"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#noticeModal"
+                                        data-title="{{ $notice->title ? $notice->title : 'NA' }}"
+                                        data-date="{{ $notice->start_date ? $notice->start_date : 'NA' }}"
+                                        data-description-html="{{ $notice->description ? htmlspecialchars($notice->description, ENT_QUOTES, 'UTF-8') : 'NA' }}"
+                                        data-file="{{ $notice->file_path ?? '' }}"
+                                        onclick="showNoticeModal(this)">
                                         {{ $notice->title ? $notice->title : 'NA' }}
                                     </a>
                                 </td>
@@ -50,8 +56,17 @@
                     <h5 class="modal-title" id="noticeModalLabel">নোটিশ</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body summernote-content" id="modalNoticeContent" style="line-height: 1.8;">
-                    <!-- Content will be added dynamically -->
+                <div class="modal-body">
+                    <h5 id="modalNoticeTitle" class="fw-semibold mb-2"></h5>
+                    <small id="modalNoticeDate" class="text-muted d-block mb-2"></small>
+                    <div class="summernote-content" id="modalNoticeContent" style="line-height: 1.8;"></div>
+                    <div id="modalAttachmentSection" class="mt-3" style="display: none;">
+                        <img id="modalNoticeImage" src="" alt="Notice image" class="img-fluid rounded" style="max-height: 400px; display: none;">
+                        <iframe id="modalNoticePdf" src="" title="Notice PDF" style="width: 100%; height: 450px; border: 1px solid #dee2e6; display: none;"></iframe>
+                        <div class="mt-2">
+                            <a id="modalNoticeFileLink" href="#" target="_blank" class="btn btn-sm btn-outline-primary">Open File</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,4 +136,76 @@
         color: #0a58ca;
     }
 </style>
+
+@endsection
+
+@section('scripts')
+<script>
+    function isPdfFile(filePath) {
+        return filePath.toLowerCase().endsWith('.pdf');
+    }
+
+    function getFileUrl(filePath) {
+        let normalizedPath = (filePath || '').trim().replace(/\\/g, '/');
+
+        if (/^https?:\/\//i.test(normalizedPath)) {
+            return normalizedPath;
+        }
+
+        normalizedPath = normalizedPath.replace(/^.*\/public\//i, 'public/').replace(/^\/+/, '');
+        if (!normalizedPath.startsWith('public/')) {
+            normalizedPath = 'public/' + normalizedPath;
+        }
+
+        return '{{ asset("") }}' + normalizedPath;
+    }
+
+    function showNoticeModal(element) {
+        const title = element.getAttribute('data-title') || '';
+        const date = element.getAttribute('data-date') || '';
+        const descriptionHtml = element.getAttribute('data-description-html') || '';
+        const filePath = element.getAttribute('data-file') || '';
+
+        document.getElementById('modalNoticeTitle').innerText = title;
+        document.getElementById('modalNoticeDate').innerText = date;
+
+        if (descriptionHtml) {
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.innerHTML = descriptionHtml;
+            document.getElementById('modalNoticeContent').innerHTML = tempTextarea.value;
+        } else {
+            document.getElementById('modalNoticeContent').innerHTML = '';
+        }
+
+        const attachmentSection = document.getElementById('modalAttachmentSection');
+        const imageElement = document.getElementById('modalNoticeImage');
+        const pdfElement = document.getElementById('modalNoticePdf');
+        const fileLink = document.getElementById('modalNoticeFileLink');
+
+        if (filePath && filePath.trim() !== '') {
+            const fileUrl = getFileUrl(filePath);
+            fileLink.href = fileUrl;
+            attachmentSection.style.display = 'block';
+
+            if (isPdfFile(filePath)) {
+                imageElement.style.display = 'none';
+                imageElement.src = '';
+                pdfElement.src = fileUrl;
+                pdfElement.style.display = 'block';
+            } else {
+                pdfElement.style.display = 'none';
+                pdfElement.src = '';
+                imageElement.src = fileUrl;
+                imageElement.style.display = 'block';
+            }
+        } else {
+            attachmentSection.style.display = 'none';
+            imageElement.style.display = 'none';
+            imageElement.src = '';
+            pdfElement.style.display = 'none';
+            pdfElement.src = '';
+            fileLink.href = '#';
+        }
+    }
+</script>
 @endsection

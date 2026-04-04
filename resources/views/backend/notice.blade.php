@@ -73,7 +73,7 @@
                                 <th class="py-2">Description</th>
                                 <th class="py-2">Start Date</th>
                                 <th class="py-2">End Date</th>
-                                <th class="py-2">Image</th>
+                                <th class="py-2">Attachment</th>
                                 <th class="text-end py-2">Action</th>
                             </tr>
                         </thead>
@@ -89,15 +89,25 @@
                                     <td>
                                         @if($notice->file_path)
                                             @php
-                                                $imagePath = str_replace('public/', '', $notice->file_path);
-                                                $imageUrl = asset($imagePath);
+                                                $webFilePath = str_starts_with($notice->file_path, 'public/')
+                                                    ? $notice->file_path
+                                                    : 'public/' . ltrim($notice->file_path, '/');
+                                                $fileUrl = asset($webFilePath);
+                                                $fileExtension = strtolower(pathinfo($notice->file_path, PATHINFO_EXTENSION));
+                                                $isPdf = $fileExtension === 'pdf';
                                             @endphp
-                                            <img src="{{ $imageUrl }}" alt="{{ $notice->title }}" 
-                                                 class="img-thumbnail" style="max-width: 80px; max-height: 80px; object-fit: cover; cursor: pointer;"
-                                                 onclick="window.open('{{ $imageUrl }}', '_blank')"
-                                                 title="Click to view full size">
+                                            @if($isPdf)
+                                                <a href="{{ $fileUrl }}" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill">
+                                                    <i class="fas fa-file-pdf me-1"></i> Preview PDF
+                                                </a>
+                                            @else
+                                                <img src="{{ $fileUrl }}" alt="{{ $notice->title }}"
+                                                    class="img-thumbnail" style="max-width: 80px; max-height: 80px; object-fit: cover; cursor: pointer;"
+                                                    onclick="window.open('{{ $fileUrl }}', '_blank')"
+                                                    title="Click to view full size">
+                                            @endif
                                         @else
-                                            <span class="text-muted small">No Image</span>
+                                            <span class="text-muted small">No Attachment</span>
                                         @endif
                                     </td>
                                     <td class="text-end">
@@ -176,11 +186,12 @@
                     </div>
                     <div class="modal-body small text-muted">
                         <div class="mb-3">
-                            <label class="form-label small">Image (Optional)</label>
-                            <input type="file" name="image" id="addNoticeImage" class="form-control form-control-sm" accept="image/*">
-                            <div class="invalid-feedback">Please select a valid image file.</div>
+                            <label class="form-label small">Attachment (Image/PDF, Optional)</label>
+                            <input type="file" name="image" id="addNoticeImage" class="form-control form-control-sm" accept="image/*,.pdf,application/pdf">
+                            <div class="invalid-feedback">Please select a valid image or PDF file.</div>
                             <div id="addNoticeImagePreview" class="mt-2" style="display: none;">
-                                <img src="" alt="Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                                <img src="" alt="Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
+                                <iframe src="" title="PDF preview" class="img-thumbnail" style="width: 100%; max-width: 320px; height: 220px; display: none;"></iframe>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -233,13 +244,15 @@
                     <div class="modal-body small text-muted">
                         <input type="hidden" name="notice_id" id="notice_id">
                         <div class="mb-3">
-                            <label class="form-label small">Image (Optional)</label>
-                            <input type="file" name="image" id="editNoticeImage" class="form-control form-control-sm" accept="image/*">
-                            <div class="invalid-feedback">Please select a valid image file.</div>
+                            <label class="form-label small">Attachment (Image/PDF, Optional)</label>
+                            <input type="file" name="image" id="editNoticeImage" class="form-control form-control-sm" accept="image/*,.pdf,application/pdf">
+                            <div class="invalid-feedback">Please select a valid image or PDF file.</div>
                             <input type="hidden" name="existing_image" id="existing_image">
                             <div id="editNoticeImagePreview" class="mt-2">
                                 <img id="currentImagePreview" src="" alt="Current Image" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
+                                <iframe id="currentPdfPreview" src="" title="Current PDF" class="img-thumbnail" style="width: 100%; max-width: 320px; height: 220px; display: none;"></iframe>
                                 <img id="newImagePreview" src="" alt="New Preview" class="img-thumbnail mt-2" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
+                                <iframe id="newPdfPreview" src="" title="New PDF" class="img-thumbnail mt-2" style="width: 100%; max-width: 320px; height: 220px; display: none;"></iframe>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -333,42 +346,90 @@
             }
         });
 
-        // Image Preview for Add Modal
+        function isPdfFile(fileName) {
+            return fileName.toLowerCase().endsWith('.pdf');
+        }
+
+        function showAddAttachmentPreview(file) {
+            const preview = $('#addNoticeImagePreview');
+            const imagePreview = preview.find('img');
+            const pdfPreview = preview.find('iframe');
+
+            if (!file) {
+                imagePreview.hide().attr('src', '');
+                pdfPreview.hide().attr('src', '');
+                preview.hide();
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                if (isPdfFile(file.name)) {
+                    imagePreview.hide().attr('src', '');
+                    pdfPreview.attr('src', e.target.result).show();
+                } else {
+                    pdfPreview.hide().attr('src', '');
+                    imagePreview.attr('src', e.target.result).show();
+                }
+                preview.show();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showEditAttachmentPreview(file, existingPath) {
+            const currentImagePreview = $('#currentImagePreview');
+            const currentPdfPreview = $('#currentPdfPreview');
+            const newImagePreview = $('#newImagePreview');
+            const newPdfPreview = $('#newPdfPreview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentImagePreview.hide().attr('src', '');
+                    currentPdfPreview.hide().attr('src', '');
+                    if (isPdfFile(file.name)) {
+                        newImagePreview.hide().attr('src', '');
+                        newPdfPreview.attr('src', e.target.result).show();
+                    } else {
+                        newPdfPreview.hide().attr('src', '');
+                        newImagePreview.attr('src', e.target.result).show();
+                    }
+                };
+                reader.readAsDataURL(file);
+                return;
+            }
+
+            newImagePreview.hide().attr('src', '');
+            newPdfPreview.hide().attr('src', '');
+
+            if (!existingPath) {
+                currentImagePreview.hide().attr('src', '');
+                currentPdfPreview.hide().attr('src', '');
+                return;
+            }
+
+            const cleanedPath = existingPath.replace(/^\/+/, '');
+            const normalizedPath = cleanedPath.startsWith('public/') ? cleanedPath : 'public/' + cleanedPath;
+            const fileUrl = '{{ asset("") }}' + normalizedPath;
+            if (isPdfFile(existingPath)) {
+                currentImagePreview.hide().attr('src', '');
+                currentPdfPreview.attr('src', fileUrl).show();
+            } else {
+                currentPdfPreview.hide().attr('src', '');
+                currentImagePreview.attr('src', fileUrl).show();
+            }
+        }
+
+        // Attachment Preview for Add Modal
         $('#addNoticeImage').on('change', function(e) {
             const file = e.target.files[0];
-            const preview = $('#addNoticeImagePreview');
-            
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.find('img').attr('src', e.target.result);
-                    preview.show();
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.hide();
-            }
+            showAddAttachmentPreview(file);
         });
 
-        // Image Preview for Edit Modal
+        // Attachment Preview for Edit Modal
         $('#editNoticeImage').on('change', function(e) {
             const file = e.target.files[0];
-            const newPreview = $('#newImagePreview');
-            const currentPreview = $('#currentImagePreview');
-            
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    newPreview.attr('src', e.target.result).show();
-                    currentPreview.hide();
-                };
-                reader.readAsDataURL(file);
-            } else {
-                newPreview.hide();
-                if ($('#existing_image').val()) {
-                    currentPreview.show();
-                }
-            }
+            showEditAttachmentPreview(file, $('#existing_image').val());
         });
 
         // Edit Modal Data Fill
@@ -392,20 +453,19 @@
             form.find('#end_date').val(end_date);
             
             // Handle image
-            var currentPreview = $('#currentImagePreview');
             var existingImageInput = $('#existing_image');
-            var newPreview = $('#newImagePreview');
             var imageInput = $('#editNoticeImage');
             
             imageInput.val(''); // Reset file input
-            newPreview.hide();
+            $('#newImagePreview').hide().attr('src', '');
+            $('#newPdfPreview').hide().attr('src', '');
             
             if (image_path) {
                 existingImageInput.val(image_path);
-                currentPreview.attr('src', '{{ asset("") }}' + image_path).show();
+                showEditAttachmentPreview(null, image_path);
             } else {
                 existingImageInput.val('');
-                currentPreview.hide();
+                showEditAttachmentPreview(null, '');
             }
         });
 
