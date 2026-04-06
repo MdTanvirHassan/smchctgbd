@@ -161,15 +161,15 @@
                     <div id="modalAttachmentSection" style="display: none;">
                         <div class="mb-3">
                             <img id="modalMeetingMinutesImage" src="" alt="Meeting & Minutes Image" class="img-fluid rounded shadow-sm" style="max-width: 100%; max-height: 500px; object-fit: contain; display: none;">
-                            <iframe id="modalMeetingMinutesPdf" src="" title="Meeting & Minutes PDF" class="rounded shadow-sm" style="width: 100%; height: 500px; border: 1px solid #dee2e6; display: none;"></iframe>
+                            <embed id="modalMeetingMinutesPdf" src="" type="application/pdf" class="rounded shadow-sm" style="width: 100%; height: 500px; border: 1px solid #dee2e6; display: none;">
                         </div>
                         <div class="d-flex gap-2 flex-wrap">
-                            <button type="button" id="viewFileBtn" class="btn btn-primary btn-sm" onclick="viewFullFile()">
+                            <a id="viewFileBtn" href="#" target="_blank" class="btn btn-primary btn-sm">
                                 <i class="fas fa-eye me-1"></i> View File
-                            </button>
-                            <button type="button" id="downloadFileBtn" class="btn btn-success btn-sm" onclick="downloadFile()">
+                            </a>
+                            <a id="downloadFileBtn" href="#" download class="btn btn-success btn-sm">
                                 <i class="fas fa-download me-1"></i> Download File
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div id="noFileMessage" class="text-muted small" style="display: none;">
@@ -249,8 +249,8 @@
 
             attachmentSection.style.display = 'block';
             noFileMessage.style.display = 'none';
-            viewBtn.setAttribute('data-file-url', fileUrl);
-            downloadBtn.setAttribute('data-file-url', fileUrl);
+            viewBtn.href = fileUrl;
+            downloadBtn.href = fileUrl;
         } else {
             attachmentSection.style.display = 'none';
             noFileMessage.style.display = 'block';
@@ -258,28 +258,8 @@
             imageElement.src = '';
             pdfElement.style.display = 'none';
             pdfElement.src = '';
-            viewBtn.removeAttribute('data-file-url');
-            downloadBtn.removeAttribute('data-file-url');
-        }
-    }
-
-    function viewFullFile() {
-        const fileUrl = document.getElementById('viewFileBtn').getAttribute('data-file-url');
-        if (fileUrl) {
-            window.open(fileUrl, '_blank');
-        }
-    }
-
-    function downloadFile() {
-        const fileUrl = document.getElementById('downloadFileBtn').getAttribute('data-file-url');
-        if (fileUrl) {
-            const link = document.createElement('a');
-            link.href = fileUrl;
-            link.download = 'meeting-minutes-file-' + Date.now();
-            link.target = '_blank';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            viewBtn.href = '#';
+            downloadBtn.href = '#';
         }
     }
 

@@ -62,9 +62,10 @@
                     <div class="summernote-content" id="modalNoticeContent" style="line-height: 1.8;"></div>
                     <div id="modalAttachmentSection" class="mt-3" style="display: none;">
                         <img id="modalNoticeImage" src="" alt="Notice image" class="img-fluid rounded" style="max-height: 400px; display: none;">
-                        <iframe id="modalNoticePdf" src="" title="Notice PDF" style="width: 100%; height: 450px; border: 1px solid #dee2e6; display: none;"></iframe>
-                        <div class="mt-2">
-                            <a id="modalNoticeFileLink" href="#" target="_blank" class="btn btn-sm btn-outline-primary">Open File</a>
+                        <embed id="modalNoticePdf" src="" type="application/pdf" style="width: 100%; height: 450px; border: 1px solid #dee2e6; display: none;">
+                        <div class="mt-2 d-flex gap-2">
+                            <a id="modalNoticeFileLink" href="#" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-eye me-1"></i> View File</a>
+                            <a id="modalNoticeDownloadLink" href="#" download class="btn btn-sm btn-outline-success"><i class="fas fa-download me-1"></i> Download</a>
                         </div>
                     </div>
                 </div>
@@ -181,10 +182,12 @@
         const imageElement = document.getElementById('modalNoticeImage');
         const pdfElement = document.getElementById('modalNoticePdf');
         const fileLink = document.getElementById('modalNoticeFileLink');
+        const downloadLink = document.getElementById('modalNoticeDownloadLink');
 
         if (filePath && filePath.trim() !== '') {
             const fileUrl = getFileUrl(filePath);
             fileLink.href = fileUrl;
+            downloadLink.href = fileUrl;
             attachmentSection.style.display = 'block';
 
             if (isPdfFile(filePath)) {
@@ -205,6 +208,7 @@
             pdfElement.style.display = 'none';
             pdfElement.src = '';
             fileLink.href = '#';
+            downloadLink.href = '#';
         }
     }
 </script>

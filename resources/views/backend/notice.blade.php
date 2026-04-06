@@ -97,8 +97,11 @@
                                                 $isPdf = $fileExtension === 'pdf';
                                             @endphp
                                             @if($isPdf)
-                                                <a href="{{ $fileUrl }}" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill">
-                                                    <i class="fas fa-file-pdf me-1"></i> Preview PDF
+                                                <a href="{{ $fileUrl }}" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill" title="Open PDF in new tab">
+                                                    <i class="fas fa-file-pdf me-1"></i> View PDF
+                                                </a>
+                                                <a href="{{ $fileUrl }}" download class="btn btn-sm btn-outline-success rounded-pill ms-1" title="Download PDF">
+                                                    <i class="fas fa-download"></i>
                                                 </a>
                                             @else
                                                 <img src="{{ $fileUrl }}" alt="{{ $notice->title }}"
@@ -191,7 +194,7 @@
                             <div class="invalid-feedback">Please select a valid image or PDF file.</div>
                             <div id="addNoticeImagePreview" class="mt-2" style="display: none;">
                                 <img src="" alt="Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
-                                <iframe src="" title="PDF preview" class="img-thumbnail" style="width: 100%; max-width: 320px; height: 220px; display: none;"></iframe>
+                                <embed src="" type="application/pdf" class="img-thumbnail" style="width: 100%; max-width: 400px; height: 280px; display: none;">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -250,9 +253,14 @@
                             <input type="hidden" name="existing_image" id="existing_image">
                             <div id="editNoticeImagePreview" class="mt-2">
                                 <img id="currentImagePreview" src="" alt="Current Image" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
-                                <iframe id="currentPdfPreview" src="" title="Current PDF" class="img-thumbnail" style="width: 100%; max-width: 320px; height: 220px; display: none;"></iframe>
+                                <div id="currentPdfPreview" style="display: none;">
+                                    <embed id="currentPdfEmbed" src="" type="application/pdf" style="width: 100%; max-width: 400px; height: 280px; border: 1px solid #dee2e6;">
+                                    <div class="mt-1"><a id="currentPdfLink" href="#" target="_blank" class="btn btn-sm btn-outline-danger"><i class="fas fa-file-pdf me-1"></i> Open PDF in new tab</a></div>
+                                </div>
                                 <img id="newImagePreview" src="" alt="New Preview" class="img-thumbnail mt-2" style="max-width: 200px; max-height: 200px; object-fit: cover; display: none;">
-                                <iframe id="newPdfPreview" src="" title="New PDF" class="img-thumbnail mt-2" style="width: 100%; max-width: 320px; height: 220px; display: none;"></iframe>
+                                <div id="newPdfPreview" style="display: none;" class="mt-2">
+                                    <embed id="newPdfEmbed" src="" type="application/pdf" style="width: 100%; max-width: 400px; height: 280px; border: 1px solid #dee2e6;">
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -353,7 +361,7 @@
         function showAddAttachmentPreview(file) {
             const preview = $('#addNoticeImagePreview');
             const imagePreview = preview.find('img');
-            const pdfPreview = preview.find('iframe');
+            const pdfPreview = preview.find('embed');
 
             if (!file) {
                 imagePreview.hide().attr('src', '');
@@ -385,13 +393,14 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    currentImagePreview.hide().attr('src', '');
-                    currentPdfPreview.hide().attr('src', '');
+                    currentImagePreview.hide();
+                    currentPdfPreview.hide();
                     if (isPdfFile(file.name)) {
                         newImagePreview.hide().attr('src', '');
-                        newPdfPreview.attr('src', e.target.result).show();
+                        newPdfPreview.find('embed').attr('src', e.target.result);
+                        newPdfPreview.show();
                     } else {
-                        newPdfPreview.hide().attr('src', '');
+                        newPdfPreview.hide().find('embed').attr('src', '');
                         newImagePreview.attr('src', e.target.result).show();
                     }
                 };
@@ -400,22 +409,24 @@
             }
 
             newImagePreview.hide().attr('src', '');
-            newPdfPreview.hide().attr('src', '');
+            newPdfPreview.hide().find('embed').attr('src', '');
 
             if (!existingPath) {
                 currentImagePreview.hide().attr('src', '');
-                currentPdfPreview.hide().attr('src', '');
+                currentPdfPreview.hide().find('embed').attr('src', '');
                 return;
             }
 
-            const cleanedPath = existingPath.replace(/^\/+/, '');
+            const cleanedPath = existingPath.replace(/^\/+/, '').replace(/\\/g, '/');
             const normalizedPath = cleanedPath.startsWith('public/') ? cleanedPath : 'public/' + cleanedPath;
             const fileUrl = '{{ asset("") }}' + normalizedPath;
             if (isPdfFile(existingPath)) {
                 currentImagePreview.hide().attr('src', '');
-                currentPdfPreview.attr('src', fileUrl).show();
+                currentPdfPreview.find('embed').attr('src', fileUrl);
+                currentPdfPreview.find('a').attr('href', fileUrl);
+                currentPdfPreview.show();
             } else {
-                currentPdfPreview.hide().attr('src', '');
+                currentPdfPreview.hide().find('embed').attr('src', '');
                 currentImagePreview.attr('src', fileUrl).show();
             }
         }
@@ -458,7 +469,7 @@
             
             imageInput.val(''); // Reset file input
             $('#newImagePreview').hide().attr('src', '');
-            $('#newPdfPreview').hide().attr('src', '');
+            $('#newPdfPreview').hide().find('embed').attr('src', '');
             
             if (image_path) {
                 existingImageInput.val(image_path);
